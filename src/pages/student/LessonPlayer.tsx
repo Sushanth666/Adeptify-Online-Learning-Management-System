@@ -233,7 +233,23 @@ export const LessonPlayer: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="relative min-h-screen bg-slate-950 text-slate-100 flex flex-col overflow-hidden">
+      {/* Background Animated Emerald Glows */}
+      <div 
+        aria-hidden="true" 
+        className="pointer-events-none fixed inset-0 z-0 overflow-hidden select-none"
+      >
+        <div className="absolute -top-32 -right-32 w-[30rem] h-[30rem] rounded-full bg-emerald-500/12 blur-[130px]" />
+        <div className="absolute -bottom-32 -left-32 w-[30rem] h-[30rem] rounded-full bg-teal-500/10 blur-[130px]" />
+        <div 
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: 'radial-gradient(#10b981 1.2px, transparent 1.2px)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+      </div>
+
       {/* Top Bar */}
       <header className="h-14 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md px-4 flex items-center justify-between z-30 flex-shrink-0">
         <div className="flex items-center gap-3">

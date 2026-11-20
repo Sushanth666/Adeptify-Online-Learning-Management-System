@@ -7,4 +7,5 @@ export { AdeptifyLogo } from './AdeptifyLogo';
 export { CertificateModal } from './CertificateModal';
 export { NotificationsDrawer } from './NotificationsDrawer';
 export { RatingStars } from './RatingStars';
+export { AnimatedBackground } from './AnimatedBackground';
 
