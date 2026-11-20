@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { currentUser, switchRole } = useAuth();
+  const { currentUser, switchRole, logout: handleLogout } = useAuth();
   const { isMinimized: isSidebarMinimized, toggleMobile } = useSidebar();
   const { unreadCount: unreadNotifs, toggle: toggleNotifs } = useNotifications();
   const wishlist = useAppSelector((state) => state.courses.wishlist);
@@ -276,14 +276,18 @@ export const Navbar: React.FC = () => {
                     </div>
 
                     <div className="pt-1 border-t border-slate-100">
-                      <Link
-                        to="/login"
-                        onClick={() => setIsProfileMenuOpen(false)}
-                        className="flex items-center gap-2.5 px-4 py-2 text-rose-600 hover:bg-rose-50 text-sm transition-colors"
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsProfileMenuOpen(false);
+                          handleLogout();
+                          navigate('/login');
+                        }}
+                        className="w-full flex items-center gap-2.5 px-4 py-2 text-rose-600 hover:bg-rose-50 text-sm transition-colors text-left"
                       >
                         <LogOut className="w-4 h-4" />
                         Sign Out
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </>

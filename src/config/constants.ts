@@ -10,6 +10,7 @@ export const APP_CONFIG = {
     SIDEBAR_MINIMIZED: 'adeptify_sidebar_minimized',
     COURSES_CACHE: 'adeptify_v5_playable_youtube_videos',
     AUTH_USER: 'adeptify_current_user',
+    AUTH_ACTIVE: 'adeptify_auth_active',
     ENROLLMENTS: 'adeptify_enrollments',
     WISHLIST: 'adeptify_wishlist',
     NOTIFICATIONS: 'adeptify_notifications',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { ShieldAlert, ArrowLeft, UserCheck, Lock } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { setRole } from '../../store/slices/authSlice';
@@ -8,16 +8,22 @@ import { UserRole } from '../../types';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  allowedRoles: UserRole[];
+  allowedRoles?: UserRole[];
 }
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useAppDispatch();
-  const currentUser = useAppSelector((state) => state.auth.currentUser);
+  const { currentUser, isAuthenticated } = useAppSelector((state) => state.auth);
 
-  const isAuthorized = allowedRoles.includes(currentUser.role);
+  // If user is not authenticated, redirect directly to /login
+  if (!isAuthenticated) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  // If role restrictions apply
+  const isAuthorized = !allowedRoles || allowedRoles.length === 0 || allowedRoles.includes(currentUser.role);
 
   if (isAuthorized) {
     return <>{children}</>;

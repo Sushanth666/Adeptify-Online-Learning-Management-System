@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useAppDispatch } from './store';
+import { useAppDispatch, useAppSelector } from './store';
 import { initializeLocalStorage } from './services/api';
 import { fetchNotifications } from './store/slices/uiSlice';
 import { startTabAnimation } from './utils';
@@ -10,6 +10,7 @@ import { AppRoutes } from './routes';
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
     initializeLocalStorage();
@@ -20,9 +21,10 @@ export const App: React.FC = () => {
     };
   }, [dispatch]);
 
-  // Is this the focused classroom video player view or auth page?
+  // Only show header/sidebar/footer if user is authenticated and not in classroom or auth pages
   const isClassroom = location.pathname.startsWith('/learning/');
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+  const showChrome = isAuthenticated && !isClassroom && !isAuthPage;
 
   return (
     <div className="h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-emerald-600 selection:text-white overflow-hidden">
@@ -30,11 +32,11 @@ export const App: React.FC = () => {
       <ToastContainer />
 
       {/* Primary Global Navigation (Frozen at Top) */}
-      {!isClassroom && !isAuthPage && <Navbar />}
+      {showChrome && <Navbar />}
 
       {/* Main Content Layout with Persistent Frozen Sidebar and Independent Scrollable Page Content */}
       <div className="flex-1 flex overflow-hidden">
-        {!isClassroom && !isAuthPage && <Sidebar />}
+        {showChrome && <Sidebar />}
         
         {/* Scrollable Page Body (Only this area scrolls) */}
         <div className="flex-1 flex flex-col min-w-0 overflow-y-auto bg-slate-50 relative">
@@ -43,7 +45,7 @@ export const App: React.FC = () => {
           </div>
 
           {/* Primary Global Footer (Inside scrollable page container) */}
-          {!isClassroom && !isAuthPage && <Footer />}
+          {showChrome && <Footer />}
         </div>
       </div>
     </div>

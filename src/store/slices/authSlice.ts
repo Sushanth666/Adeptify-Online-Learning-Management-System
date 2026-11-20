@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { User, UserRole } from '../../types';
 import { api } from '../../services/api';
+import { APP_CONFIG } from '../../config/constants';
 
 interface AuthState {
   currentUser: User;
@@ -9,11 +10,16 @@ interface AuthState {
   error: string | null;
 }
 
+const checkInitialAuth = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return localStorage.getItem(APP_CONFIG.storageKeys.AUTH_ACTIVE) === 'true';
+};
+
 const initialUser = api.auth.getCurrentUser();
 
 const initialState: AuthState = {
   currentUser: initialUser,
-  isAuthenticated: true,
+  isAuthenticated: checkInitialAuth(),
   loading: false,
   error: null,
 };
@@ -41,6 +47,10 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuthenticated = false;
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem(APP_CONFIG.storageKeys.AUTH_ACTIVE);
+        localStorage.removeItem('edupulse_token');
+      }
     },
   },
   extraReducers: (builder) => {
@@ -53,6 +63,9 @@ const authSlice = createSlice({
         state.loading = false;
         state.currentUser = action.payload;
         state.isAuthenticated = true;
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(APP_CONFIG.storageKeys.AUTH_ACTIVE, 'true');
+        }
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
