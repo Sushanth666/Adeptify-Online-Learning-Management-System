@@ -40,7 +40,7 @@ export const Home: React.FC = () => {
   return (
     <div className="space-y-16 pb-16 overflow-hidden">
       {/* Hero Section with Floating Ambient Orbs */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 pt-16 pb-20 lg:pt-24 lg:pb-32">
+      <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/80 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 pt-16 pb-20 lg:pt-24 lg:pb-32 transition-colors duration-200">
         {/* Floating Ambient Mesh Glows */}
         <motion.div
           animate={{
@@ -53,7 +53,7 @@ export const Home: React.FC = () => {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute top-10 left-1/4 w-[500px] h-[300px] bg-emerald-400/15 rounded-full blur-3xl pointer-events-none"
+          className="absolute top-10 left-1/4 w-[500px] h-[300px] bg-emerald-400/15 dark:bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"
         />
         <motion.div
           animate={{
@@ -67,7 +67,7 @@ export const Home: React.FC = () => {
             ease: 'easeInOut',
             delay: 1,
           }}
-          className="absolute top-20 right-1/4 w-[450px] h-[320px] bg-teal-400/15 rounded-full blur-3xl pointer-events-none"
+          className="absolute top-20 right-1/4 w-[450px] h-[320px] bg-teal-400/15 dark:bg-teal-500/10 rounded-full blur-3xl pointer-events-none"
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
@@ -76,9 +76,9 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/70 border border-emerald-300/80 text-emerald-800 text-xs font-bold shadow-xs"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/80 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-bold shadow-xs"
           >
-            <Sparkles className="w-4 h-4 text-emerald-600 animate-spin" style={{ animationDuration: '6s' }} />
+            <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400 animate-spin" style={{ animationDuration: '6s' }} />
             <span>Adeptify India 🇮🇳 | Premier Engineering & Tech Academy</span>
           </motion.div>
 
@@ -87,10 +87,10 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight max-w-4xl mx-auto leading-[1.15]"
+            className="text-4xl sm:text-6xl font-black text-slate-900 dark:text-white tracking-tight max-w-4xl mx-auto leading-[1.15]"
           >
             Master In-Demand Tech Skills for{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 dark:from-emerald-400 dark:via-teal-400 dark:to-emerald-300">
               India's Top Tech Companies & Unicorns
             </span>
           </motion.h1>
@@ -100,7 +100,7 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed"
           >
             Curated by India's lead software architects from Bengaluru & Hyderabad. Attend interactive video lessons, practice hands-on coding labs, solve quizzes, and earn verifiable industry certificates.
           </motion.p>
@@ -125,15 +125,15 @@ export const Home: React.FC = () => {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
               <Link
                 to="/dashboard"
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold text-sm shadow-xs transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 font-bold text-sm shadow-xs transition-all flex items-center justify-center gap-2"
               >
-                <BookOpen className="w-4 h-4 text-emerald-600" />
+                <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>Student Dashboard</span>
               </Link>
             </motion.div>
           </motion.div>
 
-          {/* Live Browser Tab Animation Showcase (Matching User's Screenshot) */}
+          {/* Live Browser Tab Animation Showcase */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -194,7 +194,7 @@ export const Home: React.FC = () => {
                 </div>
               </div>
             </div>
-            <p className="text-[11px] text-slate-500 mt-2 font-medium">
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-2 font-medium">
               ⬆ Look directly at your browser tab above! The graduation cap is swinging and the title marquee is continuously scrolling in your browser tab.
             </p>
           </motion.div>
@@ -204,7 +204,7 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto pt-10 text-slate-800 border-t border-slate-200/80"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto pt-10 text-slate-800 dark:text-slate-100 border-t border-slate-200/80 dark:border-slate-800"
           >
             {[
               { label: 'Learners Across India', value: '1,84,000+' },
@@ -217,10 +217,10 @@ export const Home: React.FC = () => {
                 whileHover={{ y: -3 }}
                 className="p-2 rounded-xl transition-all"
               >
-                <div className="text-2xl sm:text-3xl font-black text-emerald-600">
+                <div className="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400">
                   {stat.value}
                 </div>
-                <div className="text-xs text-slate-500 font-semibold mt-0.5">
+                <div className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-0.5">
                   {stat.label}
                 </div>
               </motion.div>
@@ -234,25 +234,25 @@ export const Home: React.FC = () => {
             transition={{ delay: 0.6 }}
             className="pt-8 flex flex-col items-center gap-3"
           >
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+            <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
               Alumni Hired Across India's Leading Tech Hubs
             </span>
-            <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-bold text-slate-500">
-              <span className="hover:text-emerald-700 transition-colors">Google India</span>
+            <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-bold text-slate-500 dark:text-slate-400">
+              <span className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Google India</span>
               <span>•</span>
-              <span className="hover:text-emerald-700 transition-colors">Microsoft IDC</span>
+              <span className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Microsoft IDC</span>
               <span>•</span>
-              <span className="hover:text-emerald-700 transition-colors">Flipkart</span>
+              <span className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Flipkart</span>
               <span>•</span>
-              <span className="hover:text-emerald-700 transition-colors">Swiggy</span>
+              <span className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Swiggy</span>
               <span>•</span>
-              <span className="hover:text-emerald-700 transition-colors">Zomato</span>
+              <span className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Zomato</span>
               <span>•</span>
-              <span className="hover:text-emerald-700 transition-colors">Razorpay</span>
+              <span className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Razorpay</span>
               <span>•</span>
-              <span className="hover:text-emerald-700 transition-colors">Infosys</span>
+              <span className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Infosys</span>
               <span>•</span>
-              <span className="hover:text-emerald-700 transition-colors">TCS Digital</span>
+              <span className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">TCS Digital</span>
             </div>
           </motion.div>
         </div>
@@ -262,19 +262,19 @@ export const Home: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <div className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1">
+            <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider mb-1">
               Top Trending Programs
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Featured Tech Masterclasses
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
               Handcrafted curricula with coding labs, interactive quizzes, and instructor support.
             </p>
           </div>
           <Link
             to="/courses"
-            className="text-sm font-bold text-emerald-700 hover:text-emerald-900 flex items-center gap-1 group"
+            className="text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-900 dark:hover:text-emerald-300 flex items-center gap-1 group"
           >
             Browse All Courses{' '}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -295,10 +295,10 @@ export const Home: React.FC = () => {
       {/* Categories Showcase */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="text-center space-y-2 max-w-xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Top Categories to Explore
           </h2>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
             Tailor your learning roadmap according to your career objectives.
           </p>
         </div>
@@ -313,15 +313,15 @@ export const Home: React.FC = () => {
             >
               <Link
                 to={`/courses?category=${encodeURIComponent(cat.name)}`}
-                className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-emerald-300 text-center transition-all group flex flex-col items-center justify-center space-y-2 h-full"
+                className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xs hover:shadow-md hover:border-emerald-300 dark:hover:border-emerald-600 text-center transition-all group flex flex-col items-center justify-center space-y-2 h-full"
               >
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <BookOpen className="w-6 h-6" />
                 </div>
-                <h3 className="font-bold text-xs text-slate-800 group-hover:text-emerald-700 transition-colors">
+                <h3 className="font-bold text-xs text-slate-800 dark:text-slate-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                   {cat.name}
                 </h3>
-                <span className="text-[10px] text-slate-400 font-medium">
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">
                   {cat.count} Courses
                 </span>
               </Link>
@@ -331,7 +331,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 3 Pillars: Student, Instructor, Admin Features Showcase */}
-      <section className="bg-slate-900 text-white py-16 relative overflow-hidden">
+      <section className="bg-slate-900 dark:bg-slate-950 text-white py-16 relative overflow-hidden border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
             <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
@@ -349,7 +349,7 @@ export const Home: React.FC = () => {
             {/* Student Pillar */}
             <motion.div
               whileHover={{ y: -6 }}
-              className="p-8 rounded-3xl bg-slate-800/70 border border-slate-700/80 hover:border-emerald-500/50 space-y-4 flex flex-col justify-between transition-colors shadow-xl"
+              className="p-8 rounded-3xl bg-slate-800/70 dark:bg-slate-900/80 border border-slate-700/80 dark:border-slate-800 hover:border-emerald-500/50 space-y-4 flex flex-col justify-between transition-colors shadow-xl"
             >
               <div className="space-y-3">
                 <div className="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
@@ -374,7 +374,7 @@ export const Home: React.FC = () => {
             {/* Instructor Pillar */}
             <motion.div
               whileHover={{ y: -6 }}
-              className="p-8 rounded-3xl bg-slate-800/70 border border-slate-700/80 hover:border-emerald-500/50 space-y-4 flex flex-col justify-between transition-colors shadow-xl"
+              className="p-8 rounded-3xl bg-slate-800/70 dark:bg-slate-900/80 border border-slate-700/80 dark:border-slate-800 hover:border-emerald-500/50 space-y-4 flex flex-col justify-between transition-colors shadow-xl"
             >
               <div className="space-y-3">
                 <div className="w-12 h-12 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center">
@@ -399,7 +399,7 @@ export const Home: React.FC = () => {
             {/* Admin Pillar */}
             <motion.div
               whileHover={{ y: -6 }}
-              className="p-8 rounded-3xl bg-slate-800/70 border border-slate-700/80 hover:border-emerald-500/50 space-y-4 flex flex-col justify-between transition-colors shadow-xl"
+              className="p-8 rounded-3xl bg-slate-800/70 dark:bg-slate-900/80 border border-slate-700/80 dark:border-slate-800 hover:border-emerald-500/50 space-y-4 flex flex-col justify-between transition-colors shadow-xl"
             >
               <div className="space-y-3">
                 <div className="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">

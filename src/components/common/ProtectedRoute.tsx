@@ -43,33 +43,33 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowe
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center p-6">
-      <div className="max-w-md w-full bg-white rounded-3xl border border-slate-200/90 shadow-xl p-8 text-center space-y-6 animate-in fade-in zoom-in-95 duration-200">
+    <div className="min-h-[70vh] flex items-center justify-center p-6 transition-colors duration-200">
+      <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-xl p-8 text-center space-y-6 animate-in fade-in zoom-in-95 duration-200">
         
         {/* Lock Icon */}
-        <div className="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center mx-auto shadow-inner">
+        <div className="w-16 h-16 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto shadow-inner">
           <Lock className="w-8 h-8" />
         </div>
 
         {/* Title & Description */}
         <div className="space-y-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/70 text-amber-800 text-xs font-bold uppercase tracking-wider">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/70 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-xs font-bold uppercase tracking-wider">
             <ShieldAlert className="w-3.5 h-3.5" />
             Access Restricted
           </span>
-          <h2 className="text-xl font-black text-slate-900">
+          <h2 className="text-xl font-black text-slate-900 dark:text-white">
             {requiredRole === 'admin' ? 'Admin Portal Access Only' : 'Instructor Studio Access Only'}
           </h2>
-          <p className="text-sm text-slate-600 leading-relaxed">
+          <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
             This page requires <strong>{requiredRole.toUpperCase()}</strong> permissions. You are currently logged in with the <strong>{currentUser.role.toUpperCase()}</strong> role.
           </p>
         </div>
 
         {/* Role Quick Switcher for Testing/Demo */}
-        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-left space-y-3">
-          <div className="flex items-center justify-between text-xs text-slate-500 font-semibold">
+        <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-left space-y-3">
+          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-semibold">
             <span>Current Role:</span>
-            <span className="px-2 py-0.5 rounded-md bg-slate-200 text-slate-800 capitalize font-bold">
+            <span className="px-2 py-0.5 rounded-md bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 capitalize font-bold">
               {currentUser.role}
             </span>
           </div>
@@ -87,7 +87,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowe
         <div>
           <button
             onClick={() => navigate('/dashboard')}
-            className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-slate-800 transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Return to Student Dashboard</span>
@@ -98,4 +98,3 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowe
     </div>
   );
 };
-

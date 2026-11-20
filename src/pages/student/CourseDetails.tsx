@@ -192,7 +192,7 @@ export const CourseDetails: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="lg:col-span-1"
             >
-              <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-2xl text-slate-900 sticky top-20">
+              <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-2xl text-slate-900 dark:text-white sticky top-20 transition-colors">
                 {/* Video / Thumbnail preview with animated play button */}
                 <div className="relative aspect-video rounded-2xl overflow-hidden mb-5 bg-slate-950 group">
                   {isPlayingInlineVideo ? (
@@ -248,18 +248,18 @@ export const CourseDetails: React.FC = () => {
                 <div className="space-y-1 mb-4">
                   <div className="flex items-baseline gap-3">
                     {course.isFree ? (
-                      <span className="text-3xl font-black text-emerald-600">Free</span>
+                      <span className="text-3xl font-black text-emerald-600 dark:text-emerald-400">Free</span>
                     ) : (
                       <>
-                        <span className="text-3xl font-black text-slate-900">
+                        <span className="text-3xl font-black text-slate-900 dark:text-white">
                           ₹{course.price.toLocaleString('en-IN')}
                         </span>
                         {course.originalPrice > course.price && (
                           <>
-                            <span className="text-base text-slate-400 line-through">
+                            <span className="text-base text-slate-400 dark:text-slate-500 line-through">
                               ₹{course.originalPrice.toLocaleString('en-IN')}
                             </span>
-                            <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">
+                            <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-200/50 dark:border-emerald-800/60">
                               Save {Math.round(((course.originalPrice - course.price) / course.originalPrice) * 100)}%
                             </span>
                           </>
@@ -267,7 +267,7 @@ export const CourseDetails: React.FC = () => {
                       </>
                     )}
                   </div>
-                  <div className="text-[11px] text-slate-500 font-medium">
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                     Includes 18% GST • UPI (GPay, PhonePe, Paytm), Cards & NetBanking accepted
                   </div>
                 </div>
@@ -302,8 +302,8 @@ export const CourseDetails: React.FC = () => {
                       onClick={handleToggleWishlist}
                       className={`flex-1 py-2.5 px-4 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 transition-colors ${
                         isWishlisted
-                          ? 'border-rose-200 bg-rose-50 text-rose-700'
-                          : 'border-slate-200 text-slate-700 hover:bg-slate-50'
+                          ? 'border-rose-200 dark:border-rose-900/60 bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-400'
+                          : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'
                       }`}
                     >
                       <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-rose-500 text-rose-500' : ''}`} />
@@ -315,7 +315,7 @@ export const CourseDetails: React.FC = () => {
                         navigator.clipboard.writeText(window.location.href);
                         dispatch(showToast({ message: 'Course link copied!', type: 'info' }));
                       }}
-                      className="p-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors"
+                      className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                       title="Share Course"
                     >
                       <Share2 className="w-4 h-4" />
@@ -324,21 +324,21 @@ export const CourseDetails: React.FC = () => {
                 </div>
 
                 {/* Guarantees & Features */}
-                <div className="space-y-2.5 text-xs text-slate-600 border-t border-slate-100 pt-5">
+                <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-5">
                   <div className="flex items-center gap-2.5">
-                    <Clock className="w-4 h-4 text-emerald-600" />
+                    <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                     <span>{course.durationHours} hours on-demand video</span>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <BookOpen className="w-4 h-4 text-emerald-600" />
+                    <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                     <span>{course.totalLessons} lectures with coding resources</span>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <Award className="w-4 h-4 text-emerald-600" />
+                    <Award className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                     <span>Official Certificate of Completion</span>
                   </div>
                   <div className="flex items-center gap-2.5">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                    <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                     <span>Full lifetime access on mobile and desktop</span>
                   </div>
                 </div>
@@ -354,15 +354,15 @@ export const CourseDetails: React.FC = () => {
           <div className="lg:col-span-2 space-y-8">
             
             {/* Tabs Header */}
-            <div className="flex items-center gap-2 border-b border-slate-200 pb-1">
+            <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-1">
               {(['overview', 'curriculum', 'instructor', 'reviews'] as const).map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`px-4 py-2.5 text-sm font-bold capitalize transition-colors relative ${
                     activeTab === tab
-                      ? 'text-emerald-700'
-                      : 'text-slate-500 hover:text-slate-900'
+                      ? 'text-emerald-700 dark:text-emerald-400'
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   {tab}
@@ -385,8 +385,8 @@ export const CourseDetails: React.FC = () => {
                 className="space-y-8"
               >
                 {/* What you'll learn */}
-                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200">
-                  <h3 className="text-lg font-bold text-slate-900 mb-4">
+                <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 transition-colors">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
                     What You Will Master in This Course
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -396,8 +396,8 @@ export const CourseDetails: React.FC = () => {
                         whileHover={{ x: 4 }}
                         className="flex items-start gap-2.5"
                       >
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-1" />
-                        <span className="text-xs sm:text-sm text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-1" />
+                        <span className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-snug">
                           {item}
                         </span>
                       </motion.div>
@@ -406,24 +406,24 @@ export const CourseDetails: React.FC = () => {
                 </div>
 
                 {/* Course Description */}
-                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-3">
-                  <h3 className="text-lg font-bold text-slate-900">
+                <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 space-y-3 transition-colors">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     Course Description
                   </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                     {course.description}
                   </p>
                 </div>
 
                 {/* Prerequisites */}
-                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-3">
-                  <h3 className="text-lg font-bold text-slate-900">
+                <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 space-y-3 transition-colors">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     Requirements & Prerequisites
                   </h3>
                   <ul className="space-y-2">
                     {course.requirements.map((req, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-600">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                      <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400" />
                         <span>{req}</span>
                       </li>
                     ))}
@@ -441,10 +441,10 @@ export const CourseDetails: React.FC = () => {
                 className="space-y-4"
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-bold text-slate-900">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     Course Curriculum
                   </h3>
-                  <span className="text-xs text-slate-500 font-medium">
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                     {course.chapters.length} Sections • {course.totalLessons} Lectures
                   </span>
                 </div>
@@ -474,18 +474,18 @@ export const CourseDetails: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-6"
+                className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 space-y-6 transition-colors"
               >
                 <div className="flex items-start gap-4">
                   <img
                     src={course.instructor.avatar}
                     alt={course.instructor.name}
-                    className="w-16 h-16 rounded-2xl object-cover ring-4 ring-emerald-50"
+                    className="w-16 h-16 rounded-2xl object-cover ring-4 ring-emerald-50 dark:ring-emerald-950"
                   />
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900">{course.instructor.name}</h3>
-                    <p className="text-xs text-emerald-700 font-semibold">{course.instructor.title}</p>
-                    <div className="flex items-center gap-3 mt-2 text-xs text-slate-500">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">{course.instructor.name}</h3>
+                    <p className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold">{course.instructor.title}</p>
+                    <div className="flex items-center gap-3 mt-2 text-xs text-slate-500 dark:text-slate-400">
                       <span>★ {course.instructor.rating} Instructor Rating</span>
                       <span>•</span>
                       <span>{course.instructor.studentsCount.toLocaleString()} Students</span>
@@ -494,7 +494,7 @@ export const CourseDetails: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   {course.instructor.bio || 'Veteran technology lead, software architect, and educator passionate about building real-world software.'}
                 </p>
               </motion.div>

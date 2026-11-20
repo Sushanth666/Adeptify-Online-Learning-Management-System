@@ -109,7 +109,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       whileHover={{ y: -6, transition: { duration: 0.25, ease: 'easeOut' } }}
-      className="bg-white rounded-3xl border border-slate-200/90 shadow-xs hover:shadow-xl hover:shadow-emerald-900/5 hover:border-emerald-200 transition-all duration-300 flex flex-col overflow-hidden group"
+      className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-xs hover:shadow-xl hover:shadow-emerald-950/20 hover:border-emerald-500/40 transition-all duration-300 flex flex-col overflow-hidden group"
     >
       {/* Thumbnail Header OR Live Video Player */}
       <div className="relative aspect-video w-full overflow-hidden bg-slate-950">
@@ -192,8 +192,8 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
               aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
               className={`absolute top-3 right-3 p-2 rounded-xl backdrop-blur-md transition-all z-10 ${
                 isWishlisted
-                  ? 'bg-rose-50 text-rose-600 shadow-md scale-105'
-                  : 'bg-white/80 text-slate-600 hover:bg-white hover:text-rose-500 shadow-xs'
+                  ? 'bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 shadow-md scale-105'
+                  : 'bg-white/80 dark:bg-slate-900/80 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-800 hover:text-rose-500 shadow-xs'
               }`}
             >
               <motion.div
@@ -241,14 +241,14 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
             alt={course.instructor.name}
             className="w-5 h-5 rounded-full object-cover ring-1 ring-emerald-500/30"
           />
-          <span className="text-xs text-slate-500 font-medium truncate">
+          <span className="text-xs text-slate-500 dark:text-slate-400 font-medium truncate">
             {course.instructor.name}
           </span>
         </div>
 
         {/* Course Title */}
-        <Link to={`/courses/${course.id}`} className="block group-hover:text-emerald-700 transition-colors">
-          <h3 className="font-bold text-slate-900 text-base leading-snug line-clamp-2 mb-2">
+        <Link to={`/courses/${course.id}`} className="block group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+          <h3 className="font-bold text-slate-900 dark:text-white text-base leading-snug line-clamp-2 mb-2">
             {course.title}
           </h3>
         </Link>
@@ -259,17 +259,17 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
         </div>
 
         {/* Meta details: duration & lessons */}
-        <div className="flex items-center gap-4 text-xs text-slate-500 mb-4 pb-4 border-b border-slate-100">
+        <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mb-4 pb-4 border-b border-slate-100 dark:border-slate-800">
           <span className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-emerald-600" />
+            <Clock className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             {course.durationHours} hrs
           </span>
           <span className="flex items-center gap-1.5">
-            <BookOpen className="w-3.5 h-3.5 text-emerald-600" />
+            <BookOpen className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             {course.totalLessons} lectures
           </span>
           <span className="flex items-center gap-1.5">
-            <Users className="w-3.5 h-3.5 text-emerald-600" />
+            <Users className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             {course.totalStudents.toLocaleString()}
           </span>
         </div>
@@ -279,21 +279,21 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
           {isEnrolled ? (
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-slate-700 flex items-center gap-1">
+                <span className="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1">
                   {progress === 100 ? (
                     <>
-                      <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-                      <span className="text-emerald-700">Course Completed</span>
+                      <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">Course Completed</span>
                     </>
                   ) : (
                     `Progress: ${progress}%`
                   )}
                 </span>
-                <span className="text-slate-400 font-medium">
+                <span className="text-slate-400 dark:text-slate-500 font-medium">
                   {enrollment?.completedLessonIds.length || 0} of {course.totalLessons} lessons
                 </span>
               </div>
-              <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
@@ -316,14 +316,14 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
             <div className="flex items-center justify-between">
               <div>
                 {course.isFree ? (
-                  <span className="text-lg font-extrabold text-emerald-600">Free</span>
+                  <span className="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">Free</span>
                 ) : (
                   <div className="flex items-baseline gap-1.5">
-                    <span className="text-lg font-extrabold text-slate-900">
+                    <span className="text-lg font-extrabold text-slate-900 dark:text-white">
                       ₹{course.price.toLocaleString('en-IN')}
                     </span>
                     {course.originalPrice > course.price && (
-                      <span className="text-xs text-slate-400 line-through">
+                      <span className="text-xs text-slate-400 dark:text-slate-500 line-through">
                         ₹{course.originalPrice.toLocaleString('en-IN')}
                       </span>
                     )}
@@ -334,7 +334,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   to={`/courses/${course.id}`}
-                  className="py-2 px-3.5 rounded-xl bg-slate-900 hover:bg-emerald-600 text-white text-xs font-bold transition-all shadow-xs block"
+                  className="py-2 px-3.5 rounded-xl bg-slate-900 dark:bg-slate-800 hover:bg-emerald-600 dark:hover:bg-emerald-600 text-white text-xs font-bold transition-all shadow-xs block border border-transparent dark:border-slate-700"
                 >
                   View Course
                 </Link>

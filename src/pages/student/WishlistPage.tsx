@@ -26,27 +26,27 @@ export const WishlistPage: React.FC = () => {
   }, [enrollments]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 transition-colors duration-200">
       <div>
         <div className="flex items-center gap-2 text-rose-500 mb-1">
           <Heart className="w-5 h-5 fill-rose-500" />
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             Saved Courses
           </span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           My Wishlist ({wishlistedCourses.length})
         </h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
           Courses bookmarked for upcoming learning journeys.
         </p>
       </div>
 
       {wishlistedCourses.length === 0 ? (
-        <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 space-y-4">
-          <Heart className="w-12 h-12 text-slate-300 mx-auto" />
-          <h3 className="text-lg font-bold text-slate-800">Your wishlist is currently empty</h3>
-          <p className="text-sm text-slate-500 max-w-sm mx-auto">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-12 text-center border border-slate-200 dark:border-slate-800 space-y-4 transition-colors">
+          <Heart className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto" />
+          <h3 className="text-lg font-bold text-slate-800 dark:text-white">Your wishlist is currently empty</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
             Browse our course catalogue and click the heart icon on any card to save it for later.
           </p>
           <Link
@@ -71,4 +71,3 @@ export const WishlistPage: React.FC = () => {
     </div>
   );
 };
-

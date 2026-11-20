@@ -30,7 +30,7 @@ export const CourseFilters: React.FC = () => {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-white rounded-3xl p-5 border border-slate-200/90 shadow-2xs space-y-5"
+      className="bg-white dark:bg-slate-900 rounded-3xl p-5 border border-slate-200/90 dark:border-slate-800 shadow-2xs space-y-5 transition-colors duration-200"
     >
       {/* Search and Quick Row */}
       <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
@@ -41,7 +41,7 @@ export const CourseFilters: React.FC = () => {
             placeholder="Search by title, technology, keywords..."
             value={filters.search}
             onChange={handleSearchChange}
-            className="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-slate-800"
+            className="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500"
           />
         </div>
 
@@ -50,7 +50,7 @@ export const CourseFilters: React.FC = () => {
           <select
             value={filters.level}
             onChange={(e) => dispatch(setFilters({ level: e.target.value }))}
-            className="px-3 py-2 text-xs font-semibold bg-slate-50 border border-slate-200 rounded-xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
+            className="px-3 py-2 text-xs font-semibold bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
           >
             <option value="all">All Difficulty Levels</option>
             <option value="Beginner">Beginner</option>
@@ -63,7 +63,7 @@ export const CourseFilters: React.FC = () => {
           <select
             value={filters.priceType}
             onChange={(e) => dispatch(setFilters({ priceType: e.target.value as any }))}
-            className="px-3 py-2 text-xs font-semibold bg-slate-50 border border-slate-200 rounded-xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
+            className="px-3 py-2 text-xs font-semibold bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
           >
             <option value="all">All Pricing</option>
             <option value="paid">Paid Courses</option>
@@ -74,7 +74,7 @@ export const CourseFilters: React.FC = () => {
           <select
             value={filters.sortBy}
             onChange={(e) => dispatch(setFilters({ sortBy: e.target.value as any }))}
-            className="px-3 py-2 text-xs font-semibold bg-slate-50 border border-slate-200 rounded-xl text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
+            className="px-3 py-2 text-xs font-semibold bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 cursor-pointer"
           >
             <option value="popular">Most Popular</option>
             <option value="rating">Highest Rated</option>
@@ -89,7 +89,7 @@ export const CourseFilters: React.FC = () => {
             whileTap={{ scale: 0.9 }}
             onClick={() => dispatch(resetFilters())}
             title="Reset Filters"
-            className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors"
+            className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
           >
             <RotateCcw className="w-4 h-4" />
           </motion.button>
@@ -109,11 +109,11 @@ export const CourseFilters: React.FC = () => {
               className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
                 isSelected
                   ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-600/30'
-                  : 'bg-slate-100 hover:bg-slate-200/70 text-slate-600'
+                  : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200/70 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300'
               }`}
             >
               <span>{cat.name}</span>
-              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${isSelected ? 'bg-emerald-700 text-emerald-100' : 'bg-slate-200 text-slate-500'}`}>
+              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${isSelected ? 'bg-emerald-700 text-emerald-100' : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400'}`}>
                 {getCategoryCount(cat.name, cat.count)}
               </span>
             </motion.button>

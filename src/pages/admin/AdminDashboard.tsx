@@ -117,14 +117,14 @@ export const AdminDashboard: React.FC = () => {
           className="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
         >
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold mb-1 shadow-2xs">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-1 shadow-2xs">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               Platform Administration
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               LMS Operations & Analytics
             </h1>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
               Global overview of revenue flows, student enrollments, instructor accreditations, and course catalog approvals.
             </p>
           </div>
@@ -156,23 +156,23 @@ export const AdminDashboard: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:shadow-md hover:border-emerald-200 flex items-center gap-4 transition-all"
+                className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:shadow-md hover:border-emerald-200 flex items-center gap-4 transition-all"
               >
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                  item.color === 'emerald' ? 'bg-emerald-50 text-emerald-600' :
+                  item.color === 'emerald' ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600' :
                   item.color === 'teal' ? 'bg-teal-50 text-teal-600' :
                   item.color === 'forest' ? 'bg-forest-50 text-forest-700' : 'bg-amber-50 text-amber-600'
                 }`}>
                   <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <div className="text-2xl font-black text-slate-900">
+                  <div className="text-2xl font-black text-slate-900 dark:text-white">
                     {item.value}
                   </div>
-                  <div className="text-xs text-slate-500 font-medium flex items-center gap-1">
+                  <div className="text-xs text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1">
                     <span>{item.label}</span>
                     {item.change && (
-                      <span className="text-emerald-700 font-bold">{item.change}</span>
+                      <span className="text-emerald-700 dark:text-emerald-400 font-bold">{item.change}</span>
                     )}
                   </div>
                 </div>
@@ -182,11 +182,11 @@ export const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Tab Selection */}
-        <div className="border-b border-slate-200 flex items-center gap-4 text-sm font-bold overflow-x-auto">
+        <div className="border-b border-slate-200 dark:border-slate-800 flex items-center gap-4 text-sm font-bold overflow-x-auto">
           <button
             onClick={() => setActiveTab('overview')}
             className={`pb-3 whitespace-nowrap transition-colors relative ${
-              activeTab === 'overview' ? 'text-emerald-700' : 'text-slate-500 hover:text-slate-900'
+              activeTab === 'overview' ? 'text-emerald-700' : 'text-slate-500 hover:text-slate-900 dark:text-white'
             }`}
           >
             Analytics & Revenue
@@ -198,7 +198,7 @@ export const AdminDashboard: React.FC = () => {
           <button
             onClick={() => setActiveTab('students')}
             className={`pb-3 whitespace-nowrap transition-colors relative ${
-              activeTab === 'students' ? 'text-emerald-700' : 'text-slate-500 hover:text-slate-900'
+              activeTab === 'students' ? 'text-emerald-700' : 'text-slate-500 hover:text-slate-900 dark:text-white'
             }`}
           >
             Student Directory
@@ -210,7 +210,7 @@ export const AdminDashboard: React.FC = () => {
           <button
             onClick={() => setActiveTab('courses')}
             className={`pb-3 whitespace-nowrap transition-colors relative ${
-              activeTab === 'courses' ? 'text-emerald-700' : 'text-slate-500 hover:text-slate-900'
+              activeTab === 'courses' ? 'text-emerald-700' : 'text-slate-500 hover:text-slate-900 dark:text-white'
             }`}
           >
             Course Catalog & Approvals ({courses.length})
@@ -229,13 +229,13 @@ export const AdminDashboard: React.FC = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Monthly Revenue Area Chart */}
-              <div className="lg:col-span-2 bg-white rounded-3xl p-6 border border-slate-200 space-y-4 shadow-2xs">
+              <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 space-y-4 shadow-2xs">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-bold text-slate-900 text-sm">Platform Gross Revenue Trend</h3>
-                    <p className="text-xs text-slate-500">6-Month recurring subscriptions & single sales</p>
+                    <h3 className="font-bold text-slate-900 dark:text-white text-sm">Platform Gross Revenue Trend</h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">6-Month recurring subscriptions & single sales</p>
                   </div>
-                  <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">
+                  <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-lg">
                     Real-Time Sync
                   </span>
                 </div>
@@ -267,10 +267,10 @@ export const AdminDashboard: React.FC = () => {
               </div>
 
               {/* Category Breakdown Pie Chart */}
-              <div className="bg-white rounded-3xl p-6 border border-slate-200 space-y-4 flex flex-col justify-between shadow-2xs">
+              <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 space-y-4 flex flex-col justify-between shadow-2xs">
                 <div>
-                  <h3 className="font-bold text-slate-900 text-sm">Course Category Share</h3>
-                  <p className="text-xs text-slate-500">Distribution by curriculum topic</p>
+                  <h3 className="font-bold text-slate-900 dark:text-white text-sm">Course Category Share</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Distribution by curriculum topic</p>
                 </div>
 
                 <div className="h-60 w-full">
@@ -294,7 +294,7 @@ export const AdminDashboard: React.FC = () => {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-600">
+                <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-600 dark:text-slate-400">
                   {stats.categoryDistribution.map((cat) => (
                     <div key={cat.name} className="flex items-center gap-1.5">
                       <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: cat.color }} />
@@ -306,13 +306,13 @@ export const AdminDashboard: React.FC = () => {
             </div>
 
             {/* Top Earning Courses Table */}
-            <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-2xs">
-              <div className="p-5 border-b border-slate-100">
-                <h3 className="font-bold text-slate-900 text-sm">Top Performing Courses</h3>
+            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xs">
+              <div className="p-5 border-b border-slate-100 dark:border-slate-800">
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm">Top Performing Courses</h3>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-50 text-slate-500 font-semibold uppercase">
+                  <thead className="bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-semibold uppercase">
                     <tr>
                       <th className="py-3 px-5">Course Title</th>
                       <th className="py-3 px-4">Instructor</th>
@@ -321,13 +321,13 @@ export const AdminDashboard: React.FC = () => {
                       <th className="py-3 px-4 text-right">Rating</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-medium text-slate-700 dark:text-slate-300">
                     {stats.topCourses.map((c) => (
-                      <tr key={c.id} className="hover:bg-slate-50">
-                        <td className="py-3.5 px-5 font-bold text-slate-900">{c.title}</td>
-                        <td className="py-3.5 px-4 text-slate-500">{c.instructor}</td>
+                      <tr key={c.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 dark:bg-slate-800">
+                        <td className="py-3.5 px-5 font-bold text-slate-900 dark:text-white">{c.title}</td>
+                        <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400">{c.instructor}</td>
                         <td className="py-3.5 px-4">{c.students.toLocaleString()}</td>
-                        <td className="py-3.5 px-4 font-bold text-emerald-700">₹{c.revenue.toLocaleString('en-IN')}</td>
+                        <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400">₹{c.revenue.toLocaleString('en-IN')}</td>
                         <td className="py-3.5 px-4 text-right">★ {c.rating}</td>
                       </tr>
                     ))}
@@ -343,10 +343,10 @@ export const AdminDashboard: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-2xs space-y-4 p-5"
+            className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xs space-y-4 p-5"
           >
             <div className="flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
-              <h3 className="font-bold text-slate-900 text-sm">Global Student Roster</h3>
+              <h3 className="font-bold text-slate-900 dark:text-white text-sm">Global Student Roster</h3>
               <div className="relative w-full sm:w-72">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                 <input
@@ -354,14 +354,14 @@ export const AdminDashboard: React.FC = () => {
                   placeholder="Search student or email..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+                  className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none"
                 />
               </div>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-slate-50 text-slate-500 uppercase font-semibold">
+                <thead className="bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 uppercase font-semibold">
                   <tr>
                     <th className="py-3 px-4">Learner</th>
                     <th className="py-3 px-4">Course Enrolled</th>
@@ -370,9 +370,9 @@ export const AdminDashboard: React.FC = () => {
                     <th className="py-3 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-medium text-slate-700 dark:text-slate-300">
                   {filteredStudents.map((st) => (
-                    <tr key={st.id} className="hover:bg-slate-50">
+                    <tr key={st.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 dark:bg-slate-800">
                       <td className="py-3.5 px-4">
                         <div className="flex items-center gap-3">
                           <img
@@ -381,15 +381,15 @@ export const AdminDashboard: React.FC = () => {
                             className="w-8 h-8 rounded-full object-cover ring-1 ring-emerald-500/20"
                           />
                           <div>
-                            <div className="font-bold text-slate-900">{st.name}</div>
+                            <div className="font-bold text-slate-900 dark:text-white">{st.name}</div>
                             <div className="text-[11px] text-slate-400">{st.email}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="py-3.5 px-4 text-slate-800">{st.enrolledCourse}</td>
-                      <td className="py-3.5 px-4 text-slate-500">{st.date}</td>
+                      <td className="py-3.5 px-4 text-slate-800 dark:text-slate-100">{st.enrolledCourse}</td>
+                      <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400">{st.date}</td>
                       <td className="py-3.5 px-4">
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400">
                           {st.status}
                         </span>
                       </td>
@@ -397,7 +397,7 @@ export const AdminDashboard: React.FC = () => {
                         <motion.button
                           whileTap={{ scale: 0.95 }}
                           onClick={() => dispatch(showToast({ message: `Student ${st.name} activity profile verified`, type: 'info' }))}
-                          className="px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-700 text-xs font-semibold"
+                          className="px-3 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg text-slate-700 dark:text-slate-300 text-xs font-semibold"
                         >
                           View Activity
                         </motion.button>
@@ -415,18 +415,18 @@ export const AdminDashboard: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-2xs"
+            className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-2xs"
           >
-            <div className="p-5 border-b border-slate-100 flex items-center justify-between">
-              <h3 className="font-bold text-slate-900 text-sm">Course Catalog & Accreditation</h3>
-              <span className="text-xs text-slate-500">
+            <div className="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <h3 className="font-bold text-slate-900 dark:text-white text-sm">Course Catalog & Accreditation</h3>
+              <span className="text-xs text-slate-500 dark:text-slate-400">
                 {courses.length} Courses currently live
               </span>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-slate-50 text-slate-500 uppercase font-semibold">
+                <thead className="bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 uppercase font-semibold">
                   <tr>
                     <th className="py-3 px-5">Course</th>
                     <th className="py-3 px-4">Instructor</th>
@@ -435,9 +435,9 @@ export const AdminDashboard: React.FC = () => {
                     <th className="py-3 px-5 text-right">Admin Controls</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-medium text-slate-700 dark:text-slate-300">
                   {courses.map((course) => (
-                    <tr key={course.id} className="hover:bg-slate-50">
+                    <tr key={course.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 dark:bg-slate-800">
                       <td className="py-4 px-5">
                         <div className="flex items-center gap-3">
                           <img
@@ -446,17 +446,17 @@ export const AdminDashboard: React.FC = () => {
                             className="w-10 h-8 rounded-lg object-cover"
                           />
                           <div>
-                            <div className="font-bold text-slate-900 line-clamp-1">{course.title}</div>
+                            <div className="font-bold text-slate-900 dark:text-white line-clamp-1">{course.title}</div>
                             <div className="text-[11px] text-slate-400">{course.category} • {course.level}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="py-4 px-4 text-slate-600">{course.instructor.name}</td>
-                      <td className="py-4 px-4 font-bold text-slate-900">
+                      <td className="py-4 px-4 text-slate-600 dark:text-slate-400">{course.instructor.name}</td>
+                      <td className="py-4 px-4 font-bold text-slate-900 dark:text-white">
                         {course.isFree ? 'Free' : `₹${course.price.toLocaleString('en-IN')}`}
                       </td>
                       <td className="py-4 px-4">
-                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200">
                           Approved & Active
                         </span>
                       </td>
@@ -465,7 +465,7 @@ export const AdminDashboard: React.FC = () => {
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => handleApprove(course.title)}
-                          className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 font-bold"
+                          className="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 font-bold"
                           title="Re-verify Accreditation"
                         >
                           Approve ✓

@@ -173,63 +173,63 @@ export const CourseEditor: React.FC = () => {
       <div className="flex items-center justify-between">
         <Link
           to="/instructor"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-slate-900 dark:text-white transition-colors"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Instructor Studio
         </Link>
-        <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+        <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200">
           Course Studio Builder
         </span>
       </div>
 
       <div className="space-y-1">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           Create & Publish Course
         </h1>
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-slate-500 dark:text-slate-400">
           Define curriculum, embed lecture videos, attach quizzes and assignments for your students.
         </p>
       </div>
 
       <form onSubmit={handlePublish} className="space-y-8">
         {/* Step 1: Basic Information */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
-          <h2 className="text-base font-bold text-slate-900 border-b border-slate-100 pb-3">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xs space-y-6">
+          <h2 className="text-base font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
             1. Basic Course Details
           </h2>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Course Title *</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Course Title *</label>
               <input
                 type="text"
                 required
                 placeholder="e.g. Master Modern Full-Stack Development with Next.js 14"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Short Subtitle *</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Short Subtitle *</label>
               <input
                 type="text"
                 required
                 placeholder="e.g. Build production-grade applications with Server Actions, Prisma, and Tailwind."
                 value={subtitle}
                 onChange={(e) => setSubtitle(e.target.value)}
-                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1.5">Category</label>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Category</label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none"
                 >
                   <option value="Development">Development</option>
                   <option value="Design">Design</option>
@@ -241,11 +241,11 @@ export const CourseEditor: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1.5">Difficulty Level</label>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Difficulty Level</label>
                 <select
                   value={level}
                   onChange={(e) => setLevel(e.target.value as CourseLevel)}
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none"
                 >
                   <option value="Beginner">Beginner</option>
                   <option value="Intermediate">Intermediate</option>
@@ -255,19 +255,19 @@ export const CourseEditor: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1.5">Language</label>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Language</label>
                 <input
                   type="text"
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1.5">Course Price (₹ INR)</label>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Course Price (₹ INR)</label>
                 <input
                   type="number"
                   step="1"
@@ -275,12 +275,12 @@ export const CourseEditor: React.FC = () => {
                   placeholder="2999 (0 for Free)"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
-                  className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+                  className="w-full px-4 py-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1.5">Original / Strikethrough Price (₹ INR)</label>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Original / Strikethrough Price (₹ INR)</label>
                 <input
                   type="number"
                   step="1"
@@ -288,49 +288,49 @@ export const CourseEditor: React.FC = () => {
                   placeholder="6999"
                   value={originalPrice}
                   onChange={(e) => setOriginalPrice(e.target.value)}
-                  className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+                  className="w-full px-4 py-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Cover Image / Thumbnail URL</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Cover Image / Thumbnail URL</label>
               <input
                 type="url"
                 value={thumbnail}
                 onChange={(e) => setThumbnail(e.target.value)}
-                className="w-full px-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none"
+                className="w-full px-4 py-2.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">Detailed Description</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Detailed Description</label>
               <textarea
                 rows={4}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Give learners an in-depth breakdown of what this course delivers..."
-                className="w-full p-3.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none leading-relaxed"
+                className="w-full p-3.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none leading-relaxed"
               />
             </div>
           </div>
         </div>
 
         {/* Step 2: Curriculum Builder */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xs space-y-6">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
             <div>
-              <h2 className="text-base font-bold text-slate-900">
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">
                 2. Course Curriculum & Video Lessons
               </h2>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Organize lectures into sections, assign video links, and configure previews.
               </p>
             </div>
             <button
               type="button"
               onClick={handleAddChapter}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 text-xs font-bold hover:bg-emerald-100 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 text-xs font-bold hover:bg-emerald-100 transition-colors"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Add Section</span>
@@ -341,7 +341,7 @@ export const CourseEditor: React.FC = () => {
             {chapters.map((chapter, chIdx) => (
               <div
                 key={chapter.id}
-                className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200 space-y-4"
+                className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-800 space-y-4"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex-1 mr-4">
@@ -356,13 +356,13 @@ export const CourseEditor: React.FC = () => {
                         updated[chIdx].title = e.target.value;
                         setChapters(updated);
                       }}
-                      className="w-full font-bold text-slate-800 text-sm bg-transparent border-b border-slate-300 focus:outline-none focus:border-emerald-600 pb-1"
+                      className="w-full font-bold text-slate-800 dark:text-slate-100 text-sm bg-transparent border-b border-slate-300 focus:outline-none focus:border-emerald-600 pb-1"
                     />
                   </div>
                   <button
                     type="button"
                     onClick={() => handleAddLesson(chIdx)}
-                    className="flex items-center gap-1 px-3 py-1 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-slate-700 hover:text-emerald-600 shadow-xs"
+                    className="flex items-center gap-1 px-3 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-emerald-600 shadow-xs"
                   >
                     <Plus className="w-3 h-3" />
                     <span>Add Lecture</span>
@@ -374,7 +374,7 @@ export const CourseEditor: React.FC = () => {
                   {chapter.lessons.map((lesson, lesIdx) => (
                     <div
                       key={lesson.id}
-                      className="p-4 rounded-xl bg-white border border-slate-200 space-y-3"
+                      className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <div className="flex items-center gap-2 flex-1">
@@ -387,7 +387,7 @@ export const CourseEditor: React.FC = () => {
                               updated[chIdx].lessons[lesIdx].title = e.target.value;
                               setChapters(updated);
                             }}
-                            className="w-full text-xs font-bold text-slate-800 border-b border-slate-200 focus:outline-none pb-0.5"
+                            className="w-full text-xs font-bold text-slate-800 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 focus:outline-none pb-0.5"
                           />
                         </div>
                         <button
@@ -402,7 +402,7 @@ export const CourseEditor: React.FC = () => {
 
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                         <div>
-                          <label className="text-[11px] text-slate-500 font-semibold block mb-1">
+                          <label className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold block mb-1">
                             Video URL (.mp4 / stream)
                           </label>
                           <input
@@ -413,11 +413,11 @@ export const CourseEditor: React.FC = () => {
                               updated[chIdx].lessons[lesIdx].videoUrl = e.target.value;
                               setChapters(updated);
                             }}
-                            className="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 text-xs"
+                            className="w-full p-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-700 dark:text-slate-300 text-xs"
                           />
                         </div>
                         <div>
-                          <label className="text-[11px] text-slate-500 font-semibold block mb-1">
+                          <label className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold block mb-1">
                             Duration (Minutes)
                           </label>
                           <input
@@ -428,7 +428,7 @@ export const CourseEditor: React.FC = () => {
                               updated[chIdx].lessons[lesIdx].durationMinutes = parseInt(e.target.value) || 10;
                               setChapters(updated);
                             }}
-                            className="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 text-xs"
+                            className="w-full p-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-700 dark:text-slate-300 text-xs"
                           />
                         </div>
                         <div className="flex items-center gap-2 pt-5">
@@ -443,7 +443,7 @@ export const CourseEditor: React.FC = () => {
                             }}
                             className="w-4 h-4 rounded text-emerald-600"
                           />
-                          <label htmlFor={`free-prev-${lesson.id}`} className="text-xs font-semibold text-slate-700">
+                          <label htmlFor={`free-prev-${lesson.id}`} className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                             Allow Free Preview
                           </label>
                         </div>
@@ -460,7 +460,7 @@ export const CourseEditor: React.FC = () => {
         <div className="flex items-center justify-end gap-3">
           <Link
             to="/instructor"
-            className="px-5 py-2.5 rounded-xl border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+            className="px-5 py-2.5 rounded-xl border border-slate-300 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 transition-colors"
           >
             Cancel
           </Link>

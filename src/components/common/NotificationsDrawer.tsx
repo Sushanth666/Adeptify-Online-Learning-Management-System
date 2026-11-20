@@ -47,13 +47,13 @@ export const NotificationsDrawer: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.96 }}
             transition={{ duration: 0.18 }}
-            className="absolute right-0 top-14 mt-2 w-96 max-w-[90vw] z-50 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
+            className="absolute right-0 top-14 mt-2 w-96 max-w-[90vw] z-50 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-850/80">
               <div className="flex items-center gap-2">
-                <Bell className="w-5 h-5 text-emerald-600" />
-                <h3 className="font-semibold text-slate-800">Notifications</h3>
+                <Bell className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                <h3 className="font-semibold text-slate-800 dark:text-white">Notifications</h3>
                 {unreadCount > 0 && (
                   <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-emerald-600 text-white">
                     {unreadCount} new
@@ -64,14 +64,14 @@ export const NotificationsDrawer: React.FC = () => {
                 {unreadCount > 0 && (
                   <button
                     onClick={() => dispatch(markAllNotificationsAsRead())}
-                    className="text-xs text-emerald-600 hover:text-emerald-800 font-medium transition-colors"
+                    className="text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 font-medium transition-colors"
                   >
                     Mark all read
                   </button>
                 )}
                 <button
                   onClick={() => dispatch(setNotificationsOpen(false))}
-                  className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200/60"
+                  className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -79,9 +79,9 @@ export const NotificationsDrawer: React.FC = () => {
             </div>
 
             {/* Content List */}
-            <div className="max-h-96 overflow-y-auto divide-y divide-slate-100">
+            <div className="max-h-96 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800">
               {notifications.length === 0 ? (
-                <div className="py-12 text-center text-slate-400">
+                <div className="py-12 text-center text-slate-400 dark:text-slate-500">
                   <Bell className="w-10 h-10 mx-auto mb-2 opacity-40" />
                   <p className="text-sm">No notifications yet</p>
                 </div>
@@ -90,29 +90,29 @@ export const NotificationsDrawer: React.FC = () => {
                   <div
                     key={item.id}
                     onClick={() => handleNotificationClick(item.id, item.link)}
-                    className={`flex items-start gap-3.5 p-4 transition-colors cursor-pointer hover:bg-slate-50 ${
-                      !item.read ? 'bg-emerald-50/30 font-medium' : ''
+                    className={`flex items-start gap-3.5 p-4 transition-colors cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60 ${
+                      !item.read ? 'bg-emerald-50/30 dark:bg-emerald-950/20 font-medium' : ''
                     }`}
                   >
-                    <div className="p-2 rounded-xl bg-slate-100 mt-0.5">
+                    <div className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 mt-0.5">
                       {getIcon(item.type)}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1">
-                        <h4 className="text-sm font-semibold text-slate-800 truncate">
+                        <h4 className="text-sm font-semibold text-slate-800 dark:text-white truncate">
                           {item.title}
                         </h4>
                         {!item.read && (
-                          <span className="w-2 h-2 rounded-full bg-emerald-600 flex-shrink-0 ml-2" />
+                          <span className="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400 flex-shrink-0 ml-2" />
                         )}
                       </div>
-                      <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                      <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
                         {item.message}
                       </p>
-                      <div className="flex items-center justify-between mt-2 text-[11px] text-slate-400">
+                      <div className="flex items-center justify-between mt-2 text-[11px] text-slate-400 dark:text-slate-500">
                         <span>{item.timestamp}</span>
                         {item.link && (
-                          <span className="inline-flex items-center gap-1 text-emerald-600 font-medium">
+                          <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
                             View <ExternalLink className="w-3 h-3" />
                           </span>
                         )}
@@ -128,4 +128,3 @@ export const NotificationsDrawer: React.FC = () => {
     </AnimatePresence>
   );
 };
-

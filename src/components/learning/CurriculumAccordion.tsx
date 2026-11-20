@@ -59,23 +59,23 @@ export const CurriculumAccordion: React.FC<CurriculumAccordionProps> = ({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: chIdx * 0.05 }}
-            className="border border-slate-200 rounded-2xl bg-white overflow-hidden shadow-xs hover:border-emerald-200 transition-colors"
+            className="border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden shadow-xs hover:border-emerald-200 dark:hover:border-emerald-700/60 transition-colors"
           >
             {/* Accordion Header */}
             <button
               onClick={() => toggleChapter(chapter.id)}
-              className="w-full flex items-center justify-between p-4 bg-slate-50/70 hover:bg-slate-100/70 transition-colors text-left"
+              className="w-full flex items-center justify-between p-4 bg-slate-50/70 dark:bg-slate-850/80 hover:bg-slate-100/70 dark:hover:bg-slate-800 transition-colors text-left"
             >
               <div>
-                <span className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider block mb-0.5">
+                <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block mb-0.5">
                   Section {chIdx + 1}
                 </span>
-                <h4 className="font-bold text-slate-800 text-sm">
+                <h4 className="font-bold text-slate-800 dark:text-white text-sm">
                   {chapter.title}
                 </h4>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-slate-500 font-medium hidden sm:inline-block">
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:inline-block">
                   {completedCount}/{chapterLessons.length} done
                 </span>
                 <motion.div
@@ -97,7 +97,7 @@ export const CurriculumAccordion: React.FC<CurriculumAccordionProps> = ({
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.25, ease: 'easeInOut' }}
-                  className="divide-y divide-slate-100 overflow-hidden"
+                  className="divide-y divide-slate-100 dark:divide-slate-800 overflow-hidden"
                 >
                   {chapterLessons.map((lesson) => {
                     const isActive = lesson.id === currentLessonId;
@@ -105,29 +105,28 @@ export const CurriculumAccordion: React.FC<CurriculumAccordionProps> = ({
                     const isLocked = !isEnrolled && !lesson.isFreePreview;
 
                     return (
-                      <motion.div
+                      <div
                         key={lesson.id}
-                        whileHover={!isLocked ? { backgroundColor: '#f8fafc' } : {}}
                         onClick={() => !isLocked && onSelectLesson(lesson)}
                         className={`flex items-center justify-between p-3.5 transition-colors ${
                           isLocked
-                            ? 'opacity-60 cursor-not-allowed bg-slate-50/40'
+                            ? 'opacity-60 cursor-not-allowed bg-slate-50/40 dark:bg-slate-950/40'
                             : isActive
-                            ? 'bg-emerald-50/80 border-l-4 border-emerald-600'
-                            : 'cursor-pointer'
+                            ? 'bg-emerald-50/80 dark:bg-emerald-950/40 border-l-4 border-emerald-600'
+                            : 'cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60'
                         }`}
                       >
                         <div className="flex items-center gap-3 min-w-0 flex-1 pr-3">
                           {/* Status Icon */}
                           <div className="flex-shrink-0">
                             {isDone ? (
-                              <CheckCircle2 className="w-5 h-5 text-emerald-600 fill-emerald-100" />
+                              <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 fill-emerald-100 dark:fill-emerald-950" />
                             ) : isLocked ? (
                               <Lock className="w-4 h-4 text-slate-400" />
                             ) : (
                               <PlayCircle
                                 className={`w-5 h-5 ${
-                                  isActive ? 'text-emerald-600 fill-emerald-100 animate-pulse' : 'text-slate-400'
+                                  isActive ? 'text-emerald-600 dark:text-emerald-400 fill-emerald-100 dark:fill-emerald-950 animate-pulse' : 'text-slate-400'
                                 }`}
                               />
                             )}
@@ -137,7 +136,7 @@ export const CurriculumAccordion: React.FC<CurriculumAccordionProps> = ({
                           <div className="min-w-0">
                             <p
                               className={`text-xs font-semibold truncate ${
-                                isActive ? 'text-emerald-950 font-bold' : 'text-slate-700'
+                                isActive ? 'text-emerald-950 dark:text-emerald-300 font-bold' : 'text-slate-700 dark:text-slate-200'
                               }`}
                             >
                               {lesson.title}
@@ -148,7 +147,7 @@ export const CurriculumAccordion: React.FC<CurriculumAccordionProps> = ({
                                 {lesson.durationMinutes}m
                               </span>
                               {lesson.isFreePreview && !isEnrolled && (
-                                <span className="text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded font-bold">
+                                <span className="text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-1.5 py-0.2 rounded font-bold">
                                   Free Preview
                                 </span>
                               )}
@@ -166,7 +165,7 @@ export const CurriculumAccordion: React.FC<CurriculumAccordionProps> = ({
                                 e.stopPropagation();
                                 if (onOpenQuiz) onOpenQuiz(lesson);
                               }}
-                              className="p-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 text-xs font-semibold flex items-center gap-1 transition-colors shadow-2xs"
+                              className="p-1.5 rounded-lg bg-amber-50 dark:bg-amber-950/50 hover:bg-amber-100 dark:hover:bg-amber-900/60 text-amber-700 dark:text-amber-300 text-xs font-semibold flex items-center gap-1 transition-colors shadow-2xs"
                               title="Interactive Quiz"
                             >
                               <HelpCircle className="w-3.5 h-3.5" />
@@ -182,7 +181,7 @@ export const CurriculumAccordion: React.FC<CurriculumAccordionProps> = ({
                                 e.stopPropagation();
                                 if (onOpenAssignment) onOpenAssignment(lesson);
                               }}
-                              className="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-semibold flex items-center gap-1 transition-colors shadow-2xs"
+                              className="p-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold flex items-center gap-1 transition-colors shadow-2xs"
                               title="Course Assignment"
                             >
                               <FileText className="w-3.5 h-3.5" />
@@ -192,14 +191,14 @@ export const CurriculumAccordion: React.FC<CurriculumAccordionProps> = ({
 
                           {lesson.resources && lesson.resources.length > 0 && (
                             <span
-                              className="p-1.5 text-slate-400 hover:text-slate-600"
+                              className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                               title={`${lesson.resources.length} study materials`}
                             >
                               <Paperclip className="w-3.5 h-3.5" />
                             </span>
                           )}
                         </div>
-                      </motion.div>
+                      </div>
                     );
                   })}
                 </motion.div>

@@ -101,12 +101,12 @@ export const CourseCatalog: React.FC = () => {
 
       {/* Course Listing */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between text-sm text-slate-500 font-medium">
+        <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400 font-medium">
           <span>
-            Showing <strong className="text-slate-900">{filteredCourses.length}</strong> available courses
+            Showing <strong className="text-slate-900 dark:text-white">{filteredCourses.length}</strong> available courses
           </span>
           {filters.category !== 'All Courses' && (
-            <span className="text-xs bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-lg font-semibold">
+            <span className="text-xs bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 px-2.5 py-1 rounded-lg font-semibold border border-emerald-200 dark:border-emerald-800">
               Category: {filters.category}
             </span>
           )}
@@ -115,10 +115,10 @@ export const CourseCatalog: React.FC = () => {
         {loading ? (
           <div className="py-20 text-center text-slate-400">Loading courses catalogue...</div>
         ) : filteredCourses.length === 0 ? (
-          <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 space-y-3">
-            <BookOpen className="w-12 h-12 text-slate-300 mx-auto" />
-            <h3 className="text-lg font-bold text-slate-800">No matching courses found</h3>
-            <p className="text-sm text-slate-500 max-w-md mx-auto">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-12 text-center border border-slate-200 dark:border-slate-800 space-y-3 transition-colors">
+            <BookOpen className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto" />
+            <h3 className="text-lg font-bold text-slate-800 dark:text-white">No matching courses found</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
               We couldn't find any courses matching your selected criteria. Try adjusting your search keywords or resetting filters.
             </p>
           </div>

@@ -143,16 +143,16 @@ export const AdminRevenueAnalytics: React.FC = () => {
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider mb-1">
             <IndianRupee className="w-4 h-4" />
             <span>Administrator Control Center</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
             Revenue Analytics & Financial Ledger
           </h1>
-          <p className="text-sm text-slate-600 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
             Real-time gross transaction volumes, faculty commission disbursements, and platform net revenue telemetry.
           </p>
         </div>
@@ -168,31 +168,31 @@ export const AdminRevenueAnalytics: React.FC = () => {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Gross Platform Revenue (YTD)</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">₹84.59 Lakhs</div>
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Gross Platform Revenue (YTD)</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">₹84.59 Lakhs</div>
           <div className="flex items-center gap-1 text-[11px] font-bold text-emerald-600 mt-1">
             <ArrowUpRight className="w-3.5 h-3.5" />
             <span>+22.4% vs FY 23-24</span>
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Net Platform Commission (15%)</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">₹12.68 Lakhs</div>
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Net Platform Commission (15%)</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">₹12.68 Lakhs</div>
           <span className="text-[11px] text-teal-600 font-bold mt-1 inline-block">Platform Gross Margin</span>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Faculty Disbursals (85%)</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">₹71.91 Lakhs</div>
-          <span className="text-[11px] text-emerald-700 font-bold mt-1 inline-block">Paid to 64 Instructors</span>
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Faculty Disbursals (85%)</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">₹71.91 Lakhs</div>
+          <span className="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold mt-1 inline-block">Paid to 64 Instructors</span>
         </div>
 
-        <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Average Order Value (AOV)</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">₹2,840</div>
-          <span className="text-[11px] text-slate-500 font-medium mt-1 inline-block">UPI Dominant (68%)</span>
+        <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Average Order Value (AOV)</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">₹2,840</div>
+          <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-1 inline-block">UPI Dominant (68%)</span>
         </div>
       </div>
 
@@ -200,18 +200,18 @@ export const AdminRevenueAnalytics: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Gross Revenue vs Faculty Payouts Area Chart */}
-        <div className="lg:col-span-2 p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs space-y-4">
+        <div className="lg:col-span-2 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-slate-900 text-sm">Monthly Platform Gross vs Faculty Disbursals (₹ INR)</h3>
-              <p className="text-xs text-slate-500">Audited monthly breakdown across Razorpay / Cashfree pipelines</p>
+              <h3 className="font-bold text-slate-900 dark:text-white text-sm">Monthly Platform Gross vs Faculty Disbursals (₹ INR)</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Audited monthly breakdown across Razorpay / Cashfree pipelines</p>
             </div>
             <div className="flex items-center gap-3 text-xs font-semibold">
-              <span className="flex items-center gap-1.5 text-slate-600">
+              <span className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-600" />
                 Gross Revenue
               </span>
-              <span className="flex items-center gap-1.5 text-slate-600">
+              <span className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
                 <span className="w-2.5 h-2.5 rounded-full bg-teal-400" />
                 Faculty Payout
               </span>
@@ -254,20 +254,20 @@ export const AdminRevenueAnalytics: React.FC = () => {
         </div>
 
         {/* Payment Methods Distribution */}
-        <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs space-y-4">
+        <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs space-y-4">
           <div>
-            <h3 className="font-bold text-slate-900 text-sm">Payment Gateway Distribution</h3>
-            <p className="text-xs text-slate-500">Student transaction methods across India</p>
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm">Payment Gateway Distribution</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Student transaction methods across India</p>
           </div>
 
           <div className="space-y-3 pt-2">
             {paymentMethodDistribution.map((item, idx) => (
               <div key={idx} className="space-y-1">
-                <div className="flex items-center justify-between text-xs font-bold text-slate-700">
+                <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
                   <span className="truncate max-w-[200px]">{item.name}</span>
-                  <span className="text-slate-900 font-extrabold">{item.value}%</span>
+                  <span className="text-slate-900 dark:text-white font-extrabold">{item.value}%</span>
                 </div>
-                <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all duration-300"
                     style={{ width: `${item.value}%`, backgroundColor: item.color }}
@@ -277,8 +277,8 @@ export const AdminRevenueAnalytics: React.FC = () => {
             ))}
           </div>
 
-          <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600 mt-4">
-            <span className="font-bold text-slate-800 block mb-0.5">Instant UPI Settlements:</span>
+          <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 mt-4">
+            <span className="font-bold text-slate-800 dark:text-slate-100 block mb-0.5">Instant UPI Settlements:</span>
             Over 68% of all learner transactions in Bengaluru, Hyderabad, and Pune settle instantly via NPCI UPI rails.
           </div>
         </div>
@@ -286,18 +286,18 @@ export const AdminRevenueAnalytics: React.FC = () => {
       </div>
 
       {/* Recent Transactions Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs overflow-hidden">
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs overflow-hidden">
+        <div className="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
           <div>
-            <h3 className="font-bold text-slate-900 text-sm">Recent Student Transactions</h3>
-            <p className="text-xs text-slate-500">Direct ledger of course enrollments and payment confirmations</p>
+            <h3 className="font-bold text-slate-900 dark:text-white text-sm">Recent Student Transactions</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Direct ledger of course enrollments and payment confirmations</p>
           </div>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-500 uppercase tracking-wider font-bold">
+              <tr className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold">
                 <th className="py-3.5 px-4">Transaction ID</th>
                 <th className="py-3.5 px-4">Student</th>
                 <th className="py-3.5 px-4">Course Enrolled</th>
@@ -308,18 +308,18 @@ export const AdminRevenueAnalytics: React.FC = () => {
                 <th className="py-3.5 px-4">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-slate-700">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
               {recentTransactions.map((tx) => (
-                <tr key={tx.id} className="hover:bg-slate-50/70 transition-colors">
-                  <td className="py-3.5 px-4 font-mono font-bold text-slate-800">{tx.id}</td>
-                  <td className="py-3.5 px-4 font-bold text-slate-900">{tx.studentName}</td>
-                  <td className="py-3.5 px-4 font-semibold text-slate-700 max-w-xs truncate">{tx.courseTitle}</td>
-                  <td className="py-3.5 px-4 text-slate-600">{tx.method}</td>
-                  <td className="py-3.5 px-4 font-black text-slate-900">₹{tx.amount.toLocaleString('en-IN')}</td>
+                <tr key={tx.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 dark:bg-slate-800/70 transition-colors">
+                  <td className="py-3.5 px-4 font-mono font-bold text-slate-800 dark:text-slate-100">{tx.id}</td>
+                  <td className="py-3.5 px-4 font-bold text-slate-900 dark:text-white">{tx.studentName}</td>
+                  <td className="py-3.5 px-4 font-semibold text-slate-700 dark:text-slate-300 max-w-xs truncate">{tx.courseTitle}</td>
+                  <td className="py-3.5 px-4 text-slate-600 dark:text-slate-400">{tx.method}</td>
+                  <td className="py-3.5 px-4 font-black text-slate-900 dark:text-white">₹{tx.amount.toLocaleString('en-IN')}</td>
                   <td className="py-3.5 px-4 font-semibold text-teal-700">₹{tx.platformFee}</td>
-                  <td className="py-3.5 px-4 font-semibold text-emerald-800">₹{tx.instructorCut}</td>
+                  <td className="py-3.5 px-4 font-semibold text-emerald-800 dark:text-emerald-300">₹{tx.instructorCut}</td>
                   <td className="py-3.5 px-4">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200">
                       <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                       <span>Settled</span>
                     </span>

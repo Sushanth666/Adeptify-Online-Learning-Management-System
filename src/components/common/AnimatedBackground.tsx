@@ -8,7 +8,7 @@ export const AnimatedBackground: React.FC = () => {
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden select-none"
     >
       {/* 1. Base Multi-Stop Nordic Emerald & Slate Canvas */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-emerald-50/40 to-teal-50/30" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-emerald-50/40 to-teal-50/30 dark:from-slate-950 dark:via-slate-900/95 dark:to-emerald-950/40 transition-colors duration-200" />
 
       {/* 2. Top-Right Nordic Emerald Aurora Orb */}
       <motion.div
@@ -82,7 +82,7 @@ export const AnimatedBackground: React.FC = () => {
       />
 
       {/* 7. Smooth Peripheral Radial Vignette Mask */}
-      <div className="absolute inset-0 bg-radial from-transparent via-slate-50/15 to-slate-50/50" />
+      <div className="absolute inset-0 bg-radial from-transparent via-slate-50/15 to-slate-50/50 dark:via-slate-950/20 dark:to-slate-950/80 transition-colors duration-200" />
     </div>
   );
 };

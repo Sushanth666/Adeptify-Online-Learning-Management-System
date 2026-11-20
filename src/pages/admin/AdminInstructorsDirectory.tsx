@@ -197,23 +197,23 @@ export const AdminInstructorsDirectory: React.FC = () => {
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider mb-1">
             <ShieldCheck className="w-4 h-4" />
             <span>Administrator Control Center</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
             Instructors & Faculty Directory
           </h1>
-          <p className="text-sm text-slate-600 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
             Verify academic credentials, inspect course catalogs, and approve faculty revenue payouts.
           </p>
         </div>
 
         <button
           onClick={handleExportFacultyCSV}
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 text-slate-700 hover:text-emerald-800 font-bold text-xs transition-colors shadow-2xs cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 hover:bg-emerald-50 dark:bg-emerald-950/60/50 text-slate-700 dark:text-slate-300 hover:text-emerald-800 dark:text-emerald-300 font-bold text-xs transition-colors shadow-2xs cursor-pointer"
         >
           <Download className="w-4 h-4 text-emerald-600" />
           <span>Export Faculty CSV</span>
@@ -222,22 +222,22 @@ export const AdminInstructorsDirectory: React.FC = () => {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Active Faculty & Instructors</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">{instructors.length}</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Active Faculty & Instructors</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">{instructors.length}</div>
           <span className="text-[11px] text-emerald-600 font-bold mt-1 inline-block">Top MAANG & Academic Leaders</span>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Total Lifetime Payouts</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Total Lifetime Payouts</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">
             ₹{(totalLifetimePaid / 100000).toFixed(2)} Lakhs
           </div>
           <span className="text-[11px] text-teal-600 font-bold mt-1 inline-block">85% Revenue Share Disbursed</span>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Pending Payout Queue</span>
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Pending Payout Queue</span>
           <div className="text-2xl font-black text-amber-600 mt-1">
             ₹{(totalPendingPayout / 100000).toFixed(2)} Lakhs
           </div>
@@ -246,18 +246,18 @@ export const AdminInstructorsDirectory: React.FC = () => {
           </span>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Faculty Average Rating</span>
-          <div className="text-2xl font-black text-slate-900 mt-1 flex items-center gap-1.5">
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Faculty Average Rating</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1 flex items-center gap-1.5">
             <span>4.91</span>
             <Star className="w-5 h-5 text-amber-500 fill-amber-400" />
           </div>
-          <span className="text-[11px] text-slate-500 font-medium mt-1 inline-block">Rigorous Quality Gate</span>
+          <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-1 inline-block">Rigorous Quality Gate</span>
         </div>
       </div>
 
       {/* Search & Filter */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
@@ -265,7 +265,7 @@ export const AdminInstructorsDirectory: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search faculty by name, specialization, city..."
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
+            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-emerald-500 focus:bg-white dark:bg-slate-900 transition-all"
           />
         </div>
 
@@ -275,7 +275,7 @@ export const AdminInstructorsDirectory: React.FC = () => {
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
               filterType === 'all'
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             All Faculty ({instructors.length})
@@ -285,7 +285,7 @@ export const AdminInstructorsDirectory: React.FC = () => {
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
               filterType === 'verified'
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             Verified Only
@@ -295,7 +295,7 @@ export const AdminInstructorsDirectory: React.FC = () => {
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
               filterType === 'pending'
                 ? 'bg-amber-500 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             Pending Verification
@@ -304,11 +304,11 @@ export const AdminInstructorsDirectory: React.FC = () => {
       </div>
 
       {/* Directory Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-500 uppercase tracking-wider font-bold">
+              <tr className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold">
                 <th className="py-3.5 px-4">Instructor Profile</th>
                 <th className="py-3.5 px-4">Courses & Learners</th>
                 <th className="py-3.5 px-4">Rating</th>
@@ -318,36 +318,36 @@ export const AdminInstructorsDirectory: React.FC = () => {
                 <th className="py-3.5 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-slate-700">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
               {filtered.map((inst) => (
-                <tr key={inst.id} className="hover:bg-slate-50/70 transition-colors">
+                <tr key={inst.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 dark:bg-slate-800/70 transition-colors">
                   <td className="py-3.5 px-4">
                     <div className="flex items-center gap-3">
                       <img
                         src={inst.avatar}
                         alt={inst.name}
-                        className="w-11 h-11 rounded-xl object-cover border border-slate-200 flex-shrink-0"
+                        className="w-11 h-11 rounded-xl object-cover border border-slate-200 dark:border-slate-800 flex-shrink-0"
                       />
                       <div>
-                        <div className="flex items-center gap-1.5 font-bold text-slate-900">
+                        <div className="flex items-center gap-1.5 font-bold text-slate-900 dark:text-white">
                           <span>{inst.name}</span>
                           {inst.isVerifiedFaculty && (
                             <BadgeCheck className="w-4 h-4 text-emerald-600 fill-emerald-100" />
                           )}
                         </div>
-                        <div className="text-[11px] text-slate-500 max-w-xs truncate">{inst.title}</div>
+                        <div className="text-[11px] text-slate-500 dark:text-slate-400 max-w-xs truncate">{inst.title}</div>
                         <div className="text-[10px] text-slate-400">{inst.location}</div>
                       </div>
                     </div>
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <span className="font-bold text-slate-900 block">{inst.coursesCount} Published Courses</span>
-                    <span className="text-[11px] text-slate-500">{inst.studentsCount.toLocaleString('en-IN')} students</span>
+                    <span className="font-bold text-slate-900 dark:text-white block">{inst.coursesCount} Published Courses</span>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400">{inst.studentsCount.toLocaleString('en-IN')} students</span>
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <div className="flex items-center gap-1 font-bold text-slate-900">
+                    <div className="flex items-center gap-1 font-bold text-slate-900 dark:text-white">
                       <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
                       <span>{inst.rating}</span>
                     </div>
@@ -358,7 +358,7 @@ export const AdminInstructorsDirectory: React.FC = () => {
                       onClick={() => handleToggleVerification(inst.id, inst.isVerifiedFaculty)}
                       className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold transition-colors ${
                         inst.isVerifiedFaculty
-                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100'
+                          ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 hover:bg-emerald-100'
                           : 'bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100'
                       }`}
                     >
@@ -376,7 +376,7 @@ export const AdminInstructorsDirectory: React.FC = () => {
                     </button>
                   </td>
 
-                  <td className="py-3.5 px-4 font-black text-slate-900">
+                  <td className="py-3.5 px-4 font-black text-slate-900 dark:text-white">
                     ₹{(inst.totalEarnings / 100000).toFixed(2)} Lakhs
                   </td>
 
@@ -384,7 +384,7 @@ export const AdminInstructorsDirectory: React.FC = () => {
                     <span className={`font-extrabold block ${inst.pendingPayout > 0 ? 'text-amber-800' : 'text-slate-400'}`}>
                       ₹{inst.pendingPayout.toLocaleString('en-IN')}
                     </span>
-                    <span className={`text-[10px] font-semibold ${inst.pendingPayout > 0 ? 'text-amber-700' : 'text-emerald-700'}`}>
+                    <span className={`text-[10px] font-semibold ${inst.pendingPayout > 0 ? 'text-amber-700' : 'text-emerald-700 dark:text-emerald-400'}`}>
                       {inst.pendingPayout > 0 ? 'Ready for release' : 'Settled to Bank ✓'}
                     </span>
                   </td>
@@ -398,7 +398,7 @@ export const AdminInstructorsDirectory: React.FC = () => {
                         Approve Payout
                       </button>
                     ) : (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold text-xs">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 text-emerald-800 dark:text-emerald-300 font-bold text-xs">
                         <Check className="w-3.5 h-3.5 text-emerald-600" />
                         <span>Paid</span>
                       </span>

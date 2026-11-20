@@ -45,24 +45,26 @@ export const MyLearning: React.FC = () => {
   }, [enrolledCourses, enrollmentMap, activeTab]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 transition-colors duration-200">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             My Enrolled Courses
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Pick up right where you left off and download completion credentials.
           </p>
         </div>
 
         {/* Tabs Filter */}
-        <div className="inline-flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
+        <div className="inline-flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold">
           <button
             onClick={() => setActiveTab('all')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
-              activeTab === 'all' ? 'bg-white text-emerald-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              activeTab === 'all'
+                ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             All ({enrolledCourses.length})
@@ -70,7 +72,9 @@ export const MyLearning: React.FC = () => {
           <button
             onClick={() => setActiveTab('in-progress')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
-              activeTab === 'in-progress' ? 'bg-white text-emerald-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              activeTab === 'in-progress'
+                ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             In Progress
@@ -78,7 +82,9 @@ export const MyLearning: React.FC = () => {
           <button
             onClick={() => setActiveTab('completed')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
-              activeTab === 'completed' ? 'bg-white text-emerald-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              activeTab === 'completed'
+                ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             Completed
@@ -88,10 +94,10 @@ export const MyLearning: React.FC = () => {
 
       {/* Course Cards */}
       {filteredCourses.length === 0 ? (
-        <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 space-y-4">
-          <BookOpen className="w-12 h-12 text-slate-300 mx-auto" />
-          <h3 className="text-lg font-bold text-slate-800">No courses in this section</h3>
-          <p className="text-sm text-slate-500 max-w-sm mx-auto">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-12 text-center border border-slate-200 dark:border-slate-800 space-y-4 transition-colors">
+          <BookOpen className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto" />
+          <h3 className="text-lg font-bold text-slate-800 dark:text-white">No courses in this section</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
             {activeTab === 'completed'
               ? 'Complete all lectures in any course to unlock verified certificates!'
               : 'Browse our catalog and enroll in high-impact courses.'}
@@ -113,7 +119,7 @@ export const MyLearning: React.FC = () => {
             return (
               <div
                 key={course.id}
-                className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col"
+                className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col"
               >
                 <div className="relative aspect-video">
                   <img
@@ -133,26 +139,26 @@ export const MyLearning: React.FC = () => {
 
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                   <div>
-                    <span className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider block mb-1">
+                    <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block mb-1">
                       {course.category}
                     </span>
-                    <h3 className="font-bold text-slate-900 text-base leading-snug line-clamp-2">
+                    <h3 className="font-bold text-slate-900 dark:text-white text-base leading-snug line-clamp-2">
                       {course.title}
                     </h3>
-                    <p className="text-xs text-slate-500 mt-1">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                       Instructor: {course.instructor.name}
                     </p>
                   </div>
 
                   {/* Progress info */}
                   <div className="space-y-2">
-                    <div className="flex justify-between text-xs font-semibold text-slate-700">
+                    <div className="flex justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
                       <span>{isDone ? 'Completed 100%' : `${enr?.progressPercentage || 0}% Complete`}</span>
-                      <span className="text-slate-400">
+                      <span className="text-slate-400 dark:text-slate-500">
                         {enr?.completedLessonIds.length || 0}/{course.totalLessons} lectures
                       </span>
                     </div>
-                    <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                    <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all duration-300 ${
                           isDone ? 'bg-emerald-500' : 'bg-emerald-600'
@@ -175,10 +181,10 @@ export const MyLearning: React.FC = () => {
                     {cert && (
                       <button
                         onClick={() => setSelectedCert(cert)}
-                        className="py-2.5 px-3.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold transition-colors flex items-center gap-1"
+                        className="py-2.5 px-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 dark:hover:bg-amber-900/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-xs font-bold transition-colors flex items-center gap-1"
                         title="View Certificate"
                       >
-                        <Award className="w-4 h-4 text-amber-600" />
+                        <Award className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                         <span className="hidden sm:inline">Certificate</span>
                       </button>
                     )}
@@ -200,4 +206,3 @@ export const MyLearning: React.FC = () => {
     </div>
   );
 };
-

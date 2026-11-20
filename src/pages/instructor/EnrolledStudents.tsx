@@ -195,23 +195,23 @@ export const EnrolledStudents: React.FC = () => {
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider mb-1">
             <Users className="w-4 h-4" />
             <span>Faculty Learner Operations</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
             Enrolled Students
           </h1>
-          <p className="text-sm text-slate-600 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
             Track student lecture completion, view verified credentials, and send personalized feedback.
           </p>
         </div>
 
         <button
           onClick={handleExportCSV}
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 font-bold text-xs transition-colors shadow-2xs"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 text-slate-700 dark:text-slate-300 font-bold text-xs transition-colors shadow-2xs"
         >
           <Download className="w-4 h-4 text-emerald-600" />
           <span>Export Students CSV</span>
@@ -220,33 +220,33 @@ export const EnrolledStudents: React.FC = () => {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Active Learners</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">88,400</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Active Learners</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">88,400</div>
           <span className="text-[11px] text-emerald-600 font-bold mt-1 inline-block">+14.2% this month</span>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Average Completion Rate</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">74.8%</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Average Completion Rate</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">74.8%</div>
           <span className="text-[11px] text-teal-600 font-bold mt-1 inline-block">Industry Benchmark 48%</span>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Certificates Awarded</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">12,650</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Certificates Awarded</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">12,650</div>
           <span className="text-[11px] text-amber-600 font-bold mt-1 inline-block">QR Code Verified</span>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Student Satisfaction</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">4.92 / 5.0</div>
-          <span className="text-[11px] text-emerald-700 font-bold mt-1 inline-block">Based on 14,200 reviews</span>
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Student Satisfaction</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">4.92 / 5.0</div>
+          <span className="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold mt-1 inline-block">Based on 14,200 reviews</span>
         </div>
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
@@ -254,7 +254,7 @@ export const EnrolledStudents: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search student by name, email, city, course..."
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
+            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-emerald-500 focus:bg-white dark:bg-slate-900 transition-all"
           />
         </div>
 
@@ -264,7 +264,7 @@ export const EnrolledStudents: React.FC = () => {
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
               filterProgress === 'all'
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             All ({mockStudentDirectory.length})
@@ -274,7 +274,7 @@ export const EnrolledStudents: React.FC = () => {
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
               filterProgress === 'in_progress'
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             In Progress
@@ -284,7 +284,7 @@ export const EnrolledStudents: React.FC = () => {
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
               filterProgress === 'completed'
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             Completed & Certified
@@ -293,11 +293,11 @@ export const EnrolledStudents: React.FC = () => {
       </div>
 
       {/* Students Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-500 uppercase tracking-wider font-bold">
+              <tr className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold">
                 <th className="py-3.5 px-4">Student</th>
                 <th className="py-3.5 px-4">Enrolled Course</th>
                 <th className="py-3.5 px-4">Progress</th>
@@ -306,35 +306,35 @@ export const EnrolledStudents: React.FC = () => {
                 <th className="py-3.5 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-slate-700">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
               {filteredStudents.map((st) => (
-                <tr key={st.id} className="hover:bg-slate-50/70 transition-colors">
+                <tr key={st.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 dark:bg-slate-800/70 transition-colors">
                   <td className="py-3.5 px-4">
                     <div className="flex items-center gap-3">
                       <img
                         src={st.avatar}
                         alt={st.name}
-                        className="w-10 h-10 rounded-xl object-cover border border-slate-200 flex-shrink-0"
+                        className="w-10 h-10 rounded-xl object-cover border border-slate-200 dark:border-slate-800 flex-shrink-0"
                       />
                       <div>
-                        <div className="font-bold text-slate-900">{st.name}</div>
+                        <div className="font-bold text-slate-900 dark:text-white">{st.name}</div>
                         <div className="text-[11px] text-slate-400">{st.email}</div>
-                        <div className="text-[10px] text-slate-500 font-medium">{st.location}</div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">{st.location}</div>
                       </div>
                     </div>
                   </td>
 
                   <td className="py-3.5 px-4 max-w-xs">
-                    <span className="font-semibold text-slate-800 line-clamp-1">{st.courseTitle}</span>
+                    <span className="font-semibold text-slate-800 dark:text-slate-100 line-clamp-1">{st.courseTitle}</span>
                     <span className="text-[10px] text-slate-400">Enrolled: {st.enrolledDate}</span>
                   </td>
 
                   <td className="py-3.5 px-4 min-w-[140px]">
                     <div className="flex items-center justify-between text-[11px] mb-1 font-bold">
-                      <span className="text-slate-900">{st.progressPercentage}%</span>
+                      <span className="text-slate-900 dark:text-white">{st.progressPercentage}%</span>
                       <span className="text-slate-400 font-normal">{st.completedLessons}/{st.totalLessons}</span>
                     </div>
-                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                    <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all duration-300 ${
                           st.progressPercentage === 100 ? 'bg-emerald-500' : 'bg-emerald-600'
@@ -345,7 +345,7 @@ export const EnrolledStudents: React.FC = () => {
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 dark:text-slate-400">
                       <Clock className="w-3 h-3 text-slate-400" />
                       {st.lastActive}
                     </span>
@@ -365,7 +365,7 @@ export const EnrolledStudents: React.FC = () => {
                   <td className="py-3.5 px-4 text-right">
                     <button
                       onClick={() => setMessagingStudent(st)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-slate-700 text-xs font-bold transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-emerald-50 dark:bg-emerald-950/60 hover:text-emerald-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition-colors"
                     >
                       <MessageSquare className="w-3.5 h-3.5" />
                       <span>Message</span>
@@ -381,8 +381,8 @@ export const EnrolledStudents: React.FC = () => {
       {/* Message Student Modal */}
       {messagingStudent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl border border-slate-200 dark:border-slate-800 animate-in fade-in zoom-in-95 duration-150">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-3">
                 <img
                   src={messagingStudent.avatar}
@@ -390,13 +390,13 @@ export const EnrolledStudents: React.FC = () => {
                   className="w-10 h-10 rounded-xl object-cover"
                 />
                 <div>
-                  <h3 className="font-bold text-slate-900 text-sm">{messagingStudent.name}</h3>
+                  <h3 className="font-bold text-slate-900 dark:text-white text-sm">{messagingStudent.name}</h3>
                   <span className="text-xs text-slate-400">{messagingStudent.courseTitle}</span>
                 </div>
               </div>
               <button
                 onClick={() => setMessagingStudent(null)}
-                className="text-slate-400 hover:text-slate-600 p-1"
+                className="text-slate-400 hover:text-slate-600 dark:text-slate-400 p-1"
               >
                 ✕
               </button>
@@ -404,7 +404,7 @@ export const EnrolledStudents: React.FC = () => {
 
             <form onSubmit={handleSendMessage} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
                   Instructor Note / Assignment Feedback:
                 </label>
                 <textarea
@@ -413,7 +413,7 @@ export const EnrolledStudents: React.FC = () => {
                   value={messageText}
                   onChange={(e) => setMessageText(e.target.value)}
                   placeholder="Share advice, feedback on their coding exercises, or milestone congratulations..."
-                  className="w-full p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white resize-none"
+                  className="w-full p-3.5 rounded-xl bg-slate-50 border border-slate-200 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-emerald-500 focus:bg-white dark:bg-slate-900 resize-none"
                 />
               </div>
 
@@ -421,7 +421,7 @@ export const EnrolledStudents: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setMessagingStudent(null)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 text-slate-700 font-bold text-xs hover:bg-slate-50"
+                  className="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs hover:bg-slate-50 dark:hover:bg-slate-800/60 dark:bg-slate-800"
                 >
                   Cancel
                 </button>

@@ -31,7 +31,7 @@ export const App: React.FC = () => {
   const showChrome = isAuthenticated && !isClassroom && !isAuthPage;
 
   return (
-    <div className="h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-emerald-600 selection:text-white overflow-hidden relative">
+    <div className="h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-emerald-600 selection:text-white overflow-hidden relative transition-colors duration-200">
       {/* Toast Notification Stack (2-sec auto-dismiss) */}
       <ToastContainer />
 

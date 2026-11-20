@@ -177,23 +177,23 @@ export const AdminStudentsDirectory: React.FC = () => {
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wider mb-1">
             <Users className="w-4 h-4" />
             <span>Administrator Control Center</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
             Students Directory
           </h1>
-          <p className="text-sm text-slate-600 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
             Manage enterprise student records, monitor active enrollment health, and control account security.
           </p>
         </div>
 
         <button
           onClick={handleExportCSV}
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 font-bold text-xs transition-colors shadow-2xs"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 text-slate-700 dark:text-slate-300 font-bold text-xs transition-colors shadow-2xs"
         >
           <Download className="w-4 h-4 text-emerald-600" />
           <span>Export Master CSV</span>
@@ -202,33 +202,33 @@ export const AdminStudentsDirectory: React.FC = () => {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Total Registered Learners</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">1,84,500</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Total Registered Learners</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">1,84,500</div>
           <span className="text-[11px] text-emerald-600 font-bold mt-1 inline-block">+18.6% Annual Growth</span>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Active Learners Today</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">43,200</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Active Learners Today</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">43,200</div>
           <span className="text-[11px] text-teal-600 font-bold mt-1 inline-block">Real-time Telemetry</span>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Total Verified Certificates</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">54,320</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Total Verified Certificates</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">54,320</div>
           <span className="text-[11px] text-amber-600 font-bold mt-1 inline-block">Govt & Industry Recognized</span>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-          <span className="text-xs font-semibold text-slate-500">Suspended / Flagged Accounts</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">14</div>
+        <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Suspended / Flagged Accounts</span>
+          <div className="text-2xl font-black text-slate-900 dark:text-white mt-1">14</div>
           <span className="text-[11px] text-slate-400 font-medium mt-1 inline-block">&lt;0.01% of total base</span>
         </div>
       </div>
 
       {/* Search & Filter */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
@@ -236,7 +236,7 @@ export const AdminStudentsDirectory: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search students by name, email, college, city..."
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all"
+            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-100 focus:outline-none focus:border-emerald-500 focus:bg-white dark:bg-slate-900 transition-all"
           />
         </div>
 
@@ -246,7 +246,7 @@ export const AdminStudentsDirectory: React.FC = () => {
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
               statusFilter === 'all'
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             All ({studentsList.length})
@@ -256,7 +256,7 @@ export const AdminStudentsDirectory: React.FC = () => {
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
               statusFilter === 'active'
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             Active Only
@@ -266,7 +266,7 @@ export const AdminStudentsDirectory: React.FC = () => {
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors ${
               statusFilter === 'suspended'
                 ? 'bg-rose-600 text-white'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             Suspended ({studentsList.filter(s => s.status === 'suspended').length})
@@ -275,11 +275,11 @@ export const AdminStudentsDirectory: React.FC = () => {
       </div>
 
       {/* Directory Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-500 uppercase tracking-wider font-bold">
+              <tr className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold">
                 <th className="py-3.5 px-4">Student Name & Email</th>
                 <th className="py-3.5 px-4">College / Organization</th>
                 <th className="py-3.5 px-4">Location</th>
@@ -289,44 +289,44 @@ export const AdminStudentsDirectory: React.FC = () => {
                 <th className="py-3.5 px-4 text-right">Admin Controls</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-slate-700">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
               {filteredStudents.map((st) => (
-                <tr key={st.id} className="hover:bg-slate-50/70 transition-colors">
+                <tr key={st.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/60 dark:bg-slate-800/70 transition-colors">
                   <td className="py-3.5 px-4">
                     <div className="flex items-center gap-3">
                       <img
                         src={st.avatar}
                         alt={st.name}
-                        className="w-10 h-10 rounded-xl object-cover border border-slate-200 flex-shrink-0"
+                        className="w-10 h-10 rounded-xl object-cover border border-slate-200 dark:border-slate-800 flex-shrink-0"
                       />
                       <div>
-                        <div className="font-bold text-slate-900">{st.name}</div>
+                        <div className="font-bold text-slate-900 dark:text-white">{st.name}</div>
                         <div className="text-[11px] text-slate-400">{st.email}</div>
                         <div className="text-[10px] text-slate-400">Joined {st.joinedDate} • {st.lastLogin}</div>
                       </div>
                     </div>
                   </td>
 
-                  <td className="py-3.5 px-4 font-semibold text-slate-800">
+                  <td className="py-3.5 px-4 font-semibold text-slate-800 dark:text-slate-100">
                     {st.collegeOrCompany}
                   </td>
 
-                  <td className="py-3.5 px-4 text-slate-600">
+                  <td className="py-3.5 px-4 text-slate-600 dark:text-slate-400">
                     {st.location}
                   </td>
 
-                  <td className="py-3.5 px-4 font-bold text-slate-900">
+                  <td className="py-3.5 px-4 font-bold text-slate-900 dark:text-white">
                     {st.enrolledCoursesCount} Courses
                   </td>
 
-                  <td className="py-3.5 px-4 font-extrabold text-slate-900">
+                  <td className="py-3.5 px-4 font-extrabold text-slate-900 dark:text-white">
                     ₹{st.totalSpent.toLocaleString('en-IN')}
                   </td>
 
                   <td className="py-3.5 px-4">
                     <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold ${
                       st.status === 'active'
-                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                        ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200'
                         : 'bg-rose-50 text-rose-700 border border-rose-200'
                     }`}>
                       {st.status === 'active' ? (
@@ -347,7 +347,7 @@ export const AdminStudentsDirectory: React.FC = () => {
                     <div className="flex items-center justify-end gap-1.5">
                       <button
                         onClick={() => handleResetPassword(st.name, st.email)}
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition-colors"
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 dark:bg-slate-800 transition-colors"
                         title="Send Password Reset"
                       >
                         <KeyRound className="w-4 h-4" />
@@ -358,7 +358,7 @@ export const AdminStudentsDirectory: React.FC = () => {
                         className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-colors ${
                           st.status === 'active'
                             ? 'bg-rose-50 text-rose-600 hover:bg-rose-100'
-                            : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
+                            : 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100'
                         }`}
                       >
                         {st.status === 'active' ? 'Suspend' : 'Reactivate'}
