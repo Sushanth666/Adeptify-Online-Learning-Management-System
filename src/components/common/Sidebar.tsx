@@ -144,18 +144,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
     <aside 
       className={`${
         isMinimized ? 'w-20' : 'w-64'
-      } bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-full flex flex-col px-2.5 py-2 transition-[width] duration-300 ease-in-out relative select-none overflow-y-auto overflow-x-hidden sidebar-no-scrollbar scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
+      } bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-full flex flex-col px-3 py-3.5 transition-[width] duration-300 ease-in-out relative select-none overflow-y-auto overflow-x-hidden sidebar-no-scrollbar scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
     >
       {/* Header with Title and Minimize Option */}
-      <div className={`flex items-center ${isMinimized ? 'justify-center' : 'justify-between px-2'} mb-2 pt-0.5 flex-shrink-0`}>
+      <div className={`flex items-center ${isMinimized ? 'justify-center' : 'justify-between px-2.5'} mb-2.5 pt-0.5 flex-shrink-0`}>
         {!isMinimized && (
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider truncate">
+          <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider truncate">
             {typeTitle}
           </span>
         )}
         <button
           onClick={toggleMinimized}
-          className={`p-1.5 rounded-xl text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition-colors ${
+          className={`p-2 rounded-xl text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition-colors ${
             isMinimized ? 'w-10 h-10 flex items-center justify-center' : ''
           }`}
           title={isMinimized ? 'Expand sidebar' : 'Minimize sidebar'}
@@ -164,13 +164,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
           {isMinimized ? (
             <PanelLeftOpen className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
           ) : (
-            <PanelLeftClose className="w-4 h-4" />
+            <PanelLeftClose className="w-4.5 h-4.5" />
           )}
         </button>
       </div>
 
       {/* Nav List */}
-      <nav className="space-y-0.5 py-0.5 flex-shrink-0">
+      <nav className="space-y-1 py-0.5 flex-shrink-0">
         {links.map((link) => {
           const Icon = link.icon;
           return (
@@ -180,15 +180,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                 end={link.end}
                 className={({ isActive }) =>
                   `flex items-center ${
-                    isMinimized ? 'justify-center h-9 w-full px-0' : 'gap-2.5 px-2.5 py-1.5'
-                  } rounded-xl text-xs font-semibold transition-all ${
+                    isMinimized ? 'justify-center h-10 w-full px-0' : 'gap-3 px-3 py-2'
+                  } rounded-xl text-sm font-semibold transition-all ${
                     isActive
                       ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25 font-bold'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`
                 }
               >
-                <Icon className={`${isMinimized ? 'w-5 h-5' : 'w-4 h-4'} flex-shrink-0`} />
+                <Icon className={`${isMinimized ? 'w-5 h-5' : 'w-4.5 h-4.5'} flex-shrink-0`} />
                 {!isMinimized && <span className="truncate">{link.label}</span>}
               </NavLink>
 
@@ -203,8 +203,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
         })}
       </nav>
 
-      {/* Middle/Bottom Sections: Grouped naturally without giant center gap */}
-      <div className="mt-2.5 space-y-2 pt-2.5 border-t border-slate-100 dark:border-slate-800/60 flex-shrink-0">
+      {/* Middle/Bottom Sections: Grouped naturally with comfortable size & rhythm */}
+      <div className="mt-3.5 space-y-2.5 pt-3 border-t border-slate-100 dark:border-slate-800 flex-shrink-0">
         
         {/* 1. "Continue Learning" Mini-Card with 1-Click Resume */}
         {activeCourseData && (
@@ -221,34 +221,34 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
             ) : (
               <div 
                 onClick={handleResumeLesson}
-                className="rounded-2xl bg-gradient-to-br from-emerald-50/90 to-teal-50/60 dark:from-emerald-950/30 dark:to-teal-950/20 border border-emerald-200/80 dark:border-emerald-800/50 p-2.5 space-y-1.5 shadow-2xs cursor-pointer hover:border-emerald-400 transition-colors"
+                className="rounded-2xl bg-gradient-to-br from-emerald-50/90 to-teal-50/60 dark:from-emerald-950/30 dark:to-teal-950/20 border border-emerald-200/80 dark:border-emerald-800/50 p-3 space-y-2 shadow-2xs cursor-pointer hover:border-emerald-400 transition-colors"
               >
-                <div className="flex items-center justify-between text-[11px] font-bold text-emerald-800 dark:text-emerald-300">
-                  <span className="flex items-center gap-1">
-                    <Play className="w-3 h-3 fill-current" />
+                <div className="flex items-center justify-between text-xs font-bold text-emerald-800 dark:text-emerald-300">
+                  <span className="flex items-center gap-1.5">
+                    <Play className="w-3.5 h-3.5 fill-current" />
                     Continue Learning
                   </span>
-                  <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-md bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300">
+                  <span className="text-xs font-extrabold px-2 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300">
                     {activeCourseData.progress}%
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2.5">
                   <img
                     src={activeCourseData.course.thumbnail}
                     alt={activeCourseData.course.title}
-                    className="w-8 h-8 rounded-lg object-cover flex-shrink-0 border border-emerald-200 dark:border-emerald-800"
+                    className="w-9 h-9 rounded-xl object-cover flex-shrink-0 border border-emerald-200 dark:border-emerald-800 shadow-2xs"
                   />
                   <div className="min-w-0 flex-1">
                     <h5 className="text-xs font-bold text-slate-900 dark:text-white truncate leading-tight">
                       {activeCourseData.course.title}
                     </h5>
                     {activeCourseData.lessonTitle && (
-                      <p className="text-[10px] text-emerald-700 dark:text-emerald-400 font-medium truncate">
+                      <p className="text-[11px] text-emerald-700 dark:text-emerald-400 font-medium truncate mt-0.5">
                         ▶ {activeCourseData.lessonTitle}
                       </p>
                     )}
-                    <div className="w-full bg-emerald-200/60 dark:bg-emerald-900/40 h-1.5 rounded-full overflow-hidden mt-1">
+                    <div className="w-full bg-emerald-200/60 dark:bg-emerald-900/40 h-1.5 rounded-full overflow-hidden mt-1.5">
                       <div
                         className="bg-emerald-600 h-full rounded-full transition-all duration-300"
                         style={{ width: `${activeCourseData.progress}%` }}
@@ -260,10 +260,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                 <button
                   type="button"
                   onClick={handleResumeLesson}
-                  className="w-full py-1 px-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                  className="w-full py-1.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer mt-1"
                 >
                   <span>Resume Lesson</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             )}
@@ -274,7 +274,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
         {isMinimized ? (
           <div className="relative group">
             <div 
-              className="w-full h-9 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 cursor-help"
+              className="w-full h-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 cursor-help"
             >
               <Target className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
@@ -283,49 +283,49 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
             </div>
           </div>
         ) : (
-          <div className="rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 p-2.5 space-y-1">
+          <div className="rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 p-3 space-y-1.5">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 text-[11px]">
-                <Target className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span className="font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 text-xs">
+                <Target className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 Weekly Goal
               </span>
-              <span className="font-extrabold text-emerald-600 dark:text-emerald-400 text-[11px]">
+              <span className="font-extrabold text-emerald-600 dark:text-emerald-400 text-xs">
                 3.5 / 5.0 hrs
               </span>
             </div>
 
-            <div className="w-full h-1.5 bg-slate-200/80 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div className="w-full h-2 bg-slate-200/80 dark:bg-slate-700 rounded-full overflow-hidden">
               <div 
                 className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500" 
                 style={{ width: '70%' }} 
               />
             </div>
 
-            <div className="flex items-center justify-between text-[9.5px] text-slate-500 dark:text-slate-400 font-medium pt-0.5">
+            <div className="flex items-center justify-between text-[10.5px] text-slate-500 dark:text-slate-400 font-medium pt-0.5">
               <span>70% achieved</span>
-              <span className="flex items-center gap-0.5">
-                <Clock className="w-2.5 h-2.5" /> 1.5 hrs left
+              <span className="flex items-center gap-1">
+                <Clock className="w-3 h-3" /> 1.5 hrs left
               </span>
             </div>
           </div>
         )}
 
         {/* 3. Help Center, Community & Sign Out */}
-        <div className={`space-y-0.5 ${isMinimized ? 'flex flex-col items-center' : ''}`}>
+        <div className={`space-y-1 pt-1 ${isMinimized ? 'flex flex-col items-center' : ''}`}>
           <div className="relative group w-full">
             <button
               type="button"
               onClick={() => openHelpModal('help')}
               className={`w-full flex items-center ${
-                isMinimized ? 'justify-center h-9 px-0' : 'justify-between px-2.5 py-1'
-              } rounded-xl text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
+                isMinimized ? 'justify-center h-10 px-0' : 'justify-between px-3 py-1.5'
+              } rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
               title="Help Center & Documentation"
             >
-              <div className="flex items-center gap-2">
-                <HelpCircle className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors flex-shrink-0" />
+              <div className="flex items-center gap-2.5">
+                <HelpCircle className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors flex-shrink-0" />
                 {!isMinimized && <span>Help & FAQs</span>}
               </div>
-              {!isMinimized && <span className="text-[10px] text-slate-400">Ctrl+K</span>}
+              {!isMinimized && <span className="text-[11px] text-slate-400">Ctrl+K</span>}
             </button>
             {isMinimized && (
               <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3.5 px-3 py-1.5 bg-slate-900 dark:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap border border-slate-700">
@@ -339,16 +339,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
               type="button"
               onClick={() => openHelpModal('community')}
               className={`w-full flex items-center ${
-                isMinimized ? 'justify-center h-9 px-0' : 'justify-between px-2.5 py-1'
-              } rounded-xl text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
+                isMinimized ? 'justify-center h-10 px-0' : 'justify-between px-3 py-1.5'
+              } rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
               title="Student Community Lounge"
             >
-              <div className="flex items-center gap-2">
-                <Users className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors flex-shrink-0" />
+              <div className="flex items-center gap-2.5">
+                <Users className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors flex-shrink-0" />
                 {!isMinimized && <span>Community Lounge</span>}
               </div>
               {!isMinimized && (
-                <span className="px-1.5 py-0.2 rounded-full text-[9px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-extrabold">
+                <span className="px-2 py-0.5 rounded-full text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-extrabold">
                   Live
                 </span>
               )}
@@ -361,7 +361,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
           </div>
 
           {/* Sign Out Button */}
-          <div className="relative group w-full pt-0.5 border-t border-slate-100 dark:border-slate-800">
+          <div className="relative group w-full pt-1.5 border-t border-slate-100 dark:border-slate-800">
             <button
               type="button"
               onClick={() => {
@@ -369,11 +369,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                 navigate('/login');
               }}
               className={`w-full flex items-center ${
-                isMinimized ? 'justify-center h-9 px-0' : 'justify-start gap-2 px-2.5 py-1'
-              } rounded-xl text-[11px] font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors cursor-pointer`}
+                isMinimized ? 'justify-center h-10 px-0' : 'justify-start gap-2.5 px-3 py-1.5'
+              } rounded-xl text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors cursor-pointer`}
               title="Sign Out"
             >
-              <LogOut className="w-3.5 h-3.5 text-rose-500 dark:text-rose-400 flex-shrink-0" />
+              <LogOut className="w-4 h-4 text-rose-500 dark:text-rose-400 flex-shrink-0" />
               {!isMinimized && <span>Sign Out</span>}
             </button>
             {isMinimized && (
