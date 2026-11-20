@@ -281,25 +281,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
             )}
           </div>
         </div>
-
-        {/* 4. System Status / Helpful Banner */}
-        <div 
-          className={`rounded-xl bg-gradient-to-br from-emerald-50 to-teal-50/60 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-100 dark:border-emerald-800/40 ${
-            isMinimized ? 'p-2 flex flex-col items-center justify-center' : 'p-3'
-          }`}
-        >
-          <div className={`flex items-center ${isMinimized ? 'justify-center' : 'gap-2 mb-0.5'}`}>
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            {!isMinimized && (
-              <span className="text-xs font-bold text-emerald-950 dark:text-emerald-300">System Live</span>
-            )}
-          </div>
-          {!isMinimized && (
-            <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
-              Adeptify platform active with real-time progress syncing.
-            </p>
-          )}
-        </div>
       </div>
     </aside>
   );
@@ -405,16 +386,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
               Live
             </span>
           </button>
-        </div>
-
-        <div className="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-800/40">
-          <div className="flex items-center gap-2 mb-0.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-bold text-emerald-950 dark:text-emerald-300">Adeptify Active</span>
-          </div>
-          <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
-            Role: {effectiveType.toUpperCase()}
-          </p>
         </div>
       </div>
     </aside>
