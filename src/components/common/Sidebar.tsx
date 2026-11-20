@@ -180,11 +180,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                 end={link.end}
                 className={({ isActive }) =>
                   `flex items-center ${
-                    isMinimized ? 'justify-center h-9 w-full px-0' : 'gap-2.5 px-2.5 py-1.5'
-                  } rounded-xl text-xs font-semibold transition-all ${
+                    isMinimized ? 'justify-center h-9 w-full px-0' : 'gap-2.5 px-3 py-2'
+                  } rounded-xl text-xs font-semibold transition-all relative ${
                     isActive
-                      ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25 font-bold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+                      ? 'bg-slate-100/90 dark:bg-slate-800/80 text-emerald-700 dark:text-emerald-400 font-bold before:absolute before:left-0 before:top-1.5 before:bottom-1.5 before:w-1 before:rounded-r-full before:bg-emerald-600 dark:before:bg-emerald-400'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/60 dark:hover:bg-slate-800/50'
                   }`
                 }
               >
@@ -206,71 +206,100 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
       {/* Middle/Bottom Sections: Only visible or iconified */}
       <div className="mt-auto space-y-2 pt-2 flex-shrink-0">
         
-        {/* 1. "Continue Learning" Mini-Card with 1-Click Resume */}
+        {/* 1. "Continue Learning" Sleek Linear Micro-Bar with Circular Ring */}
         {activeCourseData && (
           <div className="relative group">
             {isMinimized ? (
               <button
                 onClick={handleResumeLesson}
-                className="w-full h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all shadow-2xs relative cursor-pointer"
+                className="w-full h-10 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all shadow-2xs relative cursor-pointer group"
                 title={`Resume: ${activeCourseData.course.title} (${activeCourseData.progress}%)`}
               >
-                <Play className="w-4 h-4 fill-current ml-0.5" />
-                <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                <div className="relative w-7 h-7 flex items-center justify-center">
+                  <svg className="w-7 h-7 -rotate-90" viewBox="0 0 36 36">
+                    <circle
+                      cx="18"
+                      cy="18"
+                      r="14"
+                      className="text-slate-200 dark:text-slate-700 stroke-current"
+                      strokeWidth="3.5"
+                      fill="none"
+                    />
+                    <circle
+                      cx="18"
+                      cy="18"
+                      r="14"
+                      className="text-emerald-500 stroke-current"
+                      strokeWidth="3.5"
+                      strokeDasharray="88"
+                      strokeDashoffset={88 - (88 * (activeCourseData.progress || 0)) / 100}
+                      strokeLinecap="round"
+                      fill="none"
+                    />
+                  </svg>
+                  <Play className="w-2.5 h-2.5 fill-current absolute ml-0.5" />
+                </div>
               </button>
             ) : (
               <div 
                 onClick={handleResumeLesson}
-                className="rounded-2xl bg-gradient-to-br from-emerald-50/90 to-teal-50/60 dark:from-emerald-950/30 dark:to-teal-950/20 border border-emerald-200/80 dark:border-emerald-800/50 p-2.5 space-y-1.5 shadow-2xs cursor-pointer hover:border-emerald-400 transition-colors"
+                className="rounded-xl bg-slate-50/90 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 p-2 hover:border-emerald-400/80 dark:hover:border-emerald-500/60 hover:bg-slate-100/80 dark:hover:bg-slate-800/90 transition-all cursor-pointer group shadow-2xs"
               >
-                <div className="flex items-center justify-between text-[11px] font-bold text-emerald-800 dark:text-emerald-300">
-                  <span className="flex items-center gap-1">
-                    <Play className="w-3 h-3 fill-current" />
-                    Continue Learning
-                  </span>
-                  <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-md bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300">
-                    {activeCourseData.progress}%
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2.5">
                   <img
                     src={activeCourseData.course.thumbnail}
                     alt={activeCourseData.course.title}
-                    className="w-8 h-8 rounded-lg object-cover flex-shrink-0 border border-emerald-200 dark:border-emerald-800"
+                    className="w-9 h-9 rounded-lg object-cover flex-shrink-0 border border-slate-200 dark:border-slate-700 group-hover:scale-105 transition-transform"
                   />
                   <div className="min-w-0 flex-1">
-                    <h5 className="text-xs font-bold text-slate-900 dark:text-white truncate leading-tight">
+                    <div className="flex items-center justify-between text-[10px] text-slate-400 dark:text-slate-500 font-medium leading-none mb-1">
+                      <span className="uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400">Now Playing</span>
+                      <span className="font-mono font-bold text-slate-700 dark:text-slate-300">{activeCourseData.progress}%</span>
+                    </div>
+                    <h5 className="text-[11px] font-bold text-slate-800 dark:text-slate-200 truncate leading-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                       {activeCourseData.course.title}
                     </h5>
                     {activeCourseData.lessonTitle && (
-                      <p className="text-[10px] text-emerald-700 dark:text-emerald-400 font-medium truncate">
-                        ▶ {activeCourseData.lessonTitle}
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                        {activeCourseData.lessonTitle}
                       </p>
                     )}
-                    <div className="w-full bg-emerald-200/60 dark:bg-emerald-900/40 h-1.5 rounded-full overflow-hidden mt-1">
-                      <div
-                        className="bg-emerald-600 h-full rounded-full transition-all duration-300"
-                        style={{ width: `${activeCourseData.progress}%` }}
+                  </div>
+                  
+                  {/* Circular Radial Gauge Play Trigger */}
+                  <div className="relative w-8 h-8 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-8 h-8 -rotate-90" viewBox="0 0 36 36">
+                      <circle
+                        cx="18"
+                        cy="18"
+                        r="14"
+                        className="text-slate-200 dark:text-slate-700 stroke-current"
+                        strokeWidth="3.5"
+                        fill="none"
                       />
+                      <circle
+                        cx="18"
+                        cy="18"
+                        r="14"
+                        className="text-emerald-500 stroke-current transition-all duration-500"
+                        strokeWidth="3.5"
+                        strokeDasharray="88"
+                        strokeDashoffset={88 - (88 * (activeCourseData.progress || 0)) / 100}
+                        strokeLinecap="round"
+                        fill="none"
+                      />
+                    </svg>
+                    <div className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center absolute group-hover:scale-110 transition-transform shadow-xs">
+                      <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
                     </div>
                   </div>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={handleResumeLesson}
-                  className="w-full py-1 px-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
-                >
-                  <span>Resume Lesson</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
               </div>
             )}
           </div>
         )}
 
-        {/* 2. Weekly Study Goal / Progress Widget */}
+        {/* 2. Weekly Study Goal / Progress Widget (Linear Sleek Card) */}
         {isMinimized ? (
           <div className="relative group">
             <div 
@@ -279,32 +308,32 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
               <Target className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3.5 px-3 py-1.5 bg-slate-900 dark:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap border border-slate-700">
-              <span>Weekly Goal: 3.5 / 5.0 hrs (70%)</span>
+              <span>Weekly Goal: 3.5 / 5.0h (70%)</span>
             </div>
           </div>
         ) : (
-          <div className="rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 p-2.5 space-y-1">
+          <div className="rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 p-2.5 space-y-1.5 transition-colors">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 text-[11px]">
+              <span className="font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 text-[11px]">
                 <Target className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 Weekly Goal
               </span>
-              <span className="font-extrabold text-emerald-600 dark:text-emerald-400 text-[11px]">
-                3.5 / 5.0 hrs
+              <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400 text-[11px]">
+                3.5 / 5.0h
               </span>
             </div>
 
-            <div className="w-full h-1.5 bg-slate-200/80 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div className="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
               <div 
                 className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500" 
                 style={{ width: '70%' }} 
               />
             </div>
 
-            <div className="flex items-center justify-between text-[9.5px] text-slate-500 dark:text-slate-400 font-medium pt-0.5">
+            <div className="flex items-center justify-between text-[9px] text-slate-500 dark:text-slate-400 font-medium">
               <span>70% achieved</span>
-              <span className="flex items-center gap-0.5">
-                <Clock className="w-2.5 h-2.5" /> 1.5 hrs left
+              <span className="flex items-center gap-0.5 font-mono">
+                <Clock className="w-2.5 h-2.5" /> 1.5h left
               </span>
             </div>
           </div>
@@ -317,15 +346,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
               type="button"
               onClick={() => openHelpModal('help')}
               className={`w-full flex items-center ${
-                isMinimized ? 'justify-center h-9 px-0' : 'justify-between px-2.5 py-1'
-              } rounded-xl text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
+                isMinimized ? 'justify-center h-9 px-0' : 'justify-between px-2.5 py-1.5'
+              } rounded-xl text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/60 transition-colors`}
               title="Help Center & Documentation"
             >
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors flex-shrink-0" />
                 {!isMinimized && <span>Help & FAQs</span>}
               </div>
-              {!isMinimized && <span className="text-[10px] text-slate-400">Ctrl+K</span>}
+              {!isMinimized && <span className="text-[10px] text-slate-400 font-mono">Ctrl+K</span>}
             </button>
             {isMinimized && (
               <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3.5 px-3 py-1.5 bg-slate-900 dark:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap border border-slate-700">
@@ -339,8 +368,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
               type="button"
               onClick={() => openHelpModal('community')}
               className={`w-full flex items-center ${
-                isMinimized ? 'justify-center h-9 px-0' : 'justify-between px-2.5 py-1'
-              } rounded-xl text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
+                isMinimized ? 'justify-center h-9 px-0' : 'justify-between px-2.5 py-1.5'
+              } rounded-xl text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/60 transition-colors`}
               title="Student Community Lounge"
             >
               <div className="flex items-center gap-2">
@@ -348,7 +377,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                 {!isMinimized && <span>Community Lounge</span>}
               </div>
               {!isMinimized && (
-                <span className="px-1.5 py-0.2 rounded-full text-[9px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-extrabold">
+                <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Live
                 </span>
               )}
@@ -361,7 +391,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
           </div>
 
           {/* Sign Out Button */}
-          <div className="relative group w-full pt-0.5 border-t border-slate-100 dark:border-slate-800">
+          <div className="relative group w-full pt-1 border-t border-slate-100 dark:border-slate-800/80">
             <button
               type="button"
               onClick={() => {
@@ -369,8 +399,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                 navigate('/login');
               }}
               className={`w-full flex items-center ${
-                isMinimized ? 'justify-center h-9 px-0' : 'justify-start gap-2 px-2.5 py-1'
-              } rounded-xl text-[11px] font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors cursor-pointer`}
+                isMinimized ? 'justify-center h-9 px-0' : 'justify-start gap-2 px-2.5 py-1.5'
+              } rounded-xl text-[11px] font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50/70 dark:hover:bg-rose-950/30 transition-colors cursor-pointer`}
               title="Sign Out"
             >
               <LogOut className="w-3.5 h-3.5 text-rose-500 dark:text-rose-400 flex-shrink-0" />
@@ -411,9 +441,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
               end={link.end}
               onClick={() => setMobileOpen(false)}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all relative ${
                   isActive
-                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25 font-semibold'
+                    ? 'bg-slate-100/90 dark:bg-slate-800/80 text-emerald-700 dark:text-emerald-400 font-bold before:absolute before:left-0 before:top-2 before:bottom-2 before:w-1 before:rounded-r-full before:bg-emerald-600 dark:before:bg-emerald-400'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`
               }
@@ -426,45 +456,80 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
       </nav>
 
       {/* Mobile Widgets */}
-      <div className="mt-auto space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
-        {/* Continue Learning */}
+      <div className="mt-auto space-y-2.5 pt-4 border-t border-slate-100 dark:border-slate-800">
+        {/* Continue Learning - Linear Micro Bar */}
         {activeCourseData && (
-          <div className="rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 p-3 space-y-2">
-            <div className="flex items-center justify-between text-xs font-bold text-emerald-800 dark:text-emerald-300">
-              <span className="flex items-center gap-1">
-                <Play className="w-3 h-3 fill-current" /> Continue Learning
-              </span>
-              <span>{activeCourseData.progress}%</span>
+          <div 
+            onClick={() => {
+              setMobileOpen(false);
+              handleResumeLesson();
+            }}
+            className="rounded-xl bg-slate-50/90 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 p-2.5 cursor-pointer shadow-2xs hover:border-emerald-500/50"
+          >
+            <div className="flex items-center gap-2.5">
+              <img
+                src={activeCourseData.course.thumbnail}
+                alt={activeCourseData.course.title}
+                className="w-10 h-10 rounded-lg object-cover flex-shrink-0 border border-slate-200 dark:border-slate-700"
+              />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between text-[10px] text-slate-400 dark:text-slate-500 font-medium leading-none mb-1">
+                  <span className="uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400">Now Playing</span>
+                  <span className="font-mono font-bold text-slate-700 dark:text-slate-300">{activeCourseData.progress}%</span>
+                </div>
+                <h5 className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                  {activeCourseData.course.title}
+                </h5>
+                {activeCourseData.lessonTitle && (
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                    {activeCourseData.lessonTitle}
+                  </p>
+                )}
+              </div>
+              <div className="relative w-8 h-8 flex items-center justify-center flex-shrink-0">
+                <svg className="w-8 h-8 -rotate-90" viewBox="0 0 36 36">
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="14"
+                    className="text-slate-200 dark:text-slate-700 stroke-current"
+                    strokeWidth="3.5"
+                    fill="none"
+                  />
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="14"
+                    className="text-emerald-500 stroke-current"
+                    strokeWidth="3.5"
+                    strokeDasharray="88"
+                    strokeDashoffset={88 - (88 * (activeCourseData.progress || 0)) / 100}
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                </svg>
+                <div className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center absolute shadow-xs">
+                  <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
+                </div>
+              </div>
             </div>
-            <h5 className="text-xs font-bold text-slate-900 dark:text-white truncate">
-              {activeCourseData.course.title}
-            </h5>
-            {activeCourseData.lessonTitle && (
-              <p className="text-[10px] text-emerald-700 dark:text-emerald-400 font-medium truncate">
-                ▶ {activeCourseData.lessonTitle}
-              </p>
-            )}
-            <button
-              type="button"
-              onClick={handleResumeLesson}
-              className="w-full py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
-            >
-              <span>Resume Lesson</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
           </div>
         )}
 
         {/* Weekly Study Goal */}
-        <div className="rounded-2xl bg-slate-50 dark:bg-slate-800 p-3 space-y-1.5 border border-slate-200 dark:border-slate-700">
-          <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
-            <span className="flex items-center gap-1.5">
-              <Target className="w-3.5 h-3.5 text-emerald-600" /> Weekly Goal
+        <div className="rounded-xl bg-slate-50/80 dark:bg-slate-800/50 p-2.5 space-y-1.5 border border-slate-200 dark:border-slate-700/60">
+          <div className="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
+            <span className="flex items-center gap-1.5 text-[11px]">
+              <Target className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> Weekly Goal
             </span>
-            <span className="text-emerald-600 font-extrabold text-[11px]">3.5 / 5.0 hrs</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-mono font-bold text-[11px]">3.5 / 5.0h</span>
           </div>
-          <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div className="h-full bg-emerald-500 rounded-full" style={{ width: '70%' }} />
+          <div className="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full" style={{ width: '70%' }} />
+          </div>
+          <div className="flex items-center justify-between text-[9px] text-slate-500 dark:text-slate-400 font-medium">
+            <span>70% achieved</span>
+            <span className="font-mono">1.5h left</span>
           </div>
         </div>
 
