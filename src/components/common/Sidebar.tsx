@@ -144,10 +144,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
     <aside 
       className={`${
         isMinimized ? 'w-20' : 'w-64'
-      } bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-full flex flex-col p-3 transition-[width] duration-300 ease-in-out relative select-none overflow-y-auto overflow-x-hidden`}
+      } bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-full flex flex-col px-2.5 py-2 transition-[width] duration-300 ease-in-out relative select-none overflow-y-auto overflow-x-hidden sidebar-no-scrollbar scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
     >
       {/* Header with Title and Minimize Option */}
-      <div className={`flex items-center ${isMinimized ? 'justify-center' : 'justify-between px-2'} mb-3 pt-1 flex-shrink-0`}>
+      <div className={`flex items-center ${isMinimized ? 'justify-center' : 'justify-between px-2'} mb-2 pt-0.5 flex-shrink-0`}>
         {!isMinimized && (
           <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider truncate">
             {typeTitle}
@@ -170,7 +170,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
       </div>
 
       {/* Nav List */}
-      <nav className="space-y-1 py-1 flex-shrink-0">
+      <nav className="space-y-0.5 py-0.5 flex-shrink-0">
         {links.map((link) => {
           const Icon = link.icon;
           return (
@@ -180,10 +180,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                 end={link.end}
                 className={({ isActive }) =>
                   `flex items-center ${
-                    isMinimized ? 'justify-center h-10 w-full px-0' : 'gap-3 px-3 py-2'
-                  } rounded-xl text-sm font-medium transition-all ${
+                    isMinimized ? 'justify-center h-9 w-full px-0' : 'gap-2.5 px-2.5 py-1.5'
+                  } rounded-xl text-xs font-semibold transition-all ${
                     isActive
-                      ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25 font-semibold'
+                      ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25 font-bold'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`
                 }
@@ -204,7 +204,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
       </nav>
 
       {/* Middle/Bottom Sections: Only visible or iconified */}
-      <div className="mt-auto space-y-3 pt-3 flex-shrink-0">
+      <div className="mt-auto space-y-2 pt-2 flex-shrink-0">
         
         {/* 1. "Continue Learning" Mini-Card with 1-Click Resume */}
         {activeCourseData && (
@@ -212,7 +212,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
             {isMinimized ? (
               <button
                 onClick={handleResumeLesson}
-                className="w-full h-11 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all shadow-2xs relative cursor-pointer"
+                className="w-full h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all shadow-2xs relative cursor-pointer"
                 title={`Resume: ${activeCourseData.course.title} (${activeCourseData.progress}%)`}
               >
                 <Play className="w-4 h-4 fill-current ml-0.5" />
@@ -221,7 +221,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
             ) : (
               <div 
                 onClick={handleResumeLesson}
-                className="rounded-2xl bg-gradient-to-br from-emerald-50/90 to-teal-50/60 dark:from-emerald-950/30 dark:to-teal-950/20 border border-emerald-200/80 dark:border-emerald-800/50 p-3 space-y-2 shadow-2xs cursor-pointer hover:border-emerald-400 transition-colors"
+                className="rounded-2xl bg-gradient-to-br from-emerald-50/90 to-teal-50/60 dark:from-emerald-950/30 dark:to-teal-950/20 border border-emerald-200/80 dark:border-emerald-800/50 p-2.5 space-y-1.5 shadow-2xs cursor-pointer hover:border-emerald-400 transition-colors"
               >
                 <div className="flex items-center justify-between text-[11px] font-bold text-emerald-800 dark:text-emerald-300">
                   <span className="flex items-center gap-1">
@@ -237,10 +237,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                   <img
                     src={activeCourseData.course.thumbnail}
                     alt={activeCourseData.course.title}
-                    className="w-9 h-9 rounded-lg object-cover flex-shrink-0 border border-emerald-200 dark:border-emerald-800"
+                    className="w-8 h-8 rounded-lg object-cover flex-shrink-0 border border-emerald-200 dark:border-emerald-800"
                   />
                   <div className="min-w-0 flex-1">
-                    <h5 className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                    <h5 className="text-xs font-bold text-slate-900 dark:text-white truncate leading-tight">
                       {activeCourseData.course.title}
                     </h5>
                     {activeCourseData.lessonTitle && (
@@ -260,7 +260,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                 <button
                   type="button"
                   onClick={handleResumeLesson}
-                  className="w-full py-1.5 px-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                  className="w-full py-1 px-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
                 >
                   <span>Resume Lesson</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -274,7 +274,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
         {isMinimized ? (
           <div className="relative group">
             <div 
-              className="w-full h-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 cursor-help"
+              className="w-full h-9 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 cursor-help"
             >
               <Target className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
@@ -283,9 +283,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
             </div>
           </div>
         ) : (
-          <div className="rounded-2xl bg-slate-50 dark:bg-slate-850/70 border border-slate-200/80 dark:border-slate-800 p-3 space-y-1.5">
+          <div className="rounded-2xl bg-slate-50 dark:bg-slate-850/70 border border-slate-200/80 dark:border-slate-800 p-2.5 space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+              <span className="font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 text-[11px]">
                 <Target className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 Weekly Goal
               </span>
@@ -294,14 +294,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
               </span>
             </div>
 
-            <div className="w-full h-2 bg-slate-200/80 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-slate-200/80 dark:bg-slate-700 rounded-full overflow-hidden">
               <div 
                 className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500" 
                 style={{ width: '70%' }} 
               />
             </div>
 
-            <div className="flex items-center justify-between text-[10px] text-slate-500 dark:text-slate-400 font-medium pt-0.5">
+            <div className="flex items-center justify-between text-[9.5px] text-slate-500 dark:text-slate-400 font-medium pt-0.5">
               <span>70% achieved</span>
               <span className="flex items-center gap-0.5">
                 <Clock className="w-2.5 h-2.5" /> 1.5 hrs left
@@ -310,19 +310,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
           </div>
         )}
 
-        {/* 3. Help Center & Student Community Links */}
-        <div className={`space-y-1 ${isMinimized ? 'flex flex-col items-center' : ''}`}>
+        {/* 3. Help Center, Community & Sign Out */}
+        <div className={`space-y-0.5 ${isMinimized ? 'flex flex-col items-center' : ''}`}>
           <div className="relative group w-full">
             <button
               type="button"
               onClick={() => openHelpModal('help')}
               className={`w-full flex items-center ${
-                isMinimized ? 'justify-center h-10 px-0' : 'justify-between px-3 py-1.5'
-              } rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
+                isMinimized ? 'justify-center h-9 px-0' : 'justify-between px-2.5 py-1'
+              } rounded-xl text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
               title="Help Center & Documentation"
             >
               <div className="flex items-center gap-2">
-                <HelpCircle className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors flex-shrink-0" />
+                <HelpCircle className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors flex-shrink-0" />
                 {!isMinimized && <span>Help & FAQs</span>}
               </div>
               {!isMinimized && <span className="text-[10px] text-slate-400">Ctrl+K</span>}
@@ -339,12 +339,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
               type="button"
               onClick={() => openHelpModal('community')}
               className={`w-full flex items-center ${
-                isMinimized ? 'justify-center h-10 px-0' : 'justify-between px-3 py-1.5'
-              } rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
+                isMinimized ? 'justify-center h-9 px-0' : 'justify-between px-2.5 py-1'
+              } rounded-xl text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors`}
               title="Student Community Lounge"
             >
               <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors flex-shrink-0" />
+                <Users className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors flex-shrink-0" />
                 {!isMinimized && <span>Community Lounge</span>}
               </div>
               {!isMinimized && (
@@ -361,7 +361,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
           </div>
 
           {/* Sign Out Button */}
-          <div className="relative group w-full pt-1 border-t border-slate-100 dark:border-slate-800">
+          <div className="relative group w-full pt-0.5 border-t border-slate-100 dark:border-slate-800">
             <button
               type="button"
               onClick={() => {
@@ -369,11 +369,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                 navigate('/login');
               }}
               className={`w-full flex items-center ${
-                isMinimized ? 'justify-center h-10 px-0' : 'justify-start gap-2 px-3 py-1.5'
-              } rounded-xl text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors cursor-pointer`}
+                isMinimized ? 'justify-center h-9 px-0' : 'justify-start gap-2 px-2.5 py-1'
+              } rounded-xl text-[11px] font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors cursor-pointer`}
               title="Sign Out"
             >
-              <LogOut className="w-4 h-4 text-rose-500 dark:text-rose-400 flex-shrink-0" />
+              <LogOut className="w-3.5 h-3.5 text-rose-500 dark:text-rose-400 flex-shrink-0" />
               {!isMinimized && <span>Sign Out</span>}
             </button>
             {isMinimized && (
@@ -389,7 +389,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
 
   // Mobile drawer content
   const mobileDrawerContent = (
-    <aside className="w-72 bg-white dark:bg-slate-900 min-h-full flex flex-col p-4 shadow-2xl overflow-y-auto">
+    <aside className="w-72 bg-white dark:bg-slate-900 min-h-full flex flex-col p-4 shadow-2xl overflow-y-auto sidebar-no-scrollbar scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
       <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
         <span className="font-extrabold text-slate-800 dark:text-white text-sm tracking-tight">{typeTitle}</span>
         <button
