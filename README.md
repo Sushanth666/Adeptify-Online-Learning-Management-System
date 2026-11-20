@@ -1,66 +1,101 @@
-# Adeptify | Skill Acceleration for Engineers
+<p align="center">
+  <img src="public/logo.svg" alt="Adeptify Logo" width="420" />
+</p>
 
-> A modern, responsive, high-velocity Online Learning Management System designed for engineering excellence. Built with **React 19**, **TypeScript**, **Tailwind CSS**, **Redux Toolkit**, **React Router v7**, **Framer Motion**, and **Recharts**.
+<p align="center">
+  <strong>Skill Acceleration for Engineers • Enterprise Online Learning Management System (LMS)</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19.3-059669?style=for-the-badge&logo=react&logoColor=white" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-7.0-176238?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/TailwindCSS-3.4-10b981?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Redux%20Toolkit-2.14-064e3b?style=for-the-badge&logo=redux&logoColor=white" alt="Redux Toolkit" />
+  <img src="https://img.shields.io/badge/Vite-8.3-34d399?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Currency-INR%20(₹)-047857?style=for-the-badge" alt="INR Currency" />
+</p>
+
+---
+
+## 📖 Brief Project Overview
+
+**Adeptify** is a production-ready, full-lifecycle **Online Learning Management System (LMS)** engineered specifically for technology professionals, developers, and engineering institutions. It brings university-grade curriculum structure, practical hands-on coding workflows, and enterprise administrative governance into a single, unified web platform.
+
+The platform provides an end-to-end learning lifecycle with three interconnected role portals:
+
+1. **Student Portal**:
+   - Explore **73+ industry-tailored courses** across Full Stack Development, Cloud & DevOps, AI/Data Science, System Design, and Cybersecurity.
+   - Interactive classroom with **responsive playable video lectures**, video lecture search, timestamped personal note-taking, and downloadable cheat sheets.
+   - Self-evaluating quizzes with instant passing score validation and graduation celebration confetti.
+   - Downloadable and verifiable course completion certificates.
+
+2. **Instructor Studio**:
+   - Course creation wizard supporting video embed links, module outlines, quizzes, and Indian Rupee (₹) pricing.
+   - Catalog management (*Published*, *Under Review*, *Draft*).
+   - Enrolled student directories with progress tracking and direct messaging.
+   - Revenue analytics, rating distributions, and student drop-off telemetry.
+
+3. **Administrator Control Center**:
+   - Platform-wide operational health monitoring and financial volume tracking (**₹84.59 Lakhs** gross volume).
+   - Students and faculty directories with security actions (*Suspend/Reactivate*, *Reset Password*, *Approve Payouts*).
+   - Course QA approvals and homepage promotion controls.
+   - Payment gateway breakdown (**UPI: 68%**, Cards: 20%, Net Banking: 9%) and ledger export.
 
 ---
 
 ## 💎 Brand Identity & Visual Design
-- **Platform Name**: **Adeptify**
-- **Tagline**: *Skill Acceleration for Engineers*
-- **Brand Emblem**: **Ascending Diamond Prism** (`AdeptifyLogo.tsx`) symbolizing upward career progression and technical mastery.
-- **Color Palette**: **Nordic Emerald & Forest Green** (`#176238`, `#059669`, `#10b981`, `#ecfdf5`), delivering an enterprise-grade, focused developer aesthetic.
-- **Dynamic Layout**: **Frozen Navbar & Sidebar Architecture** — The top navigation bar and side drawer remain pinned to screen edges while only the center content area scrolls smoothly.
-- **Sidebar-Navbar Synchronization**: The navbar brand container matches the sidebar width (`w-64` expanded, `w-20` minimized) with an unbroken, pixel-perfect vertical dividing line (`border-r border-slate-200`).
+
+- **Brand Name**: **Adeptify**
+- **Brand Tagline**: *Skill Acceleration for Engineers*
+- **Brand Emblem**: **Ascending Diamond Prism** (`AdeptifyLogo.tsx` / `logo.svg`) symbolizing technical growth, resilience, and upward career trajectory.
+- **Theme Palette**: **Nordic Emerald & Forest Green** (`#176238`, `#059669`, `#10b981`, `#ecfdf5`), providing a distraction-free, high-focus engineering workspace.
+- **Frozen Layout Architecture**: The top navigation bar and side drawer are locked to screen boundaries, allowing only the core workspace to scroll smoothly without layout shifting.
+- **Sidebar & Navbar Alignment**: Pixel-perfect vertical divider alignment between the expanded sidebar (`w-64`) and minimized sidebar (`w-20`) with identical title item heights and spacing.
 
 ---
 
-## 🌟 Key Features & Dedicated Modules
+## 🌟 Key Features & Functional Modules
 
-### 1. Student Hub
-- **1-Click Demo Login & Authentication**: Instant role switching between Student, Instructor, and Administrator.
-- **Student Dashboard (`/dashboard`)**: Study metrics, weekly streak, active courses, certificate progress, and 1-click "Resume Lecture".
-- **Course Catalog (`/courses`)**: Searchable index of 73+ industry-tailored courses with live search and multi-facet filters.
-- **Course Details (`/courses/:id`)**: Comprehensive syllabus inspection, chapter breakdowns, verified student reviews, instructor bio, and instant enrollment.
+### 1. Student Classroom & Dashboard
+- **1-Click Demo Login**: Switch roles seamlessly between Student, Instructor, and Admin directly from the navigation bar.
+- **Student Dashboard (`/dashboard`)**: Study streak tracker, weekly progress metrics, active courses, and quick "Resume Lesson" actions.
+- **Course Catalog (`/courses`)**: Multi-facet filterable catalog with live search across 73+ curated technology courses.
+- **Course Syllabus & Overview (`/courses/:id`)**: Detailed curriculum tree, instructor credentials, prerequisites, and student reviews.
 - **Interactive Classroom Player (`/learning/:courseId`)**:
-  - **Verified HD Playable Video Lectures**: Native responsive YouTube embed support with fallback CDN streams.
-  - **Course Video Search & Related Lecture Finder**: Dedicated tab to search course lectures and curated deep dives by topic, channel, or keyword, with instant in-classroom playback.
-  - **Interactive Curriculum Drawer**: Collapsible module sections with real-time progress checkmarks.
-  - **Embedded Quizzes**: Modal quiz engine with multiple-choice questions, passing score validation, and confetti celebrations.
-  - **Course Project Assignments**: Practical coding briefs and submission portals.
-  - **Study Materials & Notebook**: Auto-saving timestamped lecture notes and downloadable cheat sheets.
-- **My Learning (`/my-learning`)**: Course progress filter (All, In Progress, Completed).
-- **Verifiable Certificates (`/certificates`)**: QR-verifiable diplomas with student name, instructor accreditation, and First-Class Distinction grades.
-- **Wishlist (`/wishlist`)**: Save and bookmark target courses.
-- **Developer Profile (`/profile`)**: Manage bio, technology stack tags, GitHub, LinkedIn, and portfolio links.
+  - Playable HD video lecture player with fallback streams.
+  - **Course Video Search & Related Lecture Finder**: In-classroom video search to find related lectures, deep dives, and tutorials by topic.
+  - Interactive collapsible curriculum with real-time completion checkmarks.
+  - Interactive modal quiz engine with scoring thresholds.
+  - Coding project assignments and submission briefs.
+  - Auto-saving timestamped lecture notebook.
+- **My Learning (`/my-learning`)**: Course progress filters (*All*, *In Progress*, *Completed*).
+- **Verifiable Certificates (`/certificates`)**: Printable certificates with student name, instructor accreditation, and QR verification.
+- **Wishlist & Profile (`/wishlist`, `/profile`)**: Bookmark future learning tracks and manage developer profile credentials.
 
 ---
 
-### 2. Instructor Studio (Protected: Instructor & Admin Access)
-- **Instructor Dashboard (`/instructor`)**: Monthly revenue overview (**₹14,89,200**), active student reach (**88,400+**), and instructor rating.
-- **Create New Course (`/instructor/create-course`)**: Multi-step course creator (Title, Pricing in ₹, Category, Level, Curriculum builder, video lecture embeds).
-- **Manage Courses (`/instructor/manage-courses`)**: Full catalog manager with status filters (*Published*, *Under Review*, *Draft*), table/grid views, classroom preview, and deletion controls.
-- **Enrolled Students Directory (`/instructor/students`)**: Learner roster displaying progress percentages, last active timestamp, certificate credentials, and an interactive **"Send Message / Feedback"** modal.
-- **Course Performance & Analytics (`/instructor/analytics`)**: Monthly revenue area chart (₹ in Lakhs), rating distributions (5-star down to 1-star), drop-off telemetry, and course-by-course financial breakdown.
+### 2. Instructor Studio (Protected: Instructor & Admin)
+- **Studio Dashboard (`/instructor`)**: Monthly earnings (**₹14,89,200**), active student reach (**88,400+**), and average course ratings.
+- **Course Builder (`/instructor/create-course`)**: Comprehensive course authoring with syllabus structuring, YouTube lecture attachments, and pricing in INR.
+- **Manage Courses (`/instructor/manage-courses`)**: Manage course statuses, preview student classroom view, or delete drafts.
+- **Enrolled Students Roster (`/instructor/students`)**: Search and monitor student completion percentages, issue feedback, and review certificates.
+- **Performance Analytics (`/instructor/analytics`)**: Revenue area graphs (₹ in Lakhs), rating distributions, and enrollment velocity.
 
 ---
 
-### 3. Administrator Control Center (Protected: Admin Only)
-- **Admin Overview (`/admin`)**: Global operational health, gross revenue growth (+22.4%), total learner base (1,84,500), and course completion metrics.
-- **Students Directory (`/admin/students`)**: Master learner roster across Indian IT hubs and universities, total spending (₹), password reset trigger, and **Suspend / Reactivate** security toggles.
-- **Instructors & Faculty Directory (`/admin/instructors`)**: Faculty directory with verified accreditation badges, lifetime earnings, pending payout claims, and instant **"Approve Payout"** actions.
-- **Course Catalog & QA Approvals (`/admin/courses`)**: Quality assurance governance: approve newly submitted courses, toggle **"Featured on Homepage"** promotions, and audit syllabus standards.
-- **Revenue Analytics & Financial Ledger (`/admin/revenue`)**:
-  - Gross platform volume (**₹84.59 Lakhs** YTD).
-  - 85% faculty disbursals (**₹71.91 Lakhs**) vs. 15% net platform margin (**₹12.68 Lakhs**).
-  - Indian payment gateway telemetry: **UPI (68%)**, Credit/Debit Cards (20%), Net Banking (9%).
-  - Live transactions ledger with date/time, order ID, gateway, and financial audit CSV download.
+### 3. Administrator Governance (Protected: Admin Only)
+- **Admin Overview (`/admin`)**: High-level platform health, total learner base (1,84,500), and platform gross revenue.
+- **Learners Directory (`/admin/students`)**: Master learner roster across Indian IT hubs, total spending in ₹, and **Suspend / Reactivate** toggles.
+- **Faculty Directory (`/admin/instructors`)**: Faculty profiles, payout balances, and instant **"Approve Payout"** actions.
+- **Course Approvals (`/admin/courses`)**: QA submission queue for reviewing and approving newly submitted courses.
+- **Revenue Analytics & Ledger (`/admin/revenue`)**: Complete platform cash flow, faculty disbursals (85%), platform margin (15%), and gateway breakdown (**UPI: 68%**).
 
 ---
 
 ### 4. Security & Role-Based Access Control (RBAC)
-- **Protected Routes (`ProtectedRoute.tsx`)**: Enforces strict role checks before rendering `/instructor/*` or `/admin/*`.
-- **Informative Access Guard**: When a student attempts to access restricted portals, an access-denied screen appears with an instant 1-click **"Switch to Role (Demo)"** button for smooth evaluation.
-- **Toast Notifications (`ToastContainer.tsx`)**: Global feedback toasts featuring an exact **2-second auto-dismiss timer** and a smooth countdown progress bar.
+- **Protected Routes (`ProtectedRoute.tsx`)**: Strict role checking guards `/instructor/*` and `/admin/*`.
+- **Friendly Access Guard**: Students attempting to open restricted instructor or admin URLs are presented with an explanatory access screen with an instant **"Switch to Role (Demo)"** button.
+- **Feedback Notification Toasts (`ToastContainer.tsx`)**: Global notification toasts with a crisp **2-second auto-dismiss timer** and animated countdown bar.
 
 ---
 
@@ -68,39 +103,44 @@
 
 | Technology | Role in Adeptify |
 | :--- | :--- |
-| **React 19 & Vite** | High-performance reactive UI and modern dev tooling |
-| **TypeScript** | Strict type safety for courses, lectures, quizzes, and roles |
-| **Tailwind CSS** | Nordic Emerald & Forest Green responsive design system |
-| **Redux Toolkit** | Centralized state management for Auth, Courses, Learning, and UI |
-| **React Router v7** | Client-side routing with `ProtectedRoute` guards and `end` matchers |
-| **Framer Motion** | Floating drawers, micro-interactions, modal transitions, and toast timers |
-| **Recharts** | Interactive revenue area charts, bar charts, and category pie charts |
-| **Canvas Confetti** | Celebration burst upon quiz passing & graduation certificate issuance |
-| **Lucide React** | Modern iconography including `IndianRupee`, `ShieldCheck`, `Film`, `Award` |
+| **React 19 & Vite 8** | Ultra-fast reactive UI rendering and modern module bundling |
+| **TypeScript 7** | Comprehensive type safety for courses, roles, quizzes, and analytics |
+| **Tailwind CSS 3.4** | Nordic Emerald & Forest Green enterprise design system |
+| **Redux Toolkit 2.14** | Predictable state store for Auth, Courses, Learning progress, and UI state |
+| **React Router v7** | Client-side routing with `ProtectedRoute` guards and strict route matchers |
+| **Framer Motion 14** | Smooth drawer transitions, modal popups, and toast dismiss animations |
+| **Recharts 3.10** | Dynamic responsive revenue area charts, bar charts, and breakdown graphs |
+| **Canvas Confetti** | Celebration visual burst on quiz passing and course completion |
+| **Lucide React** | Modern SVG iconography with `IndianRupee`, `ShieldCheck`, `Film`, `Award` |
 
 ---
 
-## 📁 Project Folder Structure
+## 📁 Project Architecture & Clean Folder Structure
 
 ```text
 Online Learning Management System/
-├── index.html                           # HTML root & metadata
-├── package.json                         # Dependencies & scripts
+├── public/                              # Static public assets
+│   ├── favicon.svg                      # Animated application favicon
+│   ├── icons.svg                        # SVG sprite assets
+│   └── logo.svg                         # Adeptify official brand logo banner
+├── index.html                           # Single Page Application HTML root
+├── package.json                         # Project manifest & npm scripts
 ├── vite.config.ts                       # Vite bundler configuration
-├── tailwind.config.js                   # Theme colors & design tokens
+├── tailwind.config.js                   # Nordic Emerald theme tokens
+├── tsconfig.json                        # Strict TypeScript compilation rules
 ├── src/
-│   ├── App.tsx                          # Lean layout shell with frozen navigation
-│   ├── main.tsx                         # Entry point with Redux Provider & Router
-│   ├── index.css                        # Global styling & custom scrollbars
+│   ├── App.tsx                          # App shell with frozen navbar & sidebar
+│   ├── main.tsx                         # React 19 bootstrap with Redux Provider
+│   ├── index.css                        # Global styles & custom scrollbars
 │   │
 │   ├── config/                          # Centralized app configuration & navigation
 │   │   ├── constants.ts                 # Brand tokens, storage keys & currency
 │   │   ├── navigation.ts                # Student, Instructor & Admin navigation items
 │   │   └── index.ts                     # Config barrel export
 │   │
-│   ├── hooks/                           # Custom domain hooks
-│   │   ├── useAuth.ts                   # Role switcher, auth state & logout
-│   │   ├── useSidebar.ts                # Minimized & mobile drawer controls
+│   ├── hooks/                           # Custom React domain hooks
+│   │   ├── useAuth.ts                   # Role switching, auth state & session
+│   │   ├── useSidebar.ts                # Minimized & mobile drawer state
 │   │   ├── useNotifications.ts          # Read status & notification triggers
 │   │   └── index.ts                     # Hooks barrel export
 │   │
@@ -108,14 +148,14 @@ Online Learning Management System/
 │   │   ├── AppRoutes.tsx                # Centralized route tree with ProtectedRoute guards
 │   │   └── index.ts                     # Routes barrel export
 │   │
-│   ├── components/                      # Reusable components with clean barrel exports
-│   │   ├── common/                      # Navbar, Sidebar, ProtectedRoute, ToastContainer, etc.
+│   ├── components/                      # Modular UI components with barrel exports
+│   │   ├── common/                      # Navbar, Sidebar, ProtectedRoute, ToastContainer, AdeptifyLogo
 │   │   ├── course/                      # CourseCard, CourseFilters, ReviewSection
 │   │   ├── learning/                    # VideoPlayer, CurriculumAccordion, Quizzes & Assignments
 │   │   └── index.ts                     # Global components barrel export
 │   │
 │   ├── pages/                           # Application screens grouped by role
-│   │   ├── Home.tsx                     # Landing page with hero & featured tracks
+│   │   ├── Home.tsx                     # Landing page with hero & featured courses
 │   │   ├── NotFound.tsx                 # 404 Error page
 │   │   ├── auth/                        # Login.tsx, Register.tsx
 │   │   ├── student/                     # StudentDashboard, CourseCatalog, LessonPlayer, etc.
@@ -128,104 +168,47 @@ Online Learning Management System/
 │   │   └── slices/                      # authSlice, courseSlice, learningSlice, uiSlice
 │   │
 │   ├── services/                        # Simulated API with localStorage versioned caching
-│   ├── data/                            # 73 courses (coursesData.ts) & mock profiles (mockData.ts)
-│   ├── types/                           # TypeScript interfaces & domain types
-│   └── utils/                           # Animated canvas favicon & utilities (with index.ts)
+│   ├── data/                            # 73 verified courses (coursesData.ts) & mock profiles
+│   ├── types/                           # TypeScript interfaces & domain models
+│   └── utils/                           # Animated canvas favicon & helper utilities
 ```
 
 ---
 
-## 📁 Project Folder Structure
+## 🚀 Quick Start Guide
 
-```text
-Online Learning Management System/
-├── index.html                           # HTML root & metadata
-├── package.json                         # Dependencies & scripts
-├── vite.config.ts                       # Vite bundler configuration
-├── tailwind.config.js                   # Theme colors & design tokens
-├── src/
-│   ├── App.tsx                          # Lean layout shell with frozen navigation
-│   ├── main.tsx                         # Entry point with Redux Provider & Router
-│   ├── index.css                        # Global styling & custom scrollbars
-│   │
-│   ├── config/                          # Centralized app configuration & navigation
-│   │   ├── constants.ts                 # Brand tokens, storage keys & currency
-│   │   ├── navigation.ts                # Student, Instructor & Admin navigation items
-│   │   └── index.ts                     # Config barrel export
-│   │
-│   ├── hooks/                           # Custom domain hooks
-│   │   ├── useAuth.ts                   # Role switcher, auth state & logout
-│   │   ├── useSidebar.ts                # Minimized & mobile drawer controls
-│   │   ├── useNotifications.ts          # Read status & notification triggers
-│   │   └── index.ts                     # Hooks barrel export
-│   │
-│   ├── routes/                          # Declarative route configuration
-│   │   ├── AppRoutes.tsx                # Centralized route tree with ProtectedRoute guards
-│   │   └── index.ts                     # Routes barrel export
-│   │
-│   ├── components/                      # Reusable components with clean barrel exports
-│   │   ├── common/                      # Navbar, Sidebar, ProtectedRoute, ToastContainer, etc.
-│   │   ├── course/                      # CourseCard, CourseFilters, ReviewSection
-│   │   ├── learning/                    # VideoPlayer, CurriculumAccordion, Quizzes & Assignments
-│   │   └── index.ts                     # Global components barrel export
-│   │
-│   ├── pages/                           # Application screens grouped by role
-│   │   ├── Home.tsx                     # Landing page with hero & featured tracks
-│   │   ├── NotFound.tsx                 # 404 Error page
-│   │   ├── auth/                        # Login.tsx, Register.tsx
-│   │   ├── student/                     # StudentDashboard, CourseCatalog, LessonPlayer, etc.
-│   │   ├── instructor/                  # InstructorDashboard, ManageCourses, EnrolledStudents, etc.
-│   │   ├── admin/                       # AdminDashboard, AdminStudents, AdminInstructors, etc.
-│   │   └── index.ts                     # Pages barrel export
-│   │
-│   ├── store/                           # Redux Toolkit store & slices
-│   │   ├── index.ts                     # Store configuration
-│   │   └── slices/                      # authSlice, courseSlice, learningSlice, uiSlice
-│   │
-│   ├── services/                        # Simulated API with localStorage versioned caching
-│   ├── data/                            # 73 courses (coursesData.ts) & mock profiles (mockData.ts)
-│   ├── types/                           # TypeScript interfaces & domain types
-│   └── utils/                           # Animated canvas favicon & utilities (with index.ts)
-```
-
----
-
-## 🚀 Getting Started
-
-### 1. Install Dependencies
+### 1. Clone & Install
 ```bash
+git clone https://github.com/Sushanth666/Adeptify-Online-Learning-Management-System.git
+cd Adeptify-Online-Learning-Management-System
 npm install
 ```
 
-### 2. Run the Development Server
+### 2. Start Development Server
 ```bash
 npm run dev
 ```
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Open **[http://localhost:5173](http://localhost:5173)** in your browser.
 
-### 3. Build for Production
+### 3. Production Build
 ```bash
 npm run build
 ```
 
 ---
 
-## 📚 Course Dataset (73 Verified Courses in ₹ INR)
+## 🔑 Demo Access Accounts
 
-| Category | Courses | Highlights |
-| :--- | :---: | :--- |
-| **Development** | **24** | React 19, Next.js 15, Spring Boot 3, MERN Swiggy Clone, Go, Rust, Flutter, iOS Swift 6, Microservices |
-| **Design** | **12** | CRED Aesthetic UI/UX, Figma Design Systems & Tokens, Motion Design, 3D Spline, Bharat Demographics UX |
-| **Cloud & DevOps** | **8** | AWS Certified Solutions Architect, Docker & Kubernetes Production, Terraform Multi-Cloud, CI/CD Actions |
-| **Data Science & AI** | **14** | Generative AI & LangChain, PyTorch Deep Learning, Spark & Kafka Pipelines, Vector DBs, Llama 3 Fine-Tuning |
-| **Cybersecurity** | **6** | CERT-In Compliant Cyber Defense, Web App Penetration Testing (OWASP), Network Wireshark, Zero Trust |
-| **Business & Management** | **9** | Tech PM (₹100 Cr ARR), Agile & Jira, Indian FinTech & UPI Banking Architecture, SaaS Growth Hacking |
-| **Total** | **73** | Complete with video lectures, verifiable certificates, quizzes, and downloadable blueprints |
+Switch roles instantly from the top-right profile avatar menu or login using:
+
+| Role | Demo Email | Location & Profile |
+| :--- | :--- | :--- |
+| **Student** | `aarav.sharma@adeptify.in` | Bengaluru, Karnataka • Full Stack Aspirant |
+| **Instructor** | `priya.patel@adeptify.in` | Hyderabad, Telangana • Principal Cloud Architect, Ex-Amazon IDC |
+| **Administrator** | `vikram.rao@adeptify.in` | New Delhi, NCR • Academic Dean & Operations Director |
 
 ---
 
-## 🔑 Demo Access Accounts
-Switch roles instantly via the avatar menu in the top navigation bar or log in with 1-click credentials:
-- **Student**: `aarav.sharma@adeptify.in` (Bengaluru, Karnataka • Full Stack Aspirant)
-- **Instructor**: `priya.patel@adeptify.in` (Hyderabad, Telangana • Principal Cloud Architect, Ex-Amazon IDC)
-- **Admin**: `vikram.rao@adeptify.in` (New Delhi, NCR • Academic Dean & Operations Director)
+<p align="center">
+  <sub>Adeptify LMS • Designed and Engineered for Modern Technology Excellence</sub>
+</p>
