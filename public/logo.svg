@@ -23,6 +23,23 @@
     <filter id="softGlow" x="-10%" y="-10%" width="130%" height="130%">
       <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#059669" flood-opacity="0.25" />
     </filter>
+
+    <style>
+      .brand-title {
+        fill: #0f172a;
+      }
+      .brand-tagline {
+        fill: #475569;
+      }
+      @media (prefers-color-scheme: dark) {
+        .brand-title {
+          fill: #ffffff !important;
+        }
+        .brand-tagline {
+          fill: #94a3b8 !important;
+        }
+      }
+    </style>
   </defs>
 
   <!-- Logo Icon Container (Rounded Badge) -->
@@ -44,11 +61,10 @@
     </g>
   </g>
 
-  <!-- Typography -->
+  <!-- Typography with Adaptive Classes -->
   <!-- Brand Name: Adeptify -->
-  <text x="104" y="52" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="800" fill="#0f172a" letter-spacing="-0.5px">Adeptify</text>
+  <text class="brand-title" x="104" y="52" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="800" fill="#0f172a" letter-spacing="-0.5px">Adeptify</text>
 
   <!-- Tagline: SKILL ACCELERATION FOR ENGINEERS -->
-  <text x="106" y="74" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#64748b" letter-spacing="1.8px">SKILL ACCELERATION FOR ENGINEERS</text>
+  <text class="brand-tagline" x="106" y="74" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#475569" letter-spacing="1.8px">SKILL ACCELERATION FOR ENGINEERS</text>
 </svg>
-

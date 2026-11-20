@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 100" width="100%" height="100">
+  <defs>
+    <!-- Badge Background Gradient -->
+    <linearGradient id="badgeGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="50%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+
+    <!-- Shield Facet Left -->
+    <linearGradient id="shieldLeftDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+
+    <!-- Shield Facet Right -->
+    <linearGradient id="shieldRightDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+
+    <!-- Soft Glow Shadow -->
+    <filter id="softGlowDark" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#10b981" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Logo Icon Container (Rounded Badge) -->
+  <g filter="url(#softGlowDark)" transform="translate(10, 12)">
+    <rect x="0" y="0" width="76" height="76" rx="20" fill="url(#badgeGradDark)" />
+    
+    <!-- Shield Facets -->
+    <g transform="translate(14, 14)">
+      <!-- Left Facet -->
+      <path d="M24 6 L6 18 L11 36 L24 44 Z" fill="url(#shieldLeftDark)" />
+      <!-- Right Facet -->
+      <path d="M24 6 L42 18 L37 36 L24 44 Z" fill="url(#shieldRightDark)" />
+      
+      <!-- Central Crease Highlight -->
+      <path d="M24 6 L24 44" stroke="#6ee7b7" stroke-width="1" stroke-opacity="0.5" />
+
+      <!-- Ascending Velocity Arrow -->
+      <path d="M24 14 L17 22 H21 V34 H27 V22 H31 Z" fill="#ffffff" filter="drop-shadow(0 2px 3px rgba(0,0,0,0.2))" />
+    </g>
+  </g>
+
+  <!-- Typography for Dark Mode: Crisp White & Light Slate -->
+  <!-- Brand Name: Adeptify -->
+  <text x="104" y="52" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="800" fill="#ffffff" letter-spacing="-0.5px">Adeptify</text>
+
+  <!-- Tagline: SKILL ACCELERATION FOR ENGINEERS -->
+  <text x="106" y="74" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#94a3b8" letter-spacing="1.8px">SKILL ACCELERATION FOR ENGINEERS</text>
+</svg>
