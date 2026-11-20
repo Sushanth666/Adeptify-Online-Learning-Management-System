@@ -24,7 +24,7 @@ const STORAGE_KEYS = {
 // Initialize localStorage with defaults
 export const initializeLocalStorage = () => {
   const version = localStorage.getItem('edupulse_version');
-  if (version !== 'adeptify_v5_playable_youtube_videos') {
+  if (version !== 'adeptify_v6_letter_avatars') {
     localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(mockUsers.student));
     localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(mockCourses));
     localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(mockEnrollments));
@@ -32,8 +32,27 @@ export const initializeLocalStorage = () => {
     localStorage.setItem(STORAGE_KEYS.CERTIFICATES, JSON.stringify(mockCertificates));
     localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify(mockNotifications));
     localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(mockReviews));
-    localStorage.setItem('edupulse_version', 'adeptify_v5_playable_youtube_videos');
+    localStorage.setItem('edupulse_version', 'adeptify_v6_letter_avatars');
     return;
+  }
+
+  // Migrate legacy stock photos to initial letter avatar if not a custom upload
+  try {
+    const rawUser = localStorage.getItem(STORAGE_KEYS.USER);
+    if (rawUser) {
+      const parsedUser = JSON.parse(rawUser);
+      if (
+        parsedUser.avatar &&
+        (parsedUser.avatar.includes('photo-1534528741775-53994a69daeb') ||
+          parsedUser.avatar.includes('photo-1573496359142-b8d87734a5a2') ||
+          parsedUser.avatar.includes('photo-1507003211169-0a1dd7228f2d'))
+      ) {
+        parsedUser.avatar = '';
+        localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(parsedUser));
+      }
+    }
+  } catch {
+    // Ignore migration parse errors
   }
 
   if (!localStorage.getItem(STORAGE_KEYS.USER)) {
@@ -94,7 +113,7 @@ export const api = {
         name: userData.name || 'New Learner',
         email: userData.email || 'learner@example.com',
         role: userData.role || 'student',
-        avatar: userData.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+        avatar: userData.avatar || '',
         joinedDate: 'Just now',
         skills: [],
       };

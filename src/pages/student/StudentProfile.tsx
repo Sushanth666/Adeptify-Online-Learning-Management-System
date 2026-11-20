@@ -11,11 +11,16 @@ import {
   BookOpen, 
   Award,
   CheckCircle2,
-  Share2
+  Share2,
+  Upload,
+  Trash2,
+  RotateCcw
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { updateUserProfile } from '../../store/slices/authSlice';
 import { showToast } from '../../store/slices/uiSlice';
+import { UserAvatar } from '../../components/common';
+import { processAvatarFile, isCustomAvatar } from '../../utils';
 
 export const StudentProfile: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -43,13 +48,28 @@ export const StudentProfile: React.FC = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      const fakeUrl = URL.createObjectURL(file);
-      setAvatarUrl(fakeUrl);
-      dispatch(showToast({ message: 'Profile avatar updated!', type: 'info' }));
+      if (file.size > 5 * 1024 * 1024) {
+        dispatch(showToast({ message: 'Selected image must be under 5MB', type: 'error' }));
+        return;
+      }
+      try {
+        const compressedBase64 = await processAvatarFile(file);
+        setAvatarUrl(compressedBase64);
+        await dispatch(updateUserProfile({ avatar: compressedBase64 }));
+        dispatch(showToast({ message: 'Profile photo updated successfully!', type: 'success' }));
+      } catch (err: any) {
+        dispatch(showToast({ message: err?.message || 'Could not process image', type: 'error' }));
+      }
     }
+  };
+
+  const handleRemoveAvatar = async () => {
+    setAvatarUrl('');
+    await dispatch(updateUserProfile({ avatar: '' }));
+    dispatch(showToast({ message: 'Photo removed! Defaulting to your name initial.', type: 'info' }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -104,27 +124,68 @@ export const StudentProfile: React.FC = () => {
 
         {/* Profile Card & Avatar */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
-          <div className="flex flex-col sm:flex-row items-center gap-6 pb-6 border-b border-slate-100">
-            <div className="relative group">
-              <img
-                src={avatarUrl}
-                alt={formData.name}
-                className="w-24 h-24 rounded-2xl object-cover ring-4 ring-emerald-100 shadow-md"
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-slate-100">
+            {/* Avatar with Camera Trigger */}
+            <div className="relative group flex-shrink-0">
+              <UserAvatar
+                name={formData.name || currentUser.name}
+                avatar={avatarUrl}
+                size="2xl"
+                shape="square"
+                className="ring-4 ring-emerald-100 shadow-md text-3xl"
               />
-              <label className="absolute bottom-1 right-1 p-2 rounded-xl bg-emerald-600 text-white cursor-pointer shadow-md hover:bg-emerald-500 transition-colors">
+              <label 
+                className="absolute -bottom-1.5 -right-1.5 p-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer shadow-md hover:scale-105 active:scale-95 transition-all"
+                title="Upload custom photo"
+              >
                 <Camera className="w-4 h-4" />
                 <input
                   type="file"
-                  accept="image/*"
+                  accept="image/png, image/jpeg, image/webp"
                   onChange={handleAvatarChange}
                   className="hidden"
                 />
               </label>
             </div>
 
-            <div className="text-center sm:text-left space-y-1">
-              <h3 className="text-xl font-bold text-slate-900">{formData.name}</h3>
-              <p className="text-xs text-emerald-600 font-semibold">{formData.headline || 'Adeptify Learner'}</p>
+            <div className="flex-1 text-center sm:text-left space-y-2">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900">{formData.name}</h3>
+                  <p className="text-xs text-emerald-600 font-semibold">{formData.headline || 'Adeptify Learner'}</p>
+                </div>
+
+                {/* Photo Action Buttons */}
+                <div className="flex items-center justify-center sm:justify-start gap-2">
+                  <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold cursor-pointer transition-colors border border-emerald-200 shadow-2xs">
+                    <Upload className="w-3.5 h-3.5" />
+                    <span>Upload Photo</span>
+                    <input
+                      type="file"
+                      accept="image/png, image/jpeg, image/webp"
+                      onChange={handleAvatarChange}
+                      className="hidden"
+                    />
+                  </label>
+
+                  {isCustomAvatar(avatarUrl) && (
+                    <button
+                      type="button"
+                      onClick={handleRemoveAvatar}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-rose-50 text-slate-600 hover:text-rose-600 text-xs font-semibold transition-colors border border-slate-200 hover:border-rose-200"
+                      title="Switch back to initial letter avatar"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                      <span>Use Initial Letter</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <p className="text-[11px] text-slate-400">
+                Supports PNG, JPG, or WebP. If no photo is uploaded, your name&apos;s initial letter avatar is displayed automatically.
+              </p>
+
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs text-slate-500 pt-1">
                 <span className="flex items-center gap-1">
                   <BookOpen className="w-3.5 h-3.5 text-slate-400" /> {enrollments.length} Enrolled Courses

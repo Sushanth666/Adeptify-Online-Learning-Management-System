@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Star, ThumbsUp, MessageSquare, Send, CheckCircle2 } from 'lucide-react';
 import { Review } from '../../types';
-import { RatingStars } from '../common/RatingStars';
+import { RatingStars, UserAvatar } from '../common';
 import { api } from '../../services/api';
 import { useAppDispatch } from '../../store';
 import { showToast } from '../../store/slices/uiSlice';
@@ -167,10 +167,12 @@ export const ReviewSection: React.FC<ReviewSectionProps> = ({
             <div key={rev.id} className="bg-white rounded-2xl p-5 border border-slate-200 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <img
-                    src={rev.userAvatar}
-                    alt={rev.userName}
-                    className="w-10 h-10 rounded-full object-cover ring-2 ring-emerald-500/20"
+                  <UserAvatar
+                    name={rev.userName}
+                    avatar={rev.userAvatar}
+                    size="md"
+                    shape="circle"
+                    className="ring-2 ring-emerald-500/20"
                   />
                   <div>
                     <div className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
