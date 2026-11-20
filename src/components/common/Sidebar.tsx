@@ -10,13 +10,16 @@ import {
   Users, 
   ArrowRight,
   Clock,
-  LogOut
+  LogOut,
+  Sparkles,
+  Bot
 } from 'lucide-react';
 import { useAuth, useSidebar } from '../../hooks';
 import { NAVIGATION_CONFIG } from '../../config';
 import { UserRole } from '../../types';
 import { useAppSelector } from '../../store';
 import { HelpCommunityModal } from './HelpCommunityModal';
+import { AICopilotModal } from './AICopilotModal';
 
 interface SidebarProps {
   type?: UserRole;
@@ -44,6 +47,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
   // Modal state for Help Center & Student Community
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [helpTab, setHelpTab] = useState<'help' | 'community'>('help');
+
+  // Modal state for AI Study Copilot
+  const [isCopilotOpen, setIsCopilotOpen] = useState(false);
 
   const openHelpModal = (tab: 'help' | 'community') => {
     setHelpTab(tab);
@@ -144,25 +150,25 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
     <aside 
       className={`${
         isMinimized ? 'w-20' : 'w-64'
-      } bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-full flex flex-col px-2.5 py-2 transition-[width] duration-300 ease-in-out relative select-none overflow-hidden`}
+      } bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-full flex flex-col px-2.5 py-2 transition-[width] duration-300 ease-in-out relative select-none overflow-y-auto overflow-x-hidden sidebar-no-scrollbar scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
     >
       {/* Header with Title and Minimize Option */}
-      <div className={`flex items-center ${isMinimized ? 'justify-center' : 'justify-between px-2'} mb-1.5 pt-0.5 flex-shrink-0`}>
+      <div className={`flex items-center ${isMinimized ? 'justify-center' : 'justify-between px-2'} mb-2 pt-0.5 flex-shrink-0`}>
         {!isMinimized && (
-          <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider truncate">
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider truncate">
             {typeTitle}
           </span>
         )}
         <button
           onClick={toggleMinimized}
           className={`p-1.5 rounded-xl text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition-colors ${
-            isMinimized ? 'w-9 h-9 flex items-center justify-center' : ''
+            isMinimized ? 'w-10 h-10 flex items-center justify-center' : ''
           }`}
           title={isMinimized ? 'Expand sidebar' : 'Minimize sidebar'}
           aria-label={isMinimized ? 'Expand sidebar' : 'Minimize sidebar'}
         >
           {isMinimized ? (
-            <PanelLeftOpen className="w-4.5 h-4.5 text-emerald-700 dark:text-emerald-400" />
+            <PanelLeftOpen className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
           ) : (
             <PanelLeftClose className="w-4 h-4" />
           )}
@@ -188,7 +194,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                   }`
                 }
               >
-                <Icon className={`${isMinimized ? 'w-4.5 h-4.5' : 'w-4 h-4'} flex-shrink-0`} />
+                <Icon className={`${isMinimized ? 'w-5 h-5' : 'w-4 h-4'} flex-shrink-0`} />
                 {!isMinimized && <span className="truncate">{link.label}</span>}
               </NavLink>
 
@@ -203,8 +209,58 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
         })}
       </nav>
 
-      {/* Middle/Bottom Sections: Compact & cohesive, fitting viewport without any scrollbar */}
-      <div className="mt-2 space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800/60 flex-shrink-0">
+      {/* Featured Feature in Sidebar Space: AI Study Copilot */}
+      <div className="my-auto py-1.5 flex-shrink-0">
+        {isMinimized ? (
+          <div className="relative group">
+            <button
+              onClick={() => setIsCopilotOpen(true)}
+              className="w-full h-10 rounded-xl bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-indigo-500/10 dark:from-emerald-950/40 dark:to-teal-950/30 border border-emerald-300/70 dark:border-emerald-800/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:scale-105 hover:bg-emerald-600 hover:text-white transition-all shadow-2xs relative cursor-pointer"
+              title="Adeptify AI Study Copilot"
+            >
+              <Sparkles className="w-4 h-4 fill-current animate-pulse text-emerald-600 dark:text-emerald-400" />
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-slate-900" />
+            </button>
+            <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3.5 px-3 py-1.5 bg-slate-900 dark:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap border border-slate-700 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              <span>AI Study Copilot</span>
+              <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-bold">24/7</span>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-2xl bg-gradient-to-br from-emerald-50/90 via-teal-50/40 to-slate-50 dark:from-slate-800/70 dark:via-slate-800/40 dark:to-slate-900/60 border border-emerald-200/80 dark:border-emerald-800/50 p-2.5 space-y-1.5 shadow-2xs transition-all hover:border-emerald-400/80 group">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                <span className="w-5 h-5 rounded-lg bg-emerald-600 text-white flex items-center justify-center shadow-xs">
+                  <Sparkles className="w-3 h-3" />
+                </span>
+                <span>AI Study Copilot</span>
+              </span>
+              <span className="text-[9px] font-extrabold px-1.5 py-0.2 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                24/7
+              </span>
+            </div>
+            
+            <p className="text-[10.5px] text-slate-600 dark:text-slate-400 leading-tight">
+              Instant doubt solving, code debugging & lecture summaries.
+            </p>
+
+            <button
+              type="button"
+              onClick={() => setIsCopilotOpen(true)}
+              className="w-full py-1.5 px-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-[11px] font-bold transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer group-hover:shadow-md group-hover:shadow-emerald-600/20"
+            >
+              <Bot className="w-3.5 h-3.5" />
+              <span>Ask AI Tutor</span>
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Middle/Bottom Sections: Only visible or iconified */}
+      <div className="mt-auto space-y-2 pt-2 flex-shrink-0">
         
         {/* 1. "Continue Learning" Mini-Card with 1-Click Resume */}
         {activeCourseData && (
@@ -212,7 +268,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
             {isMinimized ? (
               <button
                 onClick={handleResumeLesson}
-                className="w-full h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all shadow-2xs relative cursor-pointer"
+                className="w-full h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all shadow-2xs relative cursor-pointer"
                 title={`Resume: ${activeCourseData.course.title} (${activeCourseData.progress}%)`}
               >
                 <Play className="w-4 h-4 fill-current ml-0.5" />
@@ -426,7 +482,37 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
       </nav>
 
       {/* Mobile Widgets */}
-      <div className="mt-3 space-y-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+      <div className="mt-auto space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+        {/* AI Study Copilot */}
+        <div className="rounded-2xl bg-gradient-to-br from-emerald-50/90 via-teal-50/40 to-slate-50 dark:from-slate-800/70 dark:via-slate-800/40 dark:to-slate-900/60 border border-emerald-200/80 dark:border-emerald-800/50 p-3 space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+              <span className="w-5 h-5 rounded-lg bg-emerald-600 text-white flex items-center justify-center shadow-xs">
+                <Sparkles className="w-3 h-3" />
+              </span>
+              <span>AI Study Copilot</span>
+            </span>
+            <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Live 24/7
+            </span>
+          </div>
+          <p className="text-[11px] text-slate-600 dark:text-slate-400">
+            Ask any doubt, debug code, or generate quick quiz questions.
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setMobileOpen(false);
+              setIsCopilotOpen(true);
+            }}
+            className="w-full py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+          >
+            <Bot className="w-4 h-4" />
+            <span>Ask AI Tutor</span>
+          </button>
+        </div>
+
         {/* Continue Learning */}
         {activeCourseData && (
           <div className="rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 p-3 space-y-2">
@@ -537,6 +623,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
         isOpen={isHelpOpen}
         onClose={() => setIsHelpOpen(false)}
         initialTab={helpTab}
+      />
+
+      {/* AI Study Copilot Modal */}
+      <AICopilotModal
+        isOpen={isCopilotOpen}
+        onClose={() => setIsCopilotOpen(false)}
+        activeCourseTitle={activeCourseData?.course?.title}
+        activeLessonTitle={activeCourseData?.lessonTitle}
       />
     </>
   );
