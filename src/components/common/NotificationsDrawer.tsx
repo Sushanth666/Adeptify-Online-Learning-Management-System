@@ -50,7 +50,7 @@ export const NotificationsDrawer: React.FC = () => {
             className="absolute right-0 top-14 mt-2 w-96 max-w-[90vw] z-50 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-850/80">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
               <div className="flex items-center gap-2">
                 <Bell className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                 <h3 className="font-semibold text-slate-800 dark:text-white">Notifications</h3>

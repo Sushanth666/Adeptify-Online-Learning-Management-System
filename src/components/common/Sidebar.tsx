@@ -283,7 +283,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
             </div>
           </div>
         ) : (
-          <div className="rounded-2xl bg-slate-50 dark:bg-slate-850/70 border border-slate-200/80 dark:border-slate-800 p-2.5 space-y-1">
+          <div className="rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 p-2.5 space-y-1">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5 text-[11px]">
                 <Target className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />

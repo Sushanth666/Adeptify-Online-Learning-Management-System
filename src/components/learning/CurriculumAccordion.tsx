@@ -64,7 +64,7 @@ export const CurriculumAccordion: React.FC<CurriculumAccordionProps> = ({
             {/* Accordion Header */}
             <button
               onClick={() => toggleChapter(chapter.id)}
-              className="w-full flex items-center justify-between p-4 bg-slate-50/70 dark:bg-slate-850/80 hover:bg-slate-100/70 dark:hover:bg-slate-800 transition-colors text-left"
+              className="w-full flex items-center justify-between p-4 bg-slate-50/70 dark:bg-slate-800/60 hover:bg-slate-100/70 dark:hover:bg-slate-800 transition-colors text-left"
             >
               <div>
                 <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block mb-0.5">

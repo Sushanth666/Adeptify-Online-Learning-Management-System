@@ -387,7 +387,7 @@ export const CourseEditor: React.FC = () => {
                               updated[chIdx].lessons[lesIdx].title = e.target.value;
                               setChapters(updated);
                             }}
-                            className="w-full text-xs font-bold text-slate-800 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 focus:outline-none pb-0.5"
+                            className="w-full text-xs font-bold text-slate-800 dark:text-slate-100 bg-transparent border-b border-slate-200 dark:border-slate-800 focus:outline-none pb-0.5"
                           />
                         </div>
                         <button

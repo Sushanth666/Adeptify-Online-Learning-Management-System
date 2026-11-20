@@ -176,7 +176,7 @@ export const InstructorDashboard: React.FC = () => {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50/70 dark:bg-slate-850/80 text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-100 dark:border-slate-800">
+              <thead className="bg-slate-50/70 dark:bg-slate-800/70 text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-100 dark:border-slate-800">
                 <tr>
                   <th className="py-3.5 px-4 sm:px-6">Course</th>
                   <th className="py-3.5 px-4">Category</th>
@@ -278,7 +278,7 @@ export const InstructorDashboard: React.FC = () => {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 dark:bg-slate-850 text-slate-500 dark:text-slate-400 uppercase font-semibold border-b border-slate-100 dark:border-slate-800">
+              <thead className="bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 uppercase font-semibold border-b border-slate-100 dark:border-slate-800">
                 <tr>
                   <th className="py-3 px-4">Student</th>
                   <th className="py-3 px-4">Enrolled Course</th>

@@ -13,7 +13,7 @@ export const ResourcesList: React.FC<ResourcesListProps> = ({ resources = [] }) 
 
   if (resources.length === 0) {
     return (
-      <div className="py-6 text-center text-xs text-slate-400 dark:text-slate-500 bg-slate-50/50 dark:bg-slate-850/50 rounded-xl border border-dashed border-slate-200 dark:border-slate-800">
+      <div className="py-6 text-center text-xs text-slate-400 dark:text-slate-500 bg-slate-50/50 dark:bg-slate-800/40 rounded-xl border border-dashed border-slate-200 dark:border-slate-800">
         No downloadable resources attached to this lesson.
       </div>
     );

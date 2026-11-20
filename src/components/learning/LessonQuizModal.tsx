@@ -74,7 +74,7 @@ export const LessonQuizModal: React.FC<LessonQuizModalProps> = ({ quiz, onClose,
             className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden my-auto transition-colors duration-200"
           >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-850/80">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
             <div className="flex items-center gap-2">
               <HelpCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               <div>

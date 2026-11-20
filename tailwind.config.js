@@ -8,6 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        slate: {
+          850: '#172033',
+        },
         // Nordic Emerald & Mint Primary Theme
         indigo: {
           50: '#ecfdf5',

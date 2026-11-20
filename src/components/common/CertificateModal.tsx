@@ -122,7 +122,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ certificate,
             </div>
 
             {/* Printable Certificate Frame */}
-            <div className="p-4 sm:p-8 md:p-10 bg-gradient-to-br from-amber-50/40 via-white to-emerald-50/30 dark:from-slate-900 dark:via-slate-850 dark:to-slate-900">
+            <div className="p-4 sm:p-8 md:p-10 bg-gradient-to-br from-amber-50/40 via-white to-emerald-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
               <div
                 ref={certRef}
                 className="relative p-6 sm:p-10 md:p-12 border-4 sm:border-8 border-double border-amber-600/60 rounded-2xl bg-white dark:bg-slate-900 shadow-inner"
