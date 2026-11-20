@@ -7,12 +7,19 @@
 </p>
 
 <p align="center">
+  <a href="https://adeptify-online-learning-management.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Demo-Visit_Adeptify_on_Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo on Vercel" />
+  </a>
   <img src="https://img.shields.io/badge/React-19.3-059669?style=for-the-badge&logo=react&logoColor=white" alt="React 19" />
   <img src="https://img.shields.io/badge/TypeScript-7.0-176238?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/TailwindCSS-3.4-10b981?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
   <img src="https://img.shields.io/badge/Redux%20Toolkit-2.14-064e3b?style=for-the-badge&logo=redux&logoColor=white" alt="Redux Toolkit" />
   <img src="https://img.shields.io/badge/Vite-8.3-34d399?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
   <img src="https://img.shields.io/badge/Currency-INR%20(₹)-047857?style=for-the-badge" alt="INR Currency" />
+</p>
+
+<p align="center">
+  🌐 <strong>Live Application URL:</strong> <a href="https://adeptify-online-learning-management.vercel.app/">https://adeptify-online-learning-management.vercel.app/</a>
 </p>
 
 ---
@@ -198,6 +205,8 @@ npm run build
 ---
 
 ## 🔑 Demo Access Accounts
+
+Try it live right now at **[adeptify-online-learning-management.vercel.app](https://adeptify-online-learning-management.vercel.app/)**!
 
 Switch roles instantly from the top-right profile avatar menu or login using:
 
