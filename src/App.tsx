@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './store';
 import { initializeLocalStorage } from './services/api';
+import { fetchCourses } from './store/slices/courseSlice';
 import { fetchNotifications } from './store/slices/uiSlice';
 import { startTabAnimation } from './utils';
 import { Navbar, Sidebar, Footer, ToastContainer, AnimatedBackground } from './components';
@@ -14,6 +15,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     initializeLocalStorage();
+    dispatch(fetchCourses());
     dispatch(fetchNotifications());
     const cleanupTabAnim = startTabAnimation();
     return () => {

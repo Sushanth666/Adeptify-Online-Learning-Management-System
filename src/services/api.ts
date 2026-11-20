@@ -28,7 +28,7 @@ export const initializeLocalStorage = () => {
     localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(mockUsers.student));
     localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(mockCourses));
     localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(mockEnrollments));
-    localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(['course-dev-3']));
+    localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(['course-3']));
     localStorage.setItem(STORAGE_KEYS.CERTIFICATES, JSON.stringify(mockCertificates));
     localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify(mockNotifications));
     localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(mockReviews));
@@ -300,16 +300,28 @@ export const api = {
   wishlist: {
     getAll: (): string[] => {
       const raw = localStorage.getItem(STORAGE_KEYS.WISHLIST);
-      return raw ? JSON.parse(raw) : [];
+      if (!raw) return [];
+      try {
+        const parsed: string[] = JSON.parse(raw);
+        // Automatically sanitize and discard any obsolete/unmatched IDs
+        const validIds = new Set(mockCourses.map((c) => c.id));
+        const sanitized = parsed.filter((id) => validIds.has(id));
+        if (sanitized.length !== parsed.length) {
+          localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(sanitized));
+        }
+        return sanitized;
+      } catch {
+        return [];
+      }
     },
     toggle: (courseId: string): string[] => {
       const list = api.wishlist.getAll();
       const updated = list.includes(courseId)
-        ? list.filter(id => id !== courseId)
+        ? list.filter((id) => id !== courseId)
         : [...list, courseId];
       localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(updated));
       return updated;
-    }
+    },
   },
 
   // Reviews API

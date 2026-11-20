@@ -71,6 +71,9 @@ const courseSlice = createSlice({
       .addCase(fetchCourses.fulfilled, (state, action) => {
         state.loading = false;
         state.courses = action.payload;
+        // Synchronize wishlist: only retain IDs that correspond to actual courses
+        const validIds = new Set(action.payload.map((c) => c.id));
+        state.wishlist = state.wishlist.filter((id) => validIds.has(id));
       })
       .addCase(fetchCourses.rejected, (state, action) => {
         state.loading = false;

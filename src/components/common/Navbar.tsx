@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -31,7 +31,15 @@ export const Navbar: React.FC = () => {
   const { currentUser, switchRole, logout: handleLogout } = useAuth();
   const { isMinimized: isSidebarMinimized, toggleMobile } = useSidebar();
   const { unreadCount: unreadNotifs, toggle: toggleNotifs } = useNotifications();
+  const courses = useAppSelector((state) => state.courses.courses);
   const wishlist = useAppSelector((state) => state.courses.wishlist);
+
+  // Synchronized wishlist badge count: counts only courses that actually exist in catalog
+  const wishlistCount = useMemo(() => {
+    if (!courses || courses.length === 0) return wishlist.length;
+    const validCourseIds = new Set(courses.map((c) => c.id));
+    return wishlist.filter((id) => validCourseIds.has(id)).length;
+  }, [courses, wishlist]);
 
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -149,9 +157,9 @@ export const Navbar: React.FC = () => {
               title="Saved Courses"
             >
               <Heart className="w-5 h-5" />
-              {wishlist.length > 0 && (
+              {wishlistCount > 0 && (
                 <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center">
-                  {wishlist.length}
+                  {wishlistCount}
                 </span>
               )}
             </Link>
