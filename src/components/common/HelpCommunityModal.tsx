@@ -82,17 +82,17 @@ export const HelpCommunityModal: React.FC<HelpCommunityModalProps> = ({
           onClick={(e) => e.stopPropagation()}
           className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col max-h-[85vh] my-auto transition-colors duration-200 animate-in fade-in zoom-in-95"
         >
-          {/* Modal Header (Fixed height, never cut off) */}
-          <div className="px-6 py-4.5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-900 flex-shrink-0">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md shadow-emerald-600/20 flex-shrink-0">
-                {activeTab === 'help' ? <HelpCircle className="w-5 h-5" /> : <Users className="w-5 h-5" />}
+          {/* Modal Header (Expanded title & comfortable breathing room) */}
+          <div className="px-6 sm:px-8 py-5 sm:py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-900 flex-shrink-0">
+            <div className="flex items-center gap-3.5 sm:gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md shadow-emerald-600/25 flex-shrink-0">
+                {activeTab === 'help' ? <HelpCircle className="w-6 h-6" /> : <Users className="w-6 h-6" />}
               </div>
               <div>
-                <h3 className="font-extrabold text-base text-slate-900 dark:text-white leading-tight">
+                <h3 className="font-extrabold text-lg sm:text-xl text-slate-900 dark:text-white leading-snug tracking-tight">
                   {activeTab === 'help' ? 'Help Center & Documentation' : 'Student Community & Lounge'}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                   Adeptify Skill Acceleration Platform Support
                 </p>
               </div>
@@ -100,7 +100,7 @@ export const HelpCommunityModal: React.FC<HelpCommunityModalProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-colors flex-shrink-0"
+              className="p-2.5 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800 transition-colors flex-shrink-0"
               title="Close (Esc)"
               aria-label="Close"
             >
@@ -109,10 +109,10 @@ export const HelpCommunityModal: React.FC<HelpCommunityModalProps> = ({
           </div>
 
           {/* Tab Switcher */}
-          <div className="flex border-b border-slate-200 dark:border-slate-800 px-6 bg-white dark:bg-slate-900 flex-shrink-0">
+          <div className="flex border-b border-slate-200 dark:border-slate-800 px-6 sm:px-8 bg-white dark:bg-slate-900 flex-shrink-0">
             <button
               onClick={() => setActiveTab('help')}
-              className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition-colors ${
+              className={`py-3.5 px-4 text-xs sm:text-sm font-bold border-b-2 flex items-center gap-2 transition-colors ${
                 activeTab === 'help'
                   ? 'border-emerald-600 text-emerald-600 dark:text-emerald-400'
                   : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
@@ -123,7 +123,7 @@ export const HelpCommunityModal: React.FC<HelpCommunityModalProps> = ({
             </button>
             <button
               onClick={() => setActiveTab('community')}
-              className={`py-3 px-4 text-xs font-bold border-b-2 flex items-center gap-2 transition-colors ${
+              className={`py-3.5 px-4 text-xs sm:text-sm font-bold border-b-2 flex items-center gap-2 transition-colors ${
                 activeTab === 'community'
                   ? 'border-emerald-600 text-emerald-600 dark:text-emerald-400'
                   : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
@@ -131,7 +131,7 @@ export const HelpCommunityModal: React.FC<HelpCommunityModalProps> = ({
             >
               <Users className="w-4 h-4" />
               <span>Community Discord & Forum</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[9px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-extrabold">
+              <span className="px-2 py-0.5 rounded-full text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-extrabold">
                 1,400+ Online
               </span>
             </button>
