@@ -27,6 +27,7 @@ import { CurriculumAccordion } from '../../components/learning/CurriculumAccordi
 import { ReviewSection } from '../../components/course/ReviewSection';
 import { VideoPlayer } from '../../components/learning/VideoPlayer';
 import { Lesson } from '../../types';
+import { recordLastPlayedVideo } from '../../services/api';
 
 export const CourseDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -78,6 +79,7 @@ export const CourseDetails: React.FC = () => {
   const isWishlisted = wishlist.includes(course.id);
 
   const handleEnroll = async () => {
+    recordLastPlayedVideo(course.id, undefined, course.title);
     if (isEnrolled) {
       navigate(`/learning/${course.id}`);
       return;
@@ -227,7 +229,10 @@ export const CourseDetails: React.FC = () => {
                       />
                       <div
                         className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white p-4 text-center cursor-pointer group-hover:bg-black/50 transition-colors"
-                        onClick={() => setIsPlayingInlineVideo(true)}
+                        onClick={() => {
+                          setIsPlayingInlineVideo(true);
+                          recordLastPlayedVideo(course.id, undefined, course.title);
+                        }}
                       >
                         <motion.div
                           whileHover={{ scale: 1.15 }}

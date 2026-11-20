@@ -19,6 +19,36 @@ const STORAGE_KEYS = {
   CERTIFICATES: 'edupulse_certificates',
   NOTIFICATIONS: 'edupulse_notifications',
   REVIEWS: 'edupulse_reviews',
+  LAST_PLAYED: 'edupulse_last_played',
+};
+
+export interface LastPlayedRecord {
+  courseId: string;
+  lessonId?: string;
+  lessonTitle?: string;
+  updatedAt: number;
+}
+
+export const recordLastPlayedVideo = (courseId: string, lessonId?: string, lessonTitle?: string) => {
+  try {
+    const data: LastPlayedRecord = {
+      courseId,
+      lessonId,
+      lessonTitle,
+      updatedAt: Date.now(),
+    };
+    localStorage.setItem(STORAGE_KEYS.LAST_PLAYED, JSON.stringify(data));
+    window.dispatchEvent(new CustomEvent('edupulse:last_played_updated', { detail: data }));
+  } catch {}
+};
+
+export const getLastPlayedVideo = (): LastPlayedRecord | null => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.LAST_PLAYED);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
 };
 
 // Initialize localStorage with defaults
@@ -321,21 +351,26 @@ export const api = {
         completedLessonIds: Array.from(completed),
         progressPercentage: progress,
         lastAccessedLessonId: lessonId,
+        lastAccessedAt: new Date().toISOString(),
         isCompleted,
         completedAt,
         certificateId
       };
 
       localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(enrollments));
+      recordLastPlayedVideo(courseId, lessonId);
       return enrollments[index];
     },
-    setLastAccessedLesson: async (courseId: string, lessonId: string): Promise<Enrollment | null> => {
+    setLastAccessedLesson: async (courseId: string, lessonId: string, lessonTitle?: string): Promise<Enrollment | null> => {
       const enrollments = await api.enrollments.getAll();
       const index = enrollments.findIndex(e => e.courseId === courseId);
-      if (index === -1) return null;
-      enrollments[index].lastAccessedLessonId = lessonId;
-      localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(enrollments));
-      return enrollments[index];
+      if (index !== -1) {
+        enrollments[index].lastAccessedLessonId = lessonId;
+        enrollments[index].lastAccessedAt = new Date().toISOString();
+        localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(enrollments));
+      }
+      recordLastPlayedVideo(courseId, lessonId, lessonTitle);
+      return index !== -1 ? enrollments[index] : null;
     }
   },
 

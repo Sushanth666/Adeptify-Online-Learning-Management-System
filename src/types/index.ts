@@ -142,6 +142,7 @@ export interface Enrollment {
   progressPercentage: number;
   completedLessonIds: string[];
   lastAccessedLessonId?: string;
+  lastAccessedAt?: string;
   isCompleted: boolean;
   completedAt?: string;
   certificateId?: string;

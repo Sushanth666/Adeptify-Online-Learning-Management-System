@@ -110,6 +110,7 @@ export const LessonPlayer: React.FC = () => {
       }
       if (targetLesson) {
         setActiveLesson(targetLesson);
+        api.enrollments.setLastAccessedLesson(course.id, targetLesson.id, targetLesson.title);
       }
     }
   }, [course, courseId, enrollment, completedLessonIds, activeLesson]);
@@ -227,8 +228,7 @@ export const LessonPlayer: React.FC = () => {
     lessonRef: Lesson | null;
   }) => {
     if (vid.lessonRef) {
-      setActiveLesson(vid.lessonRef);
-      setCustomPlayingVideo(null);
+      handleSelectLesson(vid.lessonRef);
     } else {
       setCustomPlayingVideo({
         id: vid.id,
@@ -236,6 +236,9 @@ export const LessonPlayer: React.FC = () => {
         channel: vid.channel,
         embedUrl: vid.embedUrl,
       });
+      if (course) {
+        api.enrollments.setLastAccessedLesson(course.id, vid.id, vid.title);
+      }
     }
   };
 
@@ -243,7 +246,7 @@ export const LessonPlayer: React.FC = () => {
     setActiveLesson(lesson);
     setCustomPlayingVideo(null);
     if (courseId) {
-      api.enrollments.setLastAccessedLesson(courseId, lesson.id);
+      api.enrollments.setLastAccessedLesson(courseId, lesson.id, lesson.title);
     }
   };
 

@@ -23,6 +23,7 @@ import { RatingStars } from '../common/RatingStars';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { toggleWishlist } from '../../store/slices/courseSlice';
 import { showToast } from '../../store/slices/uiSlice';
+import { recordLastPlayedVideo } from '../../services/api';
 
 interface CourseCardProps {
   course: Course;
@@ -211,6 +212,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
                 e.preventDefault();
                 e.stopPropagation();
                 setIsPlayingVideo(true);
+                recordLastPlayedVideo(course.id, undefined, course.title);
               }}
               title="Click to play course preview video"
             >
@@ -307,7 +309,10 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => navigate(`/learning/${course.id}`)}
+                onClick={() => {
+                  recordLastPlayedVideo(course.id, undefined, course.title);
+                  navigate(`/learning/${course.id}`);
+                }}
                 className="w-full mt-2 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors shadow-sm shadow-emerald-600/20"
               >
                 {progress === 100 ? 'Review Lectures' : 'Continue Learning'}

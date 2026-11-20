@@ -29,6 +29,17 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
   const courses = useAppSelector((state) => state.courses.courses);
   const enrollments = useAppSelector((state) => state.learning.enrollments);
 
+  // Track real-time last played video updates
+  const [lastPlayedTimestamp, setLastPlayedTimestamp] = useState<number>(() => Date.now());
+
+  React.useEffect(() => {
+    const handleUpdate = () => {
+      setLastPlayedTimestamp(Date.now());
+    };
+    window.addEventListener('edupulse:last_played_updated', handleUpdate);
+    return () => window.removeEventListener('edupulse:last_played_updated', handleUpdate);
+  }, []);
+
   // Modal state for Help Center & Student Community
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [helpTab, setHelpTab] = useState<'help' | 'community'>('help');
@@ -49,29 +60,78 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
     navigate(`/learning/${activeCourseData.course.id}`);
   };
 
-  // Find active / recently accessed enrolled course for "Continue Learning"
+  // Find active / most recently played course & lesson for "Continue Learning"
   const activeCourseData = useMemo(() => {
     if (!courses || courses.length === 0) return null;
 
-    // Check enrollments for first in-progress course
+    // 1. Check if there is an explicit last played course recorded
+    try {
+      const raw = localStorage.getItem('edupulse_last_played');
+      if (raw) {
+        const record = JSON.parse(raw);
+        if (record?.courseId) {
+          const matched = courses.find((c) => c.id === record.courseId);
+          if (matched) {
+            const enr = enrollments.find((e) => e.courseId === matched.id);
+            let lessonTitle = record.lessonTitle;
+            if (!lessonTitle && record.lessonId && matched.chapters) {
+              for (const ch of matched.chapters) {
+                const l = ch.lessons.find((les) => les.id === record.lessonId);
+                if (l) {
+                  lessonTitle = l.title;
+                  break;
+                }
+              }
+            }
+            return {
+              course: matched,
+              progress: enr?.progressPercentage || 60,
+              lessonId: record.lessonId,
+              lessonTitle,
+            };
+          }
+        }
+      }
+    } catch {}
+
+    // 2. Otherwise sort enrollments by most recently accessed
     if (enrollments && enrollments.length > 0) {
-      const inProgress = enrollments.find((e) => !e.isCompleted) || enrollments[0];
-      const course = courses.find((c) => c.id === inProgress.courseId);
-      if (course) {
+      const sorted = [...enrollments].sort((a, b) => {
+        const timeA = a.lastAccessedAt ? new Date(a.lastAccessedAt).getTime() : 0;
+        const timeB = b.lastAccessedAt ? new Date(b.lastAccessedAt).getTime() : 0;
+        return timeB - timeA;
+      });
+      const recent = sorted.find((e) => !e.isCompleted) || sorted[0];
+      const matchedCourse = courses.find((c) => c.id === recent.courseId);
+      if (matchedCourse) {
+        let lessonTitle: string | undefined;
+        if (recent.lastAccessedLessonId && matchedCourse.chapters) {
+          for (const ch of matchedCourse.chapters) {
+            const l = ch.lessons.find((les) => les.id === recent.lastAccessedLessonId);
+            if (l) {
+              lessonTitle = l.title;
+              break;
+            }
+          }
+        }
         return {
-          course,
-          progress: inProgress.progressPercentage || 64,
+          course: matchedCourse,
+          progress: recent.progressPercentage || 60,
+          lessonId: recent.lastAccessedLessonId,
+          lessonTitle,
         };
       }
     }
 
-    // Default to first catalog course if no enrollment yet
+    // 3. Fallback to first catalog course
     const fallbackCourse = courses[0];
     return {
       course: fallbackCourse,
-      progress: 45,
+      progress: 0,
+      lessonId: undefined,
+      lessonTitle: undefined,
     };
-  }, [courses, enrollments]);
+  }, [courses, enrollments, lastPlayedTimestamp]);
 
   // Role-based access: Sidebar matches current user role
   const effectiveType = type || role;
@@ -182,6 +242,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
                     <h5 className="text-xs font-bold text-slate-900 dark:text-white truncate">
                       {activeCourseData.course.title}
                     </h5>
+                    {activeCourseData.lessonTitle && (
+                      <p className="text-[10px] text-emerald-700 dark:text-emerald-400 font-medium truncate">
+                        ▶ {activeCourseData.lessonTitle}
+                      </p>
+                    )}
                     <div className="w-full bg-emerald-200/60 dark:bg-emerald-900/40 h-1.5 rounded-full overflow-hidden mt-1">
                       <div
                         className="bg-emerald-600 h-full rounded-full transition-all duration-300"
@@ -350,6 +415,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
             <h5 className="text-xs font-bold text-slate-900 dark:text-white truncate">
               {activeCourseData.course.title}
             </h5>
+            {activeCourseData.lessonTitle && (
+              <p className="text-[10px] text-emerald-700 dark:text-emerald-400 font-medium truncate">
+                ▶ {activeCourseData.lessonTitle}
+              </p>
+            )}
             <button
               type="button"
               onClick={handleResumeLesson}

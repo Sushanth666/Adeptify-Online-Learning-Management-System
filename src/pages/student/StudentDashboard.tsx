@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -41,13 +41,48 @@ export const StudentDashboard: React.FC = () => {
     return enrollments.filter((e) => e.isCompleted || e.progressPercentage === 100).length;
   }, [enrollments]);
 
-  // Find most recently accessed in-progress course
+  const [lastPlayedTimestamp, setLastPlayedTimestamp] = useState<number>(() => Date.now());
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setLastPlayedTimestamp(Date.now());
+    };
+    window.addEventListener('edupulse:last_played_updated', handleUpdate);
+    return () => window.removeEventListener('edupulse:last_played_updated', handleUpdate);
+  }, []);
+
+  // Find most recently played or in-progress course
   const activeCourseData = useMemo(() => {
-    const inProgress = enrollments.find((e) => !e.isCompleted && e.progressPercentage < 100);
+    // 1. Check if there is an explicit last played course recorded
+    try {
+      const raw = localStorage.getItem('edupulse_last_played');
+      if (raw) {
+        const record = JSON.parse(raw);
+        if (record?.courseId) {
+          const matched = courses.find((c) => c.id === record.courseId);
+          if (matched) {
+            const enr = enrollments.find((e) => e.courseId === matched.id);
+            return {
+              course: matched,
+              enrollment: enr || { progressPercentage: 60 },
+              lessonTitle: record.lessonTitle,
+            };
+          }
+        }
+      }
+    } catch {}
+
+    // 2. Fallback to most recent in-progress enrollment
+    const sorted = [...enrollments].sort((a, b) => {
+      const timeA = a.lastAccessedAt ? new Date(a.lastAccessedAt).getTime() : 0;
+      const timeB = b.lastAccessedAt ? new Date(b.lastAccessedAt).getTime() : 0;
+      return timeB - timeA;
+    });
+    const inProgress = sorted.find((e) => !e.isCompleted && e.progressPercentage < 100) || sorted[0];
     if (!inProgress) return null;
     const course = courses.find((c) => c.id === inProgress.courseId);
     return { course, enrollment: inProgress };
-  }, [enrollments, courses]);
+  }, [enrollments, courses, lastPlayedTimestamp]);
 
   const recommendedCourses = useMemo(() => {
     return courses.filter((c) => !enrolledCourseIds.has(c.id)).slice(0, 3);
