@@ -9,7 +9,8 @@ import {
   HelpCircle, 
   Users, 
   ArrowRight,
-  Clock
+  Clock,
+  LogOut
 } from 'lucide-react';
 import { useAuth, useSidebar } from '../../hooks';
 import { NAVIGATION_CONFIG } from '../../config';
@@ -23,7 +24,7 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
   const navigate = useNavigate();
-  const { role } = useAuth();
+  const { role, logout } = useAuth();
   const { isMinimized, isMobileOpen, toggleMinimized, setMobileOpen } = useSidebar();
 
   const courses = useAppSelector((state) => state.courses.courses);
@@ -358,6 +359,29 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
               </div>
             )}
           </div>
+
+          {/* Sign Out Button */}
+          <div className="relative group w-full pt-1 border-t border-slate-100 dark:border-slate-800">
+            <button
+              type="button"
+              onClick={() => {
+                logout();
+                navigate('/login');
+              }}
+              className={`w-full flex items-center ${
+                isMinimized ? 'justify-center h-10 px-0' : 'justify-start gap-2 px-3 py-1.5'
+              } rounded-xl text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors cursor-pointer`}
+              title="Sign Out"
+            >
+              <LogOut className="w-4 h-4 text-rose-500 dark:text-rose-400 flex-shrink-0" />
+              {!isMinimized && <span>Sign Out</span>}
+            </button>
+            {isMinimized && (
+              <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3.5 px-3 py-1.5 bg-rose-950 text-rose-200 text-xs font-semibold rounded-xl shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap border border-rose-800">
+                <span>Sign Out</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </aside>
@@ -467,6 +491,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
               Live
             </span>
           </button>
+
+          {/* Sign Out Button */}
+          <div className="pt-1 border-t border-slate-100 dark:border-slate-800">
+            <button
+              type="button"
+              onClick={() => {
+                setMobileOpen(false);
+                logout();
+                navigate('/login');
+              }}
+              className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors text-left cursor-pointer"
+            >
+              <LogOut className="w-4 h-4 text-rose-500" />
+              <span>Sign Out</span>
+            </button>
+          </div>
         </div>
       </div>
     </aside>
