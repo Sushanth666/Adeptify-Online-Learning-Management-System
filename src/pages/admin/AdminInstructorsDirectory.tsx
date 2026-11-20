@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   ShieldCheck, 
   Search, 
@@ -12,7 +12,8 @@ import {
   Download, 
   Award, 
   BadgeCheck,
-  AlertCircle
+  AlertCircle,
+  Check
 } from 'lucide-react';
 import { useAppDispatch } from '../../store';
 import { showToast } from '../../store/slices/uiSlice';
@@ -138,11 +139,58 @@ export const AdminInstructorsDirectory: React.FC = () => {
     }));
   };
 
-  const handleApprovePayout = (name: string, amount: number) => {
-    dispatch(showToast({
-      message: `Payout of ₹${amount.toLocaleString('en-IN')} approved for ${name}! Wire transfer initiated.`,
-      type: 'success'
-    }));
+  const handleApprovePayout = (id: string, name: string, amount: number) => {
+    if (amount <= 0) return;
+
+    setInstructors((prev) =>
+      prev.map((i) =>
+        i.id === id
+          ? {
+              ...i,
+              totalEarnings: i.totalEarnings + amount,
+              pendingPayout: 0,
+            }
+          : i
+      )
+    );
+
+    dispatch(
+      showToast({
+        message: `Payout of ₹${amount.toLocaleString('en-IN')} approved for ${name}! Wire transfer initiated.`,
+        type: 'success',
+      })
+    );
+  };
+
+  const totalLifetimePaid = useMemo(() => {
+    return instructors.reduce((sum, inst) => sum + inst.totalEarnings, 0);
+  }, [instructors]);
+
+  const totalPendingPayout = useMemo(() => {
+    return instructors.reduce((sum, inst) => sum + inst.pendingPayout, 0);
+  }, [instructors]);
+
+  const pendingSettlementsCount = useMemo(() => {
+    return instructors.filter((inst) => inst.pendingPayout > 0).length;
+  }, [instructors]);
+
+  const handleExportFacultyCSV = () => {
+    const headers = 'InstructorID,Name,Email,Title,Location,CoursesCount,TotalStudents,Rating,Verified,TotalEarnings,PendingPayout\n';
+    const rows = instructors.map((i) =>
+      `"${i.id}","${i.name}","${i.email}","${i.title}","${i.location}",${i.coursesCount},${i.studentsCount},${i.rating},"${i.isVerifiedFaculty ? 'Yes' : 'No'}",₹${i.totalEarnings},₹${i.pendingPayout}`
+    ).join('\n');
+
+    const blob = new Blob([headers + rows], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Adeptify_Faculty_Directory_${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+
+    dispatch(showToast({ message: 'Instructor Master Directory exported successfully!', type: 'success' }));
   };
 
   return (
@@ -164,10 +212,8 @@ export const AdminInstructorsDirectory: React.FC = () => {
         </div>
 
         <button
-          onClick={() => {
-            dispatch(showToast({ message: 'Instructor Master Directory exported!', type: 'success' }));
-          }}
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 font-bold text-xs transition-colors shadow-2xs"
+          onClick={handleExportFacultyCSV}
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 text-slate-700 hover:text-emerald-800 font-bold text-xs transition-colors shadow-2xs cursor-pointer"
         >
           <Download className="w-4 h-4 text-emerald-600" />
           <span>Export Faculty CSV</span>
@@ -178,20 +224,26 @@ export const AdminInstructorsDirectory: React.FC = () => {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
           <span className="text-xs font-semibold text-slate-500">Active Faculty & Instructors</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">64</div>
+          <div className="text-2xl font-black text-slate-900 mt-1">{instructors.length}</div>
           <span className="text-[11px] text-emerald-600 font-bold mt-1 inline-block">Top MAANG & Academic Leaders</span>
         </div>
 
         <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
           <span className="text-xs font-semibold text-slate-500">Total Lifetime Payouts</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">₹68.4 Lakhs</div>
-          <span className="text-[11px] text-teal-600 font-bold mt-1 inline-block">85% Revenue Share Policy</span>
+          <div className="text-2xl font-black text-slate-900 mt-1">
+            ₹{(totalLifetimePaid / 100000).toFixed(2)} Lakhs
+          </div>
+          <span className="text-[11px] text-teal-600 font-bold mt-1 inline-block">85% Revenue Share Disbursed</span>
         </div>
 
         <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
           <span className="text-xs font-semibold text-slate-500">Pending Payout Queue</span>
-          <div className="text-2xl font-black text-slate-900 mt-1">₹14.2 Lakhs</div>
-          <span className="text-[11px] text-amber-600 font-bold mt-1 inline-block">5 Settlements Awaiting Review</span>
+          <div className="text-2xl font-black text-amber-600 mt-1">
+            ₹{(totalPendingPayout / 100000).toFixed(2)} Lakhs
+          </div>
+          <span className="text-[11px] text-amber-700 font-bold mt-1 inline-block">
+            {pendingSettlementsCount} Settlements Awaiting Review
+          </span>
         </div>
 
         <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-2xs">
@@ -329,19 +381,28 @@ export const AdminInstructorsDirectory: React.FC = () => {
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <span className="font-extrabold text-amber-800 block">
+                    <span className={`font-extrabold block ${inst.pendingPayout > 0 ? 'text-amber-800' : 'text-slate-400'}`}>
                       ₹{inst.pendingPayout.toLocaleString('en-IN')}
                     </span>
-                    <span className="text-[10px] text-slate-400">Ready for release</span>
+                    <span className={`text-[10px] font-semibold ${inst.pendingPayout > 0 ? 'text-amber-700' : 'text-emerald-700'}`}>
+                      {inst.pendingPayout > 0 ? 'Ready for release' : 'Settled to Bank ✓'}
+                    </span>
                   </td>
 
                   <td className="py-3.5 px-4 text-right">
-                    <button
-                      onClick={() => handleApprovePayout(inst.name, inst.pendingPayout)}
-                      className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-colors shadow-2xs"
-                    >
-                      Approve Payout
-                    </button>
+                    {inst.pendingPayout > 0 ? (
+                      <button
+                        onClick={() => handleApprovePayout(inst.id, inst.name, inst.pendingPayout)}
+                        className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-xs transition-all shadow-2xs cursor-pointer hover:shadow-emerald-600/30"
+                      >
+                        Approve Payout
+                      </button>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold text-xs">
+                        <Check className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>Paid</span>
+                      </span>
+                    )}
                   </td>
                 </tr>
               ))}

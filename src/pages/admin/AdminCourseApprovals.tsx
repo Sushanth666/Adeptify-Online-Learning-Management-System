@@ -69,6 +69,28 @@ export const AdminCourseApprovals: React.FC = () => {
   const pendingCount = coursesList.filter(c => c.status === 'pending_approval').length;
   const featuredCount = coursesList.filter(c => c.featured).length;
 
+  const handleExportAuditReport = () => {
+    const headers = 'CourseID,Title,Domain,Level,PriceINR,TotalLessons,TotalStudents,Rating,FeaturedHomepage,QAApprovalStatus\n';
+    const rows = coursesList.map(c => 
+      `"${c.id}","${c.title.replace(/"/g, '""')}","${c.category}","${c.level}",₹${c.price},${c.totalLessons},${c.totalStudents},${c.rating},"${c.featured ? 'Yes' : 'No'}","${c.status || 'published'}"`
+    ).join('\n');
+
+    const blob = new Blob([headers + rows], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Adeptify_Catalog_Audit_Report_${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+
+    dispatch(showToast({
+      message: `Catalog compliance audit report exported (${coursesList.length} courses)!`,
+      type: 'success'
+    }));
+  };
+
   return (
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto">
       
@@ -88,10 +110,8 @@ export const AdminCourseApprovals: React.FC = () => {
         </div>
 
         <button
-          onClick={() => {
-            dispatch(showToast({ message: 'Catalog compliance audit report generated!', type: 'success' }));
-          }}
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 font-bold text-xs shadow-2xs"
+          onClick={handleExportAuditReport}
+          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 text-slate-700 hover:text-emerald-800 font-bold text-xs shadow-2xs transition-all cursor-pointer"
         >
           <Download className="w-4 h-4 text-emerald-600" />
           <span>Catalog Audit Report</span>
