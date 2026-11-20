@@ -24,7 +24,7 @@ const STORAGE_KEYS = {
 // Initialize localStorage with defaults
 export const initializeLocalStorage = () => {
   const version = localStorage.getItem('edupulse_version');
-  if (version !== 'adeptify_v6_letter_avatars') {
+  if (version !== 'adeptify_v7_10_free_courses') {
     localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(mockUsers.student));
     localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(mockCourses));
     localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(mockEnrollments));
@@ -32,9 +32,21 @@ export const initializeLocalStorage = () => {
     localStorage.setItem(STORAGE_KEYS.CERTIFICATES, JSON.stringify(mockCertificates));
     localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify(mockNotifications));
     localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(mockReviews));
-    localStorage.setItem('edupulse_version', 'adeptify_v6_letter_avatars');
+    localStorage.setItem('edupulse_version', 'adeptify_v7_10_free_courses');
     return;
   }
+
+  // Ensure courses in localStorage have the 10 free courses synchronized
+  try {
+    const rawCourses = localStorage.getItem(STORAGE_KEYS.COURSES);
+    if (rawCourses) {
+      const parsedCourses = JSON.parse(rawCourses);
+      const freeCount = parsedCourses.filter((c: any) => c.isFree).length;
+      if (freeCount < 10) {
+        localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(mockCourses));
+      }
+    }
+  } catch {}
 
   // Migrate legacy stock photos to initial letter avatar if not a custom upload
   try {
