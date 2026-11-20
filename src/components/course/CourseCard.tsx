@@ -212,19 +212,20 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
                 e.stopPropagation();
                 setIsPlayingVideo(true);
               }}
-              title="Click to play video"
+              title="Click to play course preview video"
             >
               <motion.button
                 type="button"
-                whileHover={{ scale: 1.18 }}
+                whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.92 }}
-                className="w-13 h-13 rounded-full bg-slate-950/70 group-hover/play:bg-emerald-600 text-white flex items-center justify-center shadow-2xl backdrop-blur-xs transition-all duration-300 ring-4 ring-white/25 pl-0.5"
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-950/85 group-hover/play:bg-emerald-600 text-white flex items-center justify-center shadow-2xl backdrop-blur-sm transition-all duration-300 ring-4 ring-white/30 pl-0.5"
                 aria-label={`Play preview video for ${course.title}`}
               >
-                <Play className="w-6 h-6 fill-white text-white translate-x-0.5" />
+                <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-white text-white translate-x-0.5" />
               </motion.button>
 
-              <span className="mt-2 text-[10px] font-extrabold uppercase tracking-wider text-white drop-shadow-md bg-slate-950/75 px-2.5 py-0.5 rounded-full opacity-0 group-hover/play:opacity-100 transition-opacity duration-200">
+              <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-extrabold uppercase tracking-wider text-white drop-shadow-md bg-slate-950/80 px-2.5 py-0.5 rounded-full border border-white/20 backdrop-blur-sm group-hover/play:bg-emerald-600 transition-colors">
+                <Play className="w-2.5 h-2.5 fill-white" />
                 Play Video
               </span>
             </div>
@@ -315,7 +316,7 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, enrollment }) =>
           ) : (
             <div className="flex items-center justify-between">
               <div>
-                {course.isFree ? (
+                {course.isFree || course.price === 0 ? (
                   <span className="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">Free</span>
                 ) : (
                   <div className="flex items-baseline gap-1.5">

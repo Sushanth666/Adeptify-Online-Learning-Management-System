@@ -58,8 +58,9 @@ export const CourseCatalog: React.FC = () => {
       }
 
       // Price
-      if (filters.priceType === 'free' && !c.isFree) return false;
-      if (filters.priceType === 'paid' && c.isFree) return false;
+      const isCourseFree = c.isFree === true || Number(c.price) === 0;
+      if (filters.priceType === 'free' && !isCourseFree) return false;
+      if (filters.priceType === 'paid' && isCourseFree) return false;
 
       return true;
     }).sort((a, b) => {

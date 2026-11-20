@@ -24,7 +24,7 @@ const STORAGE_KEYS = {
 // Initialize localStorage with defaults
 export const initializeLocalStorage = () => {
   const version = localStorage.getItem('edupulse_version');
-  if (version !== 'adeptify_v7_10_free_courses') {
+  if (version !== 'adeptify_v9_guaranteed_10_free_courses') {
     localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(mockUsers.student));
     localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(mockCourses));
     localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(mockEnrollments));
@@ -32,7 +32,7 @@ export const initializeLocalStorage = () => {
     localStorage.setItem(STORAGE_KEYS.CERTIFICATES, JSON.stringify(mockCertificates));
     localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify(mockNotifications));
     localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(mockReviews));
-    localStorage.setItem('edupulse_version', 'adeptify_v7_10_free_courses');
+    localStorage.setItem('edupulse_version', 'adeptify_v9_guaranteed_10_free_courses');
     return;
   }
 
@@ -41,7 +41,7 @@ export const initializeLocalStorage = () => {
     const rawCourses = localStorage.getItem(STORAGE_KEYS.COURSES);
     if (rawCourses) {
       const parsedCourses = JSON.parse(rawCourses);
-      const freeCount = parsedCourses.filter((c: any) => c.isFree).length;
+      const freeCount = parsedCourses.filter((c: any) => c.isFree === true || Number(c.price) === 0).length;
       if (freeCount < 10) {
         localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(mockCourses));
       }
@@ -153,9 +153,13 @@ export const api = {
   // Courses API
   courses: {
     getAll: async (): Promise<Course[]> => {
-      await new Promise((r) => setTimeout(r, 300));
+      await new Promise((r) => setTimeout(r, 200));
       const raw = localStorage.getItem(STORAGE_KEYS.COURSES);
-      return raw ? JSON.parse(raw) : mockCourses;
+      const list: Course[] = raw ? JSON.parse(raw) : mockCourses;
+      return list.map((c) => ({
+        ...c,
+        isFree: c.isFree === true || Number(c.price) === 0,
+      }));
     },
     getById: async (id: string): Promise<Course | undefined> => {
       await new Promise((r) => setTimeout(r, 200));
