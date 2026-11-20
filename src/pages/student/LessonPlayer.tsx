@@ -32,16 +32,24 @@ import { LessonAssignmentModal } from '../../components/learning/LessonAssignmen
 import { ResourcesList } from '../../components/learning/ResourcesList';
 import { CertificateModal } from '../../components/common/CertificateModal';
 import { Lesson, Certificate } from '../../types';
+import { api } from '../../services/api';
 
 export const LessonPlayer: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const course = useAppSelector((state) => state.courses.selectedCourse);
+  const selectedCourse = useAppSelector((state) => state.courses.selectedCourse);
+  const allCourses = useAppSelector((state) => state.courses.courses);
   const loading = useAppSelector((state) => state.courses.loading);
   const enrollments = useAppSelector((state) => state.learning.enrollments);
   const certificates = useAppSelector((state) => state.learning.certificates);
+
+  // Instantly resolve course from store without waiting for network
+  const course = useMemo(() => {
+    if (selectedCourse && selectedCourse.id === courseId) return selectedCourse;
+    return allCourses.find((c) => c.id === courseId) || null;
+  }, [selectedCourse, allCourses, courseId]);
 
   const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
   const [activeTab, setActiveTab] = useState<'overview' | 'resources' | 'notes' | 'videos'>('overview');
@@ -71,29 +79,42 @@ export const LessonPlayer: React.FC = () => {
   const enrollment = enrollments.find((e) => e.courseId === courseId);
   const completedLessonIds = enrollment?.completedLessonIds || [];
 
-  // Default to first lesson or last accessed lesson
+  // Reset active state when courseId changes
   useEffect(() => {
-    if (course && course.chapters && course.chapters.length > 0) {
-      if (!activeLesson) {
-        let targetLesson: Lesson | undefined;
-        if (enrollment?.lastAccessedLessonId) {
-          for (const ch of course.chapters) {
-            const found = ch.lessons.find((l) => l.id === enrollment.lastAccessedLessonId);
-            if (found) {
-              targetLesson = found;
-              break;
-            }
-          }
-        }
-        if (!targetLesson) {
-          targetLesson = course.chapters[0].lessons[0];
-        }
+    setActiveLesson(null);
+    setCustomPlayingVideo(null);
+  }, [courseId]);
+
+  // Set active lesson when the matching course data and enrollment are loaded
+  useEffect(() => {
+    if (!course || course.id !== courseId || !course.chapters || course.chapters.length === 0) {
+      return;
+    }
+
+    const allCourseLessons = course.chapters.flatMap((ch) => ch.lessons);
+    const isCurrentLessonValid = activeLesson && allCourseLessons.some((l) => l.id === activeLesson.id);
+
+    if (!isCurrentLessonValid) {
+      let targetLesson: Lesson | undefined;
+      // 1. Try last accessed lesson
+      if (enrollment?.lastAccessedLessonId) {
+        targetLesson = allCourseLessons.find((l) => l.id === enrollment.lastAccessedLessonId);
+      }
+      // 2. Try first uncompleted lesson
+      if (!targetLesson && enrollment) {
+        targetLesson = allCourseLessons.find((l) => !completedLessonIds.includes(l.id));
+      }
+      // 3. Fallback to first lesson
+      if (!targetLesson) {
+        targetLesson = allCourseLessons[0];
+      }
+      if (targetLesson) {
         setActiveLesson(targetLesson);
       }
     }
-  }, [course, enrollment, activeLesson]);
+  }, [course, courseId, enrollment, completedLessonIds, activeLesson]);
 
-  if (loading) {
+  if (loading && !course) {
     return (
       <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center text-white gap-3">
         <div className="w-8 h-8 border-3 border-emerald-500 border-t-transparent rounded-full animate-spin" />
@@ -218,17 +239,23 @@ export const LessonPlayer: React.FC = () => {
     }
   };
 
+  const handleSelectLesson = (lesson: Lesson) => {
+    setActiveLesson(lesson);
+    setCustomPlayingVideo(null);
+    if (courseId) {
+      api.enrollments.setLastAccessedLesson(courseId, lesson.id);
+    }
+  };
+
   const handleNextLesson = () => {
     if (nextLesson) {
-      setCustomPlayingVideo(null);
-      setActiveLesson(nextLesson);
+      handleSelectLesson(nextLesson);
     }
   };
 
   const handlePrevLesson = () => {
     if (prevLesson) {
-      setCustomPlayingVideo(null);
-      setActiveLesson(prevLesson);
+      handleSelectLesson(prevLesson);
     }
   };
 
@@ -735,7 +762,7 @@ export const LessonPlayer: React.FC = () => {
                 currentLessonId={activeLesson?.id}
                 completedLessonIds={completedLessonIds}
                 isEnrolled={true}
-                onSelectLesson={(lesson) => setActiveLesson(lesson)}
+                onSelectLesson={handleSelectLesson}
                 onOpenQuiz={(lesson) => setActiveQuiz(lesson)}
                 onOpenAssignment={(lesson) => setActiveAssignment(lesson)}
               />

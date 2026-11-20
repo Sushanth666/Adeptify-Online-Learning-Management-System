@@ -79,8 +79,16 @@ const courseSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || 'Failed to fetch courses';
       })
+      .addCase(fetchCourseById.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(fetchCourseById.fulfilled, (state, action) => {
+        state.loading = false;
         state.selectedCourse = action.payload || null;
+      })
+      .addCase(fetchCourseById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Failed to fetch course';
       })
       .addCase(createNewCourse.fulfilled, (state, action) => {
         state.courses.unshift(action.payload);

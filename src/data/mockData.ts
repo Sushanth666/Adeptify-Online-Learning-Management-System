@@ -103,9 +103,9 @@ export const mockEnrollments: Enrollment[] = [
     courseId: 'course-1',
     studentId: 'usr_student_1',
     enrolledAt: '2024-09-15',
-    progressPercentage: 66,
-    completedLessonIds: ['les-1-1', 'les-1-2', 'les-2-1', 'les-2-2'],
-    lastAccessedLessonId: 'les-2-3',
+    progressPercentage: 60,
+    completedLessonIds: ['course-1-les-1', 'course-1-les-2', 'course-1-les-3'],
+    lastAccessedLessonId: 'course-1-les-4',
     isCompleted: false
   },
   {
@@ -114,8 +114,8 @@ export const mockEnrollments: Enrollment[] = [
     studentId: 'usr_student_1',
     enrolledAt: '2024-08-10',
     progressPercentage: 100,
-    completedLessonIds: ['les-d-1', 'les-d-2'],
-    lastAccessedLessonId: 'les-d-2',
+    completedLessonIds: ['course-2-les-1', 'course-2-les-2', 'course-2-les-3', 'course-2-les-4', 'course-2-les-5'],
+    lastAccessedLessonId: 'course-2-les-5',
     isCompleted: true,
     completedAt: '2024-10-02',
     certificateId: 'cert-uiux-9981'
@@ -125,9 +125,9 @@ export const mockEnrollments: Enrollment[] = [
     courseId: 'course-4',
     studentId: 'usr_student_1',
     enrolledAt: '2024-10-20',
-    progressPercentage: 25,
-    completedLessonIds: ['les-p-1'],
-    lastAccessedLessonId: 'les-p-1',
+    progressPercentage: 20,
+    completedLessonIds: ['course-4-les-1'],
+    lastAccessedLessonId: 'course-4-les-2',
     isCompleted: false
   }
 ];

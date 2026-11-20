@@ -24,7 +24,7 @@ const STORAGE_KEYS = {
 // Initialize localStorage with defaults
 export const initializeLocalStorage = () => {
   const version = localStorage.getItem('edupulse_version');
-  if (version !== 'adeptify_v9_guaranteed_10_free_courses') {
+  if (version !== 'adeptify_v11_resume_lessons_fix') {
     localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(mockUsers.student));
     localStorage.setItem(STORAGE_KEYS.COURSES, JSON.stringify(mockCourses));
     localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(mockEnrollments));
@@ -32,9 +32,21 @@ export const initializeLocalStorage = () => {
     localStorage.setItem(STORAGE_KEYS.CERTIFICATES, JSON.stringify(mockCertificates));
     localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify(mockNotifications));
     localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(mockReviews));
-    localStorage.setItem('edupulse_version', 'adeptify_v9_guaranteed_10_free_courses');
+    localStorage.setItem('edupulse_version', 'adeptify_v11_resume_lessons_fix');
     return;
   }
+
+  // Ensure enrollments in localStorage have matching lesson IDs
+  try {
+    const rawEnrollments = localStorage.getItem(STORAGE_KEYS.ENROLLMENTS);
+    if (rawEnrollments) {
+      const parsedEnr = JSON.parse(rawEnrollments);
+      const hasLegacyIds = parsedEnr.some((e: any) => e.lastAccessedLessonId && !e.lastAccessedLessonId.includes('course-'));
+      if (hasLegacyIds) {
+        localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(mockEnrollments));
+      }
+    }
+  } catch {}
 
   // Ensure courses in localStorage have the 10 free courses synchronized
   try {
@@ -314,6 +326,14 @@ export const api = {
         certificateId
       };
 
+      localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(enrollments));
+      return enrollments[index];
+    },
+    setLastAccessedLesson: async (courseId: string, lessonId: string): Promise<Enrollment | null> => {
+      const enrollments = await api.enrollments.getAll();
+      const index = enrollments.findIndex(e => e.courseId === courseId);
+      if (index === -1) return null;
+      enrollments[index].lastAccessedLessonId = lessonId;
       localStorage.setItem(STORAGE_KEYS.ENROLLMENTS, JSON.stringify(enrollments));
       return enrollments[index];
     }

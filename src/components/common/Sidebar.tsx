@@ -39,6 +39,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
     setMobileOpen(false);
   };
 
+  const handleResumeLesson = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (!activeCourseData?.course?.id) return;
+    if (isMobileOpen) setMobileOpen(false);
+    navigate(`/learning/${activeCourseData.course.id}`);
+  };
+
   // Find active / recently accessed enrolled course for "Continue Learning"
   const activeCourseData = useMemo(() => {
     if (!courses || courses.length === 0) return null;
@@ -140,15 +150,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
           <div className="relative group">
             {isMinimized ? (
               <button
-                onClick={() => navigate(`/learning/${activeCourseData.course.id}`)}
-                className="w-full h-11 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all shadow-2xs relative"
+                onClick={handleResumeLesson}
+                className="w-full h-11 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all shadow-2xs relative cursor-pointer"
                 title={`Resume: ${activeCourseData.course.title} (${activeCourseData.progress}%)`}
               >
                 <Play className="w-4 h-4 fill-current ml-0.5" />
                 <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
               </button>
             ) : (
-              <div className="rounded-2xl bg-gradient-to-br from-emerald-50/90 to-teal-50/60 dark:from-emerald-950/30 dark:to-teal-950/20 border border-emerald-200/80 dark:border-emerald-800/50 p-3 space-y-2 shadow-2xs">
+              <div 
+                onClick={handleResumeLesson}
+                className="rounded-2xl bg-gradient-to-br from-emerald-50/90 to-teal-50/60 dark:from-emerald-950/30 dark:to-teal-950/20 border border-emerald-200/80 dark:border-emerald-800/50 p-3 space-y-2 shadow-2xs cursor-pointer hover:border-emerald-400 transition-colors"
+              >
                 <div className="flex items-center justify-between text-[11px] font-bold text-emerald-800 dark:text-emerald-300">
                   <span className="flex items-center gap-1">
                     <Play className="w-3 h-3 fill-current" />
@@ -180,8 +193,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
 
                 <button
                   type="button"
-                  onClick={() => navigate(`/learning/${activeCourseData.course.id}`)}
-                  className="w-full py-1.5 px-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                  onClick={handleResumeLesson}
+                  className="w-full py-1.5 px-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
                 >
                   <span>Resume Lesson</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -339,13 +352,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ type }) => {
             </h5>
             <button
               type="button"
-              onClick={() => {
-                setMobileOpen(false);
-                navigate(`/learning/${activeCourseData.course.id}`);
-              }}
-              className="w-full py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-bold flex items-center justify-center gap-1"
+              onClick={handleResumeLesson}
+              className="w-full py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
             >
-              Resume Lesson →
+              <span>Resume Lesson</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
         )}
