@@ -53,6 +53,53 @@ export const AdminDashboard: React.FC = () => {
     }
   };
 
+  const handleExportAnalyticsCSV = () => {
+    let csv = '=== ADEPTIFY LMS PLATFORM AUDIT & ANALYTICS ===\n';
+    csv += `Generated On,"${new Date().toLocaleString('en-IN')}"\n`;
+    csv += `Gross Platform Volume (YTD),₹${stats.totalRevenue.toLocaleString('en-IN')}\n`;
+    csv += `Current Month Run-Rate,₹${stats.monthlyRevenue.toLocaleString('en-IN')}\n`;
+    csv += `Total Registered Learners,${stats.totalStudents.toLocaleString('en-IN')}\n`;
+    csv += `Active Faculty & Instructors,${stats.activeInstructors}\n`;
+    csv += `Course Completion Rate,${stats.courseCompletionRate}\n\n`;
+
+    csv += '--- MONTHLY PERFORMANCE & REVENUE RUN-RATE ---\n';
+    csv += 'Month,Revenue (INR),New Enrollments,Active Learners\n';
+    stats.monthlySalesData.forEach((row) => {
+      csv += `"${row.month}",₹${row.revenue},${row.enrollments},${row.activeUsers}\n`;
+    });
+    csv += '\n';
+
+    csv += '--- ENGINEERING DOMAIN MARKET SHARE ---\n';
+    csv += 'Domain,Share Percentage\n';
+    stats.categoryDistribution.forEach((cat) => {
+      csv += `"${cat.name}",${cat.value}%\n`;
+    });
+    csv += '\n';
+
+    csv += '--- TOP REVENUE GENERATING MASTERCLASSES ---\n';
+    csv += 'CourseID,Title,LeadFaculty,EnrolledStudents,LifetimeRevenueINR,Rating\n';
+    stats.topCourses.forEach((c) => {
+      csv += `"${c.id}","${c.title.replace(/"/g, '""')}","${c.instructor}",${c.students},₹${c.revenue},${c.rating}\n`;
+    });
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Adeptify_Platform_Analytics_${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+
+    dispatch(
+      showToast({
+        message: 'Platform Analytics CSV exported successfully!',
+        type: 'success',
+      })
+    );
+  };
+
   const filteredStudents = stats.recentStudents.filter(
     (s) =>
       s.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -85,8 +132,8 @@ export const AdminDashboard: React.FC = () => {
           <motion.button
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
-            onClick={() => dispatch(showToast({ message: 'Generating comprehensive platform audit report...', type: 'info' }))}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors shadow-xs"
+            onClick={handleExportAnalyticsCSV}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors shadow-xs cursor-pointer"
           >
             <Download className="w-4 h-4 text-emerald-400" />
             <span>Export Analytics CSV</span>
