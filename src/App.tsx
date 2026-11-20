@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from './store';
 import { initializeLocalStorage } from './services/api';
 import { fetchCourses } from './store/slices/courseSlice';
 import { fetchNotifications } from './store/slices/uiSlice';
+import { fetchEnrollments } from './store/slices/learningSlice';
 import { startTabAnimation } from './utils';
 import { Navbar, Sidebar, Footer, ToastContainer, AnimatedBackground } from './components';
 import { AppRoutes } from './routes';
@@ -16,6 +17,7 @@ export const App: React.FC = () => {
   useEffect(() => {
     initializeLocalStorage();
     dispatch(fetchCourses());
+    dispatch(fetchEnrollments());
     dispatch(fetchNotifications());
     const cleanupTabAnim = startTabAnimation();
     return () => {
