@@ -9,6 +9,8 @@ import {
   ShieldCheck, 
   CheckCircle2, 
   PlayCircle, 
+  Play,
+  X,
   Heart, 
   Share2, 
   ArrowLeft,
@@ -40,6 +42,7 @@ export const CourseDetails: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'curriculum' | 'instructor' | 'reviews'>('overview');
   const [previewLesson, setPreviewLesson] = useState<Lesson | null>(null);
   const [isEnrolling, setIsEnrolling] = useState(false);
+  const [isPlayingInlineVideo, setIsPlayingInlineVideo] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -191,33 +194,54 @@ export const CourseDetails: React.FC = () => {
             >
               <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-2xl text-slate-900 sticky top-20">
                 {/* Video / Thumbnail preview with animated play button */}
-                <div className="relative aspect-video rounded-2xl overflow-hidden mb-5 bg-slate-100 group">
-                  <img
-                    src={course.thumbnail}
-                    alt={course.title}
-                    onError={(e) => {
-                      e.currentTarget.src = 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80';
-                    }}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div
-                    className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white p-4 text-center cursor-pointer group-hover:bg-black/50 transition-colors"
-                    onClick={() => {
-                      const firstPreview = course.chapters[0]?.lessons?.find(l => l.isFreePreview) || course.chapters[0]?.lessons[0];
-                      if (firstPreview) setPreviewLesson(firstPreview);
-                    }}
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.15 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-14 h-14 rounded-full bg-white/95 text-emerald-600 flex items-center justify-center shadow-lg pl-0.5"
-                    >
-                      <PlayCircle className="w-8 h-8 fill-emerald-600 text-white" />
-                    </motion.div>
-                    <span className="mt-2 text-xs font-bold uppercase tracking-wider text-white drop-shadow">
-                      Preview Course
-                    </span>
-                  </div>
+                <div className="relative aspect-video rounded-2xl overflow-hidden mb-5 bg-slate-950 group">
+                  {isPlayingInlineVideo ? (
+                    <div className="relative w-full h-full bg-black">
+                      <iframe
+                        src={`${course.previewVideoUrl || 'https://www.youtube.com/embed/wm5gMKuwSYk?enablejsapi=1&rel=0'}${
+                          (course.previewVideoUrl || '').includes('?') ? '&' : '?'
+                        }autoplay=1&enablejsapi=1&rel=0`}
+                        title={course.title}
+                        className="w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setIsPlayingInlineVideo(false)}
+                        className="absolute top-2.5 right-2.5 p-1.5 rounded-full bg-slate-900/80 hover:bg-rose-600 text-white backdrop-blur-md transition-colors z-20"
+                        title="Close video"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <img
+                        src={course.thumbnail}
+                        alt={course.title}
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80';
+                        }}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div
+                        className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white p-4 text-center cursor-pointer group-hover:bg-black/50 transition-colors"
+                        onClick={() => setIsPlayingInlineVideo(true)}
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.15 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="w-14 h-14 rounded-full bg-white/95 text-emerald-600 flex items-center justify-center shadow-lg pl-0.5"
+                        >
+                          <Play className="w-7 h-7 fill-emerald-600 text-emerald-600 translate-x-0.5" />
+                        </motion.div>
+                        <span className="mt-2 text-xs font-bold uppercase tracking-wider text-white drop-shadow">
+                          Play Video Preview
+                        </span>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {/* Price in Indian Rupees */}
